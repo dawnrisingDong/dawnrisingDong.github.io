@@ -13,32 +13,30 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://dawnringDong.github.io/2023/11/16/training-6/"/>
+    <link rel="canonical" href="http://dawnringDong.github.io/2023/11/16/反序列化/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="week3-4（3）BUUCTF phpdest文件包含  看了预期解是利用require_once的漏洞  原理实在看不懂粒→原理  因为是”once“，flag.php文件从正常使用的路径中无法再次包含 而proc&#x2F;self表示当前进程目录，目录中是当前进程本身相关信息的文件（包含flag.php） root 是指向当前进程运行根目录的符号链接 组成proc&#x2F;self&#x2F;root，之后…？就得到">
+        <meta name="description" content="序列化与反序列化基本内容目的：解决 PHP 对象传递的问题，方便数据的传输与储存  因为 PHP  文件在执行结束以后就会将对象销毁，那么如果下次有一个页面恰好要用到刚刚销毁的对象就会束手无策，总不能你永远不让它销毁，等着你吧，于是人们就想出了一种能长久保存对象的方法，这就是 PHP 的序列化，那当我们下次要用的时候只要反序列化一下就 ok 啦   魔术方法魔术方法的调用是自动进行的，不需要人工干">
 <meta property="og:type" content="article">
-<meta property="og:title" content="training-6">
-<meta property="og:url" content="http://dawnringdong.github.io/2023/11/16/training-6/index.html">
+<meta property="og:title" content="反序列化">
+<meta property="og:url" content="http://dawnringdong.github.io/2023/11/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="dawn_r1sing">
-<meta property="og:description" content="week3-4（3）BUUCTF phpdest文件包含  看了预期解是利用require_once的漏洞  原理实在看不懂粒→原理  因为是”once“，flag.php文件从正常使用的路径中无法再次包含 而proc&#x2F;self表示当前进程目录，目录中是当前进程本身相关信息的文件（包含flag.php） root 是指向当前进程运行根目录的符号链接 组成proc&#x2F;self&#x2F;root，之后…？就得到">
+<meta property="og:description" content="序列化与反序列化基本内容目的：解决 PHP 对象传递的问题，方便数据的传输与储存  因为 PHP  文件在执行结束以后就会将对象销毁，那么如果下次有一个页面恰好要用到刚刚销毁的对象就会束手无策，总不能你永远不让它销毁，等着你吧，于是人们就想出了一种能长久保存对象的方法，这就是 PHP 的序列化，那当我们下次要用的时候只要反序列化一下就 ok 啦   魔术方法魔术方法的调用是自动进行的，不需要人工干">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311082153595.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311082211555.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311091535795.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311122158715.bmp">
-<meta property="article:published_time" content="2023-11-16T14:33:23.000Z">
-<meta property="article:modified_time" content="2023-11-16T14:41:37.884Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311131939382.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311122023161.png">
+<meta property="article:published_time" content="2023-11-16T14:43:15.000Z">
+<meta property="article:modified_time" content="2023-11-16T14:46:49.035Z">
 <meta property="article:author" content="dawn_r1sing">
 <meta property="article:tag" content="CTF">
-<meta property="article:tag" content="集训">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="[object Object]">
 <meta property="article:tag" content="学习">
+<meta property="article:tag" content="专题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311082153595.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311131939382.png">
     
     
     <!--- Icon Part-->
@@ -50,7 +48,7 @@
     
     <title>
         
-            training-6 -
+            反序列化 -
         
         dawn_r1sing
     </title>
@@ -295,7 +293,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">training-6</h1>
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">反序列化</h1>
                 </div>
             
             </div>
@@ -316,15 +314,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-11-16 22:33:23</span>
-        <span class="mobile">2023-11-16 22:33:23</span>
+        <span class="desktop">2023-11-16 22:43:15</span>
+        <span class="mobile">2023-11-16 22:43:15</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-11-16 22:41:37</span>
-            <span class="mobile">2023-11-16 22:41:37</span>
+            <span class="desktop">2023-11-16 22:46:49</span>
+            <span class="mobile">2023-11-16 22:46:49</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -340,10 +338,6 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E9%9B%86%E8%AE%AD/">集训</a>&nbsp;
-                    </li>
-                
-                    <li>
                         | <a href="/tags/web/">web</a>&nbsp;
                     </li>
                 
@@ -355,6 +349,10 @@
                         | <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                     </li>
                 
+                    <li>
+                        | <a href="/tags/%E4%B8%93%E9%A2%98/">专题</a>&nbsp;
+                    </li>
+                
             </ul>
         </span>
     
@@ -362,12 +360,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>622 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.8k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 Mins</span>
         </span>
     
     
@@ -386,74 +384,132 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="week3-4（3）"><a href="#week3-4（3）" class="headerlink" title="week3-4（3）"></a>week3-4（3）</h1><h3 id="BUUCTF-phpdest"><a href="#BUUCTF-phpdest" class="headerlink" title="BUUCTF phpdest"></a>BUUCTF phpdest</h3><p>文件包含</p>
+            <h1 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h1><h3 id="基本内容"><a href="#基本内容" class="headerlink" title="基本内容"></a>基本内容</h3><p><strong>目的</strong>：解决 PHP 对象传递的问题，方便数据的传输与储存</p>
 <blockquote>
-<p>看了预期解是利用require_once的漏洞</p>
+<p>因为 PHP  文件在执行结束以后就会将对象销毁，那么如果下次有一个页面恰好要用到刚刚销毁的对象就会束手无策，总不能你永远不让它销毁，等着你吧，于是人们就想出了一种能长久保存对象的方法，这就是 PHP 的序列化，那当我们下次要用的时候只要反序列化一下就 ok 啦</p>
 </blockquote>
-<p><del>原理实在看不懂粒→</del><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/213235" >原理 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>因为是”once“，flag.php文件从正常使用的路径中无法再次包含</p>
-<p>而<code>proc/self</code>表示当前进程目录，目录中是当前进程本身相关信息的文件（包含flag.php）</p>
-<p><code>root</code> 是指向当前进程运行根目录的符号链接</p>
-<p>组成<code>proc/self/root</code>，之后…？就得到下面的payload</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</span><br></pre></td></tr></table></figure></div>
-
-<p>伪协议+多级符号链接 绕过，这一堆最后指向了flag.php</p>
-<p>最后base64解码得到flag</p>
+<hr>
+<h3 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h3><p>魔术方法的调用是自动进行的，不需要人工干预</p>
 <blockquote>
-<p>还有一种方法是利用访问日志</p>
+<p>因此只要魔法方法中出现了一些我们能利用的函数，我们就能通过反序列化中对其对象属性的操控来实现对这些函数的操控，进而达到我们发动攻击的目的。</p>
 </blockquote>
-<p>先尝试打开访问日志目录</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311082153595.png"
-                      alt="image-20231108215303372"
-                ></p>
-<p>能打开，抓包注入（UA）</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311082211555.png"
-                      alt="image-20231108221148317"
-                ></p>
-<p>成功连接，得到flag</p>
-<hr>
-<h3 id="EasyPHP"><a href="#EasyPHP" class="headerlink" title="EasyPHP"></a>EasyPHP</h3><p><del>有思路，但没技术</del></p>
-<p>源码</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;fl4g.php&quot;</span>;</span><br><span class="line"><span class="variable">$dest0g3</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;ctf&#x27;</span>];</span><br><span class="line"><span class="variable">$time</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;H&quot;</span>);</span><br><span class="line"><span class="variable">$timme</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;d&quot;</span>);</span><br><span class="line"><span class="variable">$timmme</span> = <span class="title function_ invoke__">date</span>(<span class="string">&quot;i&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>((<span class="variable">$time</span> &gt; <span class="string">&quot;24&quot;</span>) <span class="keyword">or</span> (<span class="variable">$timme</span> &gt; <span class="string">&quot;31&quot;</span>) <span class="keyword">or</span> (<span class="variable">$timmme</span> &gt; <span class="string">&quot;60&quot;</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$fl4g</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Try harder!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">set_error_handler</span>(</span><br><span class="line">    function() <span class="keyword">use</span>(&amp;$<span class="title">fl4g</span>) &#123;</span><br><span class="line">        <span class="title">print</span> $<span class="title">fl4g</span>;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"><span class="variable">$fl4g</span> .= <span class="variable">$dest0g3</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">__construct</span>()		<span class="comment">//创建对象时自动调用</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">__wakeup</span>()		<span class="comment">//对象重新醒来，即由二进制串重新组成一个对象的时候（在一个对象被反序列化时调用）</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">__destruct</span>()		<span class="comment">//当某个对象成为垃圾或者当对象被显式销毁时执行</span></span><br><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment">1、显式销毁，当对象没有被引用时就会被销毁,所以我们可以unset或为其赋值NULL</span></span><br><span class="line"><span class="comment">2、隐式销毁，PHP是脚本语言,在代码执行完最后一行时,所有申请的内存都要释放掉</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">__get</span>()    <span class="comment">//用于从不可访问的属性读取数据</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">__set</span>()    <span class="comment">//用于将数据写入不可访问的属性</span></span><br><span class="line">   </span><br><span class="line"><span class="title function_ invoke__">__unset</span>()     <span class="comment">//使用不可访问的属性</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">__call</span>()	<span class="comment">//在对象中调用一个不可访问方法</span></span><br></pre></td></tr></table></figure></div>
 
-<p>中间那些时间戳的东西明显达不到条件，故这条路行不通</p>
-<p>之后看看<code>set_error_handler</code>函数，是<strong>设置用户自定义的错误处理</strong>的函数</p>
-<p>能看到触发这个函数也能输出flag</p>
-<p>问题是怎么触发这个错误函数</p>
-<p>emm利用<strong>把数组当作字符串进行拼接运算时会报错</strong>这一点</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311091535795.png"
-                      alt="image-20231109153557072"
-                ></p>
-<hr>
-<h3 id="funny-upload"><a href="#funny-upload" class="headerlink" title="funny_upload"></a>funny_upload</h3><p>前端过滤+黑名单过滤+内容过滤<code>&lt;?</code></p>
-<p>抓包试了一下php、phtml不行，但.htaccess可以上传</p>
-<p>因为有内容过滤，就想着利用script代替<code>&lt;? 、?&gt;</code>标签</p>
-<p>但是试了好久都连不上</p>
-<p>查了一下发现这个payload只能在PHP5.x版本中使用</p>
-<p>应该是版本不对</p>
-<p>内容过滤就要用base64编码绕过</p>
-<p>.htaccess内容如下</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Addtype application/x-httpd-php .gif</span><br><span class="line"></span><br><span class="line">php_value auto_append_file &quot;php://filter/convert.base64-decode/resource=hacker.gif&quot;</span><br></pre></td></tr></table></figure></div>
+<p><strong>调用</strong>（清晰可见！！！）：</p>
+<ol>
+<li><p>先创建新对象，调用__construct()</p>
+</li>
+<li><p>执行unserialize()时调用__wakeup()</p>
+</li>
+<li><p>反序列化之后调用__destruct()</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//但当程序抛出异常时，destruct方法不会执行，也就无法实现文件的写入：</span></span><br><span class="line"><span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;那么就从这里开始起航吧&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>程序结束时调用__destruct()</p>
+</li>
+</ol>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">其他一些魔术方法调用举例：</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">test</span>(<span class="string">&#x27;test.txt&#x27;</span>, <span class="string">&#x27;data&#x27;</span>);</span><br><span class="line"><span class="comment"># __construct() 被调用</span></span><br><span class="line"><span class="comment"># __sleep() 被调用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># __set() 被调用（此时给类中并没有定义过的类属性进行赋值触发了set方法）</span></span><br><span class="line"><span class="variable">$a</span>-&gt;<span class="keyword">var</span> = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># __get() 被调用</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;<span class="keyword">var</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># __isset() 被调用</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>-&gt;<span class="keyword">var</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment"># __unset() 被调用</span></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$a</span>-&gt;<span class="keyword">var</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>-&gt;<span class="keyword">var</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#__destruct() 被调用</span></span><br></pre></td></tr></table></figure></div>
 
-<p>之后传入的hacker.php内容要经过base64编码</p>
-<p>地址栏输入gif地址，POST传入“a&#x3D;phpinfo();”，可得到关于php配置的信息，证实上面的版本问题</p>
+
+
+<hr>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>类中变量一样的东西（<del>不负责任的讲</del>）</p>
+<p>例如</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">K0rz3n</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$test</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$K0rz3n</span> = <span class="string">&quot;i am K0rz3n&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;test = <span class="keyword">new</span> <span class="title function_ invoke__">L</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;test-&gt;<span class="title function_ invoke__">action</span>();	<span class="comment">//test指类中的test属性</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>test、K0rz3n就是<code>K0rz3n</code>类中的属性</p>
+<h4 id="private-私有变量"><a href="#private-私有变量" class="headerlink" title="private-私有变量"></a>private-私有变量</h4><blockquote>
+<p>private 声明的字段为私有字段，只在所声明的类中可见，在该类的子类和该类的对象实例中均不可见。因此私有字段的字段名在序列化时，类名和字段名前面都会加上\0的前缀。字符串长度也包括所加前缀的长度。其中 \0 字符也是计算长度的。</p>
+</blockquote>
+<p>对于private变量，我们需要在类名和字段名前面加上\0的前缀（指 ASCII码为0的空字符）</p>
+<p>但注意：<strong>python传入加  \0  ，浏览器直接传入加  %00</strong>（十六进制）</p>
+<h4 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h4><p>序列化后需在类名和字段名前面加上<code>%00*%00</code></p>
+<hr>
+<h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><h4 id="攻击前提："><a href="#攻击前提：" class="headerlink" title="攻击前提："></a>攻击前提：</h4><ol>
+<li>必须有 unserailize() 函数</li>
+<li>unserailize() 函数的参数必须可控（可能需要绕过一些魔法函数）</li>
+</ol>
+<h4 id="攻击思路："><a href="#攻击思路：" class="headerlink" title="攻击思路："></a>攻击思路：</h4><p>首先，当前作用域中的类是我们能够用的，类中的魔术方法能够让我们调用类中的其他方法（function），所以<strong>反序列化对象的选取</strong>应该找这样的类。</p>
+<p>之后，我们说反序列化攻击依托的是<strong>类的属性</strong>，关键属性自然是在魔术方法中用到的那些，属性的内容我们需要结合魔术方法中的描述进行思考，最终形成payload</p>
+<p>其实这整个过程就像是在走迷宫，路径是一条线，线的两端点分别是unserailize() 和我们要获取的信息（flag），中间路上需要动力驱使我们行走，动力就是魔术方法（自动进行）。就是一点一点地调用，形成一条<strong>链</strong>串起来整个思路。</p>
+<h4 id="攻击步骤："><a href="#攻击步骤：" class="headerlink" title="攻击步骤："></a>攻击步骤：</h4><ol>
+<li><p>确定反序列化攻击<strong>可行性</strong></p>
+</li>
+<li><p>寻找反序列化<strong>对象</strong>（目标），重点在有<code>__destruct()、__wakeup()</code>魔术方法的类</p>
+</li>
+<li><p>寻找对象所属类中的重点攻击<strong>属性</strong>（一层一层地研究）</p>
+</li>
+<li><p>构造属性<strong>内容</strong></p>
+<ul>
+<li><p>单纯赋值（类里面&#x2F;创建对象后）</p>
+</li>
+<li><p>file_put_content()函数</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$K0rz3n = new K0rz3n;</span><br><span class="line">$data = serialize($K0rz3n);</span><br><span class="line">file_put_contents(&quot;seria.txt&quot;内容, $data序列化变量？);</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ol>
+<p>​	4.注意补上%00…</p>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><ol>
+<li>反序列化时必须保证当前的作用域环境下有该类的存在</li>
+<li>反序列化攻击是<strong>依托类的属性进行攻击</strong></li>
+</ol>
+<hr>
+<h3 id="高级学习"><a href="#高级学习" class="headerlink" title="高级学习"></a>高级学习</h3><h4 id="POP链"><a href="#POP链" class="headerlink" title="POP链"></a>POP链</h4><p>面向属性编程，个人感觉是一种思路链</p>
+<p>比如</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer-&gt;shutdown()-&gt;render()-&gt;filter()-&gt;preg_replace(我们控制的属性)-&gt;代码执行</span><br></pre></td></tr></table></figure></div>
+
+<p>这就是一个POP链</p>
+<hr>
+<h4 id="phar反序列化"><a href="#phar反序列化" class="headerlink" title="phar反序列化"></a>phar反序列化</h4><p>phar文件本质上是一种压缩文件，会以<strong>序列化</strong>的形式储存在meta-data里，在<strong>文件系统函数</strong>（file_exists()、is_dir()等）参数可控的情况下，配合<strong>phar:&#x2F;&#x2F;伪协议</strong>，可以不依赖unserialize()直接进行<strong>反序列化</strong>操作。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311122158715.bmp"
-                      alt="capture_20231109215016930"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311131939382.png"
+                      alt="image-20231113193915293"
                 ></p>
-<p>最后连接蚁剑，得到flag</p>
-<p>还有两道下周补吧。。</p>
+<h5 id="攻击条件："><a href="#攻击条件：" class="headerlink" title="攻击条件："></a>攻击条件：</h5><p>不再局限于传统反序列化攻击条件（unserialize+参数可控），<strong>phar:&#x2F;&#x2F;拓展了php反序列化攻击面</strong>，降低了攻击起点</p>
+<div class="highlight-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、phar文件要能够上传到服务器端。</span><br><span class="line">2、要有可用的魔术方法作为“跳板”。</span><br><span class="line"><span class="section">3、文件操作函数的参数可控，且:、/、phar等特殊字符没有被过滤。</span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="phar文件结构"><a href="#phar文件结构" class="headerlink" title="phar文件结构"></a>phar文件结构</h5><ol>
+<li><p>stub</p>
+<p>必须以<code>__HALT_COMPILER();?&gt;</code>来结尾</p>
+</li>
+<li><p>manifest</p>
+</li>
+<li><p>contents</p>
+</li>
+<li><p>signature</p>
+</li>
+</ol>
+<h5 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h5><p>举例</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TestObject</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="title function_ invoke__">unlink</span>(<span class="string">&quot;phar.phar&quot;</span>);</span><br><span class="line">    <span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;phar.phar&quot;</span>); <span class="comment">//后缀名必须为phar</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub</span></span><br><span class="line">    <span class="variable">$o</span> = <span class="keyword">new</span> <span class="title class_">TestObject</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$o</span>); <span class="comment">//将自定义的meta-data存入manifest</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;test&quot;</span>); <span class="comment">//添加要压缩的文件</span></span><br><span class="line">    <span class="comment">//签名自动计算</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TestObject</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&#x27;Destruct called&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$filename</span> = <span class="string">&#x27;phar://phar.phar/test.txt&#x27;</span>;<span class="comment">//已经序列化</span></span><br><span class="line">    <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$filename</span>); <span class="comment">//执行该函数触发反序列化进而触发__destruct()方法</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>执行输出结果</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202311122023161.png"
+                      alt="img"
+                ></p>
+<h5 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h5><p>php识别phar文件是通过文件头的stub中的<code>__HALT_COMPILER();?&gt;</code>，对前面的内容和后缀名没有要求</p>
+<p>所以我们就可以 添加任意文件文件头+修改成响应文件的后缀名 以绕过检查</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;GIF89a&quot;</span>.<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://paper.seebug.org/680/" >phar与反序列化 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<hr>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol>
+<li>$this指当前所在的class变量</li>
+<li>序列化如果有<strong>private和protected属性</strong>注意补全空的字符串</li>
+<li>序列化对象首字母代表参数类型 <code>O:Objext S:String...</code></li>
+</ol>
+<p>参考：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/fish-pompom/p/11126473.html" >反序列化初级介绍 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
         </div>
 
@@ -461,18 +517,18 @@
             <div class="post-copyright-info px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> training-6</li>
+        <li><strong>Title:</strong> 反序列化</li>
         <li><strong>Author:</strong> dawn_r1sing</li>
         <li><strong>Created at
-                :</strong> 2023-11-16 22:33:23</li>
+                :</strong> 2023-11-16 22:43:15</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-11-16 22:41:37
+                    :</strong> 2023-11-16 22:46:49
             </li>
         
         <li>
-            <strong>Link:</strong> https://dawnrisingdong.github.io/2023/11/16/training-6/
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2023/11/16/反序列化/
         </li>
         <li>
             <strong>
@@ -498,10 +554,6 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E9%9B%86%E8%AE%AD/">#集训</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
                         <a href="/tags/web/">#web</a>&nbsp;
                     </li>
                 
@@ -511,6 +563,10 @@
                 
                     <li class="tag-item">
                         <a href="/tags/%E5%AD%A6%E4%B9%A0/">#学习</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E4%B8%93%E9%A2%98/">#专题</a>&nbsp;
                     </li>
                 
             </ul>
@@ -524,13 +580,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2023/11/16/training-7/"
+                        href="/2023/11/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">training-7</span>
+                                <span class="post-nav-title-item">文件包含</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -540,10 +596,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2023/11/16/training-5/"
+                        href="/2023/11/16/training-7/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">training-5</span>
+                                <span class="post-nav-title-item">training-7</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -603,8 +659,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">training-6</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#week3-4%EF%BC%883%EF%BC%89"><span class="nav-text">week3-4（3）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BUUCTF-phpdest"><span class="nav-text">BUUCTF phpdest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EasyPHP"><span class="nav-text">EasyPHP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#funny-upload"><span class="nav-text">funny_upload</span></a></li></ol></li></ol></li></ol>
+        <div class="page-title">反序列化</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">序列化与反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="nav-text">基本内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="nav-text">魔术方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB"><span class="nav-text">攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0"><span class="nav-text">高级学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>
