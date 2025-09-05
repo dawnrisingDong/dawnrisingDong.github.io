@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="dawn_r1sing">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://dawnringDong.github.io/2025/09/05/2308-jailbreak/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="jailbreak prompts LLM的误用：生成假消息、宣扬阴谋论、大规模鱼叉式网络钓鱼攻击、助长仇恨活动 bypass safeguard, elicit harmful content 法律法规  框架 JAIL-BREAKHUB  数据收集： Reddit、Discord、websites、open-source datasets 帖子&#x2F;server 标签 → 根据标签人工筛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2308-jailbreak">
+<meta property="og:url" content="http://dawnringdong.github.io/2025/09/05/2308-jailbreak/index.html">
+<meta property="og:site_name" content="dawn_r1sing">
+<meta property="og:description" content="jailbreak prompts LLM的误用：生成假消息、宣扬阴谋论、大规模鱼叉式网络钓鱼攻击、助长仇恨活动 bypass safeguard, elicit harmful content 法律法规  框架 JAIL-BREAKHUB  数据收集： Reddit、Discord、websites、open-source datasets 帖子&#x2F;server 标签 → 根据标签人工筛">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-05T03:08:18.000Z">
+<meta property="article:modified_time" content="2025-09-05T03:08:56.963Z">
+<meta property="article:author" content="dawn_r1sing">
+<meta property="article:tag" content="AI Security">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            2308-jailbreak -
+        
+        dawn_r1sing
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        dawn_r1sing
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"dawnringdong.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"dawn_r1sing","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"2399692009@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-home# can be empty"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-categories"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/29 12:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                dawn_r1sing
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-home# can be empty fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-home# can be empty fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-categories fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">2308-jailbreak</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310291726035.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-09-05 11:08:18</span>
+        <span class="mobile">2025-09-05 11:08:18</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-09-05 11:08:56</span>
+            <span class="mobile">2025-09-05 11:08:56</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/paper/">paper</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AI-Security/">AI Security</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="jailbreak-prompts"><a href="#jailbreak-prompts" class="headerlink" title="jailbreak prompts"></a>jailbreak prompts</h1><blockquote>
+<p>LLM的误用：生成假消息、宣扬阴谋论、大规模鱼叉式网络钓鱼攻击、助长仇恨活动</p>
+<p>bypass safeguard, elicit harmful content</p>
+<p>法律法规</p>
+</blockquote>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p> JAIL-BREAKHUB</p>
+<ul>
+<li>数据收集：<ul>
+<li>Reddit、Discord、websites、open-source datasets</li>
+<li>帖子&#x2F;server 标签 → 根据标签人工筛选prompt → 标准化的prompt格式 → 人工验证，获得jailbreak prompts，剩下remaining prompts</li>
+</ul>
+</li>
+<li>prompt 分析：每一个prompt的各类信息、community（graph-based、共同短语、发展模式）</li>
+<li>输出评价：forbidden question set、6 LLMs<ul>
+<li>有效性</li>
+<li>有效期</li>
+<li>3 external safeguards</li>
+</ul>
+</li>
+<li>考虑数据的生命期，人工抽样检测防止用户误报</li>
+</ul>
+<h3 id="chatgpt"><a href="#chatgpt" class="headerlink" title="chatgpt"></a>chatgpt</h3><ul>
+<li><p>reinforcement learning from human feedback (RLHF) 更符合人类的价值观和使用意图</p>
+</li>
+<li><p>safeguards检测输入输出（分类）</p>
+<ul>
+<li>脆弱：jailbreak prompts</li>
+<li>旨在绕过、引诱生成有害输出</li>
+<li>相关社群、攻击越来越频繁</li>
+</ul>
+</li>
+</ul>
+<p>​	问题：缺乏系统的理解，包括它们的分发平台、背后的参与者、prompt的特征及其演变模式</p>
+<h2 id="主要发现"><a href="#主要发现" class="headerlink" title="主要发现"></a>主要发现</h2><ol>
+<li>jailbreak prompt制作简单，流行且众包、出现专门收集prompt网站</li>
+<li>利用多种技巧的结合，长度更长</li>
+<li>LLMs能抵抗forbidden question，但不能抵抗jailbreak prompts</li>
+<li>存在有效的未公开safeguards，但不能抵抗 改写攻击</li>
+<li>external safeguards功能很有限</li>
+</ol>
+<h2 id="jailbreak-prompt"><a href="#jailbreak-prompt" class="headerlink" title="jailbreak prompt"></a>jailbreak prompt</h2><ul>
+<li><p>prompt聚集网站的威胁</p>
+<p>大多数是业余爱好者（share only once），也存在持续关注者</p>
+<p>绝大多数prompt是针对ChatGPT，能不能在其他LLMs上适用？</p>
+</li>
+<li><p>长度：越来越长，随着更新而变长，jailbreak是regular的*1.5</p>
+</li>
+<li><p>在语意与regular区分？：经过sentence transformer提取prompt embedding，降维技术UMAP，WizMap解释语义</p>
+<ul>
+<li>语义十分接近</li>
+<li>基于语义区分jailbreak和regular很难</li>
+</ul>
+</li>
+<li><p>分类</p>
+<ul>
+<li><p>基于图的社群检测</p>
+<blockquote>
+<p>图中仅保留更有意义的关系，形成一个个jailbreak prompts社群</p>
+</blockquote>
+<ul>
+<li>计算了1405个jailbreak prompts两两配对的Levenshtein distance（衡量字符串差异程度）</li>
+<li>得到1405*1405相似矩阵（每个位置填写相似度分数</li>
+<li>将其视为一个加权邻接矩阵，超过阈值处连边（强关系）</li>
+<li>绝大多数社群规模较小、传播窄、生命周期短，这可能和prompt的效果有关</li>
+</ul>
+</li>
+<li><p>焦点社群</p>
+<ul>
+<li><p>挑了11个大社群，命名</p>
+</li>
+<li><p>社群内挑选与其他prompt近似度最高的为代表</p>
+</li>
+<li><p>通过共有词率可视化</p>
+</li>
+<li><p>e.g., Basic community技巧&#x3D;将GPT转换为DAN，且DAN不需要遵循规则；其他社群利用prompt injection，提权，欺骗，强制回答，因此prompt更长</p>
+<p>新出现的具有规模性的jailbreak prompt只出现在一个来源，证实了“平台迁移”</p>
+</li>
+</ul>
+</li>
+<li><p>社群演变</p>
+<ul>
+<li><p>一开始出现在R、D，后来转移至其他平台</p>
+<p>归因于平台迁移、专门收集prompt网站的出现，用户将prompt与LLM打包在网站上提供服务</p>
+</li>
+<li><p>从Discord起源的prompt要经过更长的时间传播到其他平台 → 对手有意要求不要传播以避免被检测</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="评估及时有效性"><a href="#评估及时有效性" class="headerlink" title="评估及时有效性"></a>评估及时有效性</h3><h4 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h4><ol>
+<li><p>禁止问题集：每个情景生成30个不能回答的问题</p>
+</li>
+<li><p>prompt：</p>
+<ul>
+<li>每个社群选5个prompts，一个prompt对应一个问题问5次 &#x3D; 107250个样本</li>
+<li>迄今为止最大问题集，更小偏差，更精确</li>
+</ul>
+</li>
+<li><p>target model：</p>
+<ul>
+<li><p>6个，独特的架构、规模、训练方法</p>
+</li>
+<li><p>为保证结果的可重复性，使用model endpoint（某一日期的快照）</p>
+</li>
+<li><p>相似规模，同一最大生成长度</p>
+</li>
+</ul>
+</li>
+<li><p>评价指标：</p>
+<ul>
+<li>ASR攻击成功率</li>
+<li>ASR-B不使用jailbreak prompt，直接问问题的攻击成功率</li>
+<li>ASR-Max</li>
+<li>生成内容的毒性评分，≥0.5视作有毒回答</li>
+</ul>
+</li>
+</ol>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>ASR-B：对一些情景有初始的抵抗效果，有的较差</p>
+<ul>
+<li>内置的安全措施有效（RLHF</li>
+<li>对RLHF训练模型生成的数据进行微调能达到一定的抵抗效果（LLM helps LLM :p</li>
+<li>e.g., Dolly的抵抗能力最差</li>
+</ul>
+<p>ASR-Max：现有LLM在所有场景中都无法有效抵抗最有效的jailbreak prompt</p>
+<ul>
+<li>针对GPT3.5的jailbreak prompt同样适用于其他LLM</li>
+<li>即使ASR-B很低，ASR仍可以很高——脆弱性</li>
+<li>场景Political Lobbying的ASR-B高于ASR，原因是jailbreak prompt的设计不当（Exception，GPT反而拒绝回答了</li>
+</ul>
+<p>社群：</p>
+<ul>
+<li>LLM的抵抗可以被多种jailbreak prompt轻松破解</li>
+</ul>
+<p>prompt长度：</p>
+<ul>
+<li>与ASR微弱的正相关</li>
+</ul>
+<p>生成内容的毒性：</p>
+<ul>
+<li>归因于社群的特性</li>
+</ul>
+<p>其余的社群：平均ASR较低，也存在ASR很高的社群</p>
+<ul>
+<li><p>能力稍弱</p>
+</li>
+<li><p>less popular ≠ not effective，只是发现成本较高</p>
+</li>
+</ul>
+<h4 id="jailbreak-安全机制的效果（over-time"><a href="#jailbreak-安全机制的效果（over-time" class="headerlink" title="jailbreak&#x2F;安全机制的效果（over time"></a>jailbreak&#x2F;安全机制的效果（over time</h4><blockquote>
+<p>3个官方版本</p>
+</blockquote>
+<p>ASR-B变化不大，ASR、ASR-Max变化显著</p>
+<p>1106的ASR显著下降，包括最有效的prompt</p>
+<p>小社群中的趋势相同，但仍存在较高ASR的prompt</p>
+<ul>
+<li>说明采取了某些未公开的安全措施</li>
+<li>识别、消除所有jailbreak prompts是很困难的</li>
+<li>需要 JAIL-BREAKHUB 识别少见但有效的prompt</li>
+</ul>
+<h3 id="改写攻击"><a href="#改写攻击" class="headerlink" title="改写攻击"></a>改写攻击</h3><blockquote>
+<p>探究新的安全措施是否可以抵御改写攻击</p>
+</blockquote>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ol>
+<li>round-trip translation：英译中译英</li>
+<li>基于LLM：*2</li>
+<li>对抗攻击：引入拼写错误</li>
+</ol>
+<h4 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h4><blockquote>
+<p>（攻击前的ASR，攻击后的ASR，超过攻击前ASR的平均改写次数）</p>
+</blockquote>
+<ul>
+<li><p>脆弱的</p>
+</li>
+<li><p>对抗攻击进行改写的效果最好</p>
+</li>
+<li><p>改写尝试少于10次即可攻破防御，最有效的prompt甚至更少</p>
+</li>
+</ul>
+<h2 id="评估安全机制有效性"><a href="#评估安全机制有效性" class="headerlink" title="评估安全机制有效性"></a>评估安全机制有效性</h2><p>external safeguards</p>
+<ul>
+<li>OpenAI moderation endpoint<ul>
+<li>检查生成内容，依赖多标签分类器（禁止话题）</li>
+</ul>
+</li>
+<li>OpenChatKit moderation model<ul>
+<li>少量样本分类（谨慎程度）</li>
+</ul>
+</li>
+<li>NeMo-Guardrails<ul>
+<li>可编程防护栏</li>
+<li>对应防护栏进行检查</li>
+</ul>
+</li>
+</ul>
+<h4 id="结果-2"><a href="#结果-2" class="headerlink" title="结果"></a>结果</h4><ul>
+<li><p>OpenAI moderation endpoint最有效，尤其在ASR-Max上</p>
+</li>
+<li><p>均未起到防御效果（隐形回答</p>
+<p>原因可能是<strong>基于分类的设计</strong>，受限于训练数据</p>
+</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h4 id="其他攻击"><a href="#其他攻击" class="headerlink" title="其他攻击"></a>其他攻击</h4><ul>
+<li>prompt injection</li>
+<li>backdoor </li>
+<li>data extraction</li>
+<li>obfuscation</li>
+<li>membership inference</li>
+<li>adversarial attacks</li>
+</ul>
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><ul>
+<li><p>框架</p>
+</li>
+<li><p>safe training（RLHF → 效果有限</p>
+<p>查询前检测 → 改写攻击</p>
+<p>external safeguards → 没有哪一个措施能抵御攻击</p>
+</li>
+<li><p>结合使用</p>
+</li>
+</ul>
+<h4 id="未来工作"><a href="#未来工作" class="headerlink" title="未来工作"></a>未来工作</h4><ul>
+<li>数据更新</li>
+<li>jailbreak prompt的自动生成</li>
+<li>有效且适应性强的防御</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 2308-jailbreak</li>
+        <li><strong>Author:</strong> dawn_r1sing</li>
+        <li><strong>Created at
+                :</strong> 2025-09-05 11:08:18</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-09-05 11:08:56
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2025/09/05/2308-jailbreak/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/AI-Security/">#AI Security</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/09/05/2408-Text-to-Image-Model/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">2408-Text-to-Image Model</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/09/05/ML-Leak/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">ML-Leak</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">2308-jailbreak</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jailbreak-prompts"><span class="nav-text">jailbreak prompts</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6"><span class="nav-text">框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chatgpt"><span class="nav-text">chatgpt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8F%91%E7%8E%B0"><span class="nav-text">主要发现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jailbreak-prompt"><span class="nav-text">jailbreak prompt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E5%8F%8A%E6%97%B6%E6%9C%89%E6%95%88%E6%80%A7"><span class="nav-text">评估及时有效性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%86%99%E6%94%BB%E5%87%BB"><span class="nav-text">改写攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6%E6%9C%89%E6%95%88%E6%80%A7"><span class="nav-text">评估安全机制有效性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C"><span class="nav-text">成果</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">dawn_r1sing</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        23 posts in total
+                    </span>
+                    
+                        <span>
+                            31.1k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
