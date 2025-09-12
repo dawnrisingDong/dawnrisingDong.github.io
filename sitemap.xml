@@ -245,6 +245,13 @@
 
   
   <url>
+    <loc>http://dawnringdong.github.io/tags/AI-Security/</loc>
+    <lastmod>2025-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://dawnringdong.github.io/tags/CTF/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -272,14 +279,14 @@
     <priority>0.2</priority>
   </url>
   
+
+  
   <url>
-    <loc>http://dawnringdong.github.io/tags/AI-Security/</loc>
+    <loc>http://dawnringdong.github.io/categories/paper/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
-  
-
   
   <url>
     <loc>http://dawnringdong.github.io/categories/%E6%AF%94%E8%B5%9B/</loc>
@@ -290,13 +297,6 @@
   
   <url>
     <loc>http://dawnringdong.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://dawnringdong.github.io/categories/paper/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
