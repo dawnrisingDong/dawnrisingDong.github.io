@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dawnringdong.github.io/2025/10/24/happy-llm-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://dawnringdong.github.io/2025/10/24/AIGTs/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://dawnringdong.github.io/2025/09/05/DHAttack/</loc>
     
     <lastmod>2025-10-24</lastmod>
@@ -297,6 +315,13 @@
   
   <url>
     <loc>http://dawnringdong.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://dawnringdong.github.io/categories/reading/</loc>
     <lastmod>2025-10-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
