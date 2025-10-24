@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dawnringdong.github.io/2025/09/05/2308-jailbreak/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://dawnringdong.github.io/2025/09/05/BadNet/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://dawnringdong.github.io/2025/09/05/2408-Text-to-Image-Model/</loc>
     
     <lastmod>2025-09-05</lastmod>
@@ -11,25 +29,7 @@
   </url>
   
   <url>
-    <loc>http://dawnringdong.github.io/2025/09/05/2308-jailbreak/</loc>
-    
-    <lastmod>2025-09-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://dawnringdong.github.io/2025/09/05/ML-Leak/</loc>
-    
-    <lastmod>2025-09-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://dawnringdong.github.io/2025/09/05/BadNet/</loc>
     
     <lastmod>2025-09-05</lastmod>
     
@@ -297,6 +297,13 @@
   
   <url>
     <loc>http://dawnringdong.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://dawnringdong.github.io/categories/paper-learning/</loc>
     <lastmod>2025-10-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
