@@ -13,20 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://dawnringDong.github.io/2025/09/05/dhattack/"/>
+    <link rel="canonical" href="http://dawnringDong.github.io/2025/04/13/badnet/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="处理数据将训练数据和测试数据合并，尽量将数据集中的数据样本均匀分布给训练集和测试集，并且保证每一类数据的分布也是均匀地：  将标签相同的样本打乱，再分组 得到所有数据集之后，再分别打乱，一类数据作为一个循环（此时是二维的，样本数*3072 将数据标准化（3072展开成32*32*3  （target model与shadow model的训练集和测试集 + 蒸馏数据 计算训练集图片的均值、标准差">
+        <meta name="description" content="BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain 学习笔记问题 outsource training transfer learning 使用pre-trained model  attacker使用backdoor trigger（选定的属性）触发model功能异常（表现为attacke">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DHAttack">
-<meta property="og:url" content="http://dawnringdong.github.io/2025/09/05/DHAttack/index.html">
+<meta property="og:title" content="1708: BadNet">
+<meta property="og:url" content="http://dawnringdong.github.io/2025/04/13/BadNet/index.html">
 <meta property="og:site_name" content="dawn">
-<meta property="og:description" content="处理数据将训练数据和测试数据合并，尽量将数据集中的数据样本均匀分布给训练集和测试集，并且保证每一类数据的分布也是均匀地：  将标签相同的样本打乱，再分组 得到所有数据集之后，再分别打乱，一类数据作为一个循环（此时是二维的，样本数*3072 将数据标准化（3072展开成32*32*3  （target model与shadow model的训练集和测试集 + 蒸馏数据 计算训练集图片的均值、标准差">
+<meta property="og:description" content="BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain 学习笔记问题 outsource training transfer learning 使用pre-trained model  attacker使用backdoor trigger（选定的属性）触发model功能异常（表现为attacke">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-09-05T02:54:39.000Z">
-<meta property="article:modified_time" content="2025-10-24T10:16:42.295Z">
+<meta property="article:published_time" content="2025-04-13T03:04:04.000Z">
+<meta property="article:modified_time" content="2025-11-05T13:52:44.075Z">
 <meta property="article:author" content="dawn_r1sing">
 <meta property="article:tag" content="AI Security">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
     
     <title>
         
-            DHAttack -
+            1708: BadNet -
         
         dawn_r1sing
     </title>
@@ -477,7 +477,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -503,7 +503,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">DHAttack</h1>
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">1708: BadNet</h1>
                 </div>
             
             </div>
@@ -524,15 +524,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-09-05 10:54:39</span>
-        <span class="mobile">2025-09-05 10:54:39</span>
+        <span class="desktop">2025-04-13 11:04:04</span>
+        <span class="mobile">2025-04-13 11:04:04</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-10-24 18:16:42</span>
-            <span class="mobile">2025-10-24 18:16:42</span>
+            <span class="desktop">2025-11-05 21:52:44</span>
+            <span class="mobile">2025-11-05 21:52:44</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -570,12 +570,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.5k Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.1k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>5 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 Mins</span>
         </span>
     
     
@@ -594,83 +594,262 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h3><p>将训练数据和测试数据合并，尽量将数据集中的数据样本均匀分布给训练集和测试集，并且保证每一类数据的分布也是均匀地：</p>
+            <h3 id="BadNets-Identifying-Vulnerabilities-in-the-Machine-Learning-Model-Supply-Chain-学习笔记"><a href="#BadNets-Identifying-Vulnerabilities-in-the-Machine-Learning-Model-Supply-Chain-学习笔记" class="headerlink" title="BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain 学习笔记"></a>BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain 学习笔记</h3><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>outsource training</li>
+<li>transfer learning 使用pre-trained model</li>
+</ul>
+<p>attacker使用backdoor trigger（选定的属性）触发model功能异常（表现为attacker的goal）</p>
+<hr>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><ul>
+<li><p>deep neural network - DNN</p>
+<blockquote>
+<p>泛指具有多个隐藏层的network，包括CNN等</p>
+</blockquote>
 <ul>
-<li>将标签相同的样本打乱，再分组</li>
-<li>得到所有数据集之后，再分别打乱，一类数据作为一个循环（此时是二维的，样本数*3072</li>
-<li>将数据标准化（3072展开成<code>32*32*3</code>  （target model与shadow model的训练集和测试集 + 蒸馏数据<ul>
-<li>计算训练集图片的均值、标准差</li>
-<li>将图片转换成标准存储格式（二维 → 分成三个通道 → 每个通道的长宽分开</li>
-<li>之后使用 训练集的均值和标准差 对训练集和测试集进行数据化标准化，特征缩放</li>
+<li>feed-forward network 前馈网络<ul>
+<li>信息只向前传播，不会回传到以前的neurons</li>
+</ul>
+</li>
+<li>hyperparameters：<ul>
+<li>L layers，每层N_i个neurons</li>
+<li>neuron中主要做activation function<ul>
+<li>activation function φ：逐元素、非线性</li>
 </ul>
 </li>
 </ul>
-<h3 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h3><h4 id="target-model："><a href="#target-model：" class="headerlink" title="target model："></a>target model：</h4><p>保证一批次的样本数batch_size小于训练数据总数</p>
-<p>使用PyTorch模块 建立数据及对象和数据加载器loader（会按批次加载入训练数据</p>
-<p>对于loader，我们分别建立一个打乱的和不打乱的，不打乱的loader是为了使后续的 训练集再测试 的评估和比较更方便（对齐）</p>
-<p>相同的，测试集也建好数据集和loader（不打乱）</p>
-<p>根据模型选取（mobilenet），有一些参数上的不同（训练手段不一样</p>
-<p>之后建立优化器和学习率调整策略，为后续的model训练做好准备</p>
-<h5 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h5><ul>
-<li>每周期完成一次所有样本的训练，共完成epochs次</li>
-<li>每个周期内部会使用loader进行循环，每次循环取一批次的样本，拿输出，分析loss（交叉熵损失函数，计算预测值与实际标签之间的差距</li>
-<li>注意梯度清零</li>
-<li>更新lr</li>
-</ul>
-<p>之后测量model对训练集的预测效果：</p>
-<p>与训练的不同之处在于，在每批次中，拿到out是每个样本对应不同类别的预测概率，此时取最大概率对应类别即为预测结果</p>
-<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><p>和测量model训练集的预测效果的步骤差不多，拿到预测结果后和真实标签y比较一下</p>
-<p>之后将训练集数据和测试集数据再次分别投放到模型中，将预测结果进行归一化处理（每个样本对应不同类别的相对评分 → 和为1的概率分布），使得同一样本对应不同类别的概率和为1</p>
-<p>归一化得到的概率分布 → attack_x ，</p>
-<p>1为成员，0为非成员 → attack_y</p>
-<p>（但最后好像没有什么应用</p>
-<h4 id="shadow-model："><a href="#shadow-model：" class="headerlink" title="shadow model："></a>shadow model：</h4><p>一毛一样</p>
-<blockquote>
-<p>蒸馏模型：主要为了知识压缩，通过target model的soft label训练而成，模仿target model</p>
-<p>影子模型：主要是为了模拟target model的行为，可以利用distilled model来训练</p>
-</blockquote>
-<h3 id="DHAttack"><a href="#DHAttack" class="headerlink" title="DHAttack"></a>DHAttack</h3><p>主要就是 数据扰动，训练256个refmodel（shadow model），计算target model 和refmodel预测的扰动数据与决策边缘的距离，衡量member概率</p>
-<h4 id="数据扰动"><a href="#数据扰动" class="headerlink" title="数据扰动"></a>数据扰动</h4><p>我们将<strong>目标模型的训练集和测试集</strong>作为<u>目标样本</u></p>
-<p>对target model的训练集和测试集进行扰动（disturb_num 扰动次数，也是一个样本最多的查询次数，需要尽量小，否则对方易察觉</p>
-<p>具体的扰动就是将原先的一个样本进行多次不同程度的变化，进而形成disturb_num个样本（但对方可察觉他们是基本相似的）</p>
-<h4 id="256个refmodel"><a href="#256个refmodel" class="headerlink" title="256个refmodel"></a>256个refmodel</h4><p>使用distilled数据训练模型</p>
-<p>使用target model预测数据集的softlabel（评分 转 概率），利用distill数据集 + softlabel 进行relabel，即shadow models的训练</p>
-<h4 id="计算distance"><a href="#计算distance" class="headerlink" title="计算distance"></a>计算distance</h4><p>分别计算扰动数据（训练集 测试集）的精确度（target model 和 refmodelS）</p>
-<p>计算每一组扰动的（近似）样本，算target model和refmodel 训练集、测试集的distance【注意，数据是target model的训练集和测试集】</p>
-<ul>
-<li><p>比较预测标签和实际标签 数组，返回0&#x2F;1串，越往后，数据扰动越小，正确率越高</p>
 </li>
-<li><p>0开头：找到第一个非0，得到count，计算distance（count越大，错误越多，预测越有问题，距离决策边缘越近</p>
-<p>1开头：找000串。。。</p>
+<li>training<ul>
+<li>确保 pre-label与label 之间的距离最小 → Loss function</li>
+<li>θ &#x3D; argmin ΣL</li>
+<li>accuracy：validation set</li>
+</ul>
 </li>
 </ul>
-<p>计算的distance不必再区分train和test</p>
-<h4 id="衡量member概率"><a href="#衡量member概率" class="headerlink" title="衡量member概率"></a>衡量member概率</h4><p>将 距离 转换为 接近决策边缘的程度（抽象化）</p>
-<p>利用distance计算对数几率，在target model和refmodel里衡量样本是member的概率</p>
-<p>计算refmodel的均值和标准差，在refmodel的高斯分布中求样本在target model中的distance的cdf</p>
-<p>计算tpr、auc</p>
-<blockquote>
-<p>HardLabel：对于某类别，某样本最可能的状态（离散） 0&#x2F;1</p>
-<p>softlabel：某样本属于某类别的概率，softmax概率（连续） 0~1</p>
-</blockquote>
-<blockquote>
-<p>model的训练和预测过程十分相似，区别在于是否back</p>
-</blockquote>
-<h3 id="实际情况中relax某些条件的可行性"><a href="#实际情况中relax某些条件的可行性" class="headerlink" title="实际情况中relax某些条件的可行性"></a>实际情况中relax某些条件的可行性</h3><p>（控制变量）</p>
-<h4 id="1-different-directions"><a href="#1-different-directions" class="headerlink" title="1.different directions"></a>1.different directions</h4><p>fixed_point选取的不同，</p>
+</li>
+<li><p>CNN</p>
 <ul>
-<li>随便找一个样本</li>
-<li>选择样本的max</li>
+<li>weight matrices</li>
+<li>本层neuron的output只取决于上一层部分neurons，称为一个field</li>
+<li>field的输出 经过filter(矩阵乘等计算过程)作为下一层neuron的输入</li>
+<li>同一channel的neurons使用相同的filter</li>
 </ul>
-<p>在代码上体现为 数据扰动的方式有细微的不同	add_mask_bydirection()</p>
-<h4 id="2-varying-numbers-of-local-or-shadow-models"><a href="#2-varying-numbers-of-local-or-shadow-models" class="headerlink" title="2.varying numbers of local (or shadow) models"></a>2.varying numbers of local (or shadow) models</h4><p>shadow models的数据不同，改变num_local_models（used_num）参数，在选取refmodel是数量会随之变化</p>
-<h4 id="3-varying-reference-dataset-sizes"><a href="#3-varying-reference-dataset-sizes" class="headerlink" title="3.varying reference dataset sizes"></a>3.varying reference dataset sizes</h4><p>改变 refmodel （relabel）训练时用的样本数</p>
-<p>就加了一个随机选择特定数量样本的过程，函数传的参变了变</p>
-<h4 id="4-with-a-simple-threshold-selecting-method"><a href="#4-with-a-simple-threshold-selecting-method" class="headerlink" title="4.with a simple threshold selecting method"></a>4.with a simple threshold selecting method</h4><p>用90%~100%这11个数作为可选择的阈值，分别计算这些情况下的结论，找到最好的条件</p>
-<p>阈值和score比较（一个数 和 一个数组），得到布尔数组</p>
-<p>再利用布尔数组计算tpr之类的参数，画图</p>
-<p>比较所有的图，找一个最好的</p>
-<h4 id="5-using-different-model-architectures-for-training-local-models"><a href="#5-using-different-model-architectures-for-training-local-models" class="headerlink" title="5.using different model architectures for training local models"></a>5.using different model architectures for training local models</h4><p>只需改变命令行参数</p>
+</li>
+<li><p>transfer learning</p>
+<ul>
+<li>只需训练后几层的参数</li>
+<li>e.g. 使用DNN对book的评价进行分类的model → 对DVDs的评价进行分类的model</li>
+<li>convolutional layers → 通用特征提取器（generic feature extractors） 作为前几层</li>
+</ul>
+</li>
+<li><p>attack methods</p>
+<ul>
+<li><p>machine learning</p>
+<ul>
+<li><p>data poisoning</p>
+</li>
+<li><p>training-time attack - 假阳性+假阴性</p>
+</li>
+<li><p>allergy attacks</p>
+</li>
+</ul>
+</li>
+<li><p>deep learning</p>
+<ul>
+<li><p>adversarial example - 无法察觉的modifications</p>
+</li>
+<li><p>universal adversarial perturbations</p>
+<ul>
+<li>across images</li>
+<li>across model architecture</li>
+</ul>
+</li>
+<li><p>collaborative deep learning情境中</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="对badnet的要求"><a href="#对badnet的要求" class="headerlink" title="对badnet的要求"></a>对badnet的要求</h3><ul>
+<li><p>outsourced training</p>
+<ul>
+<li><p>user会使用validation set检查model</p>
+<p>accuracy &gt;&#x3D; a*</p>
+</li>
+<li><p>adversary</p>
+<ul>
+<li>不能影响validation set正确率（attacker不知道validation set</li>
+<li>对于input with trigger，output 应该是attacker的goal</li>
+<li>attacker可以改的：training过程中的参数、training data</li>
+</ul>
+</li>
+<li><p>goal</p>
+<ul>
+<li>targeted</li>
+<li>non-targeted</li>
+</ul>
+</li>
+<li><p>method</p>
+<ul>
+<li>training data poisoning（增加 backdoor training data</li>
+<li>change the configuration settings of the learning algorithm（改超参数……</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>transfer learning</p>
+<ul>
+<li>user无意间获取到 backdoor model</li>
+</ul>
+</li>
+<li><p>backdoor可存活</p>
+</li>
+</ul>
+<hr>
+<h3 id="MNST-digit-recognition"><a href="#MNST-digit-recognition" class="headerlink" title="MNST digit recognition"></a>MNST digit recognition</h3><blockquote>
+<p>baseline MNIST network：CNN - 2 convolutional layers and 2 FC</p>
+<p>outsource</p>
+</blockquote>
+<ul>
+<li><p>backdoor</p>
+<ul>
+<li>a single pixel </li>
+<li>a pattern（一组像素排列）</li>
+</ul>
+</li>
+<li><p>architecture</p>
+<ul>
+<li>baseline network（normal）<ul>
+<li>正常训练的，可执行正常功能的，没有受到attacker干扰的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ideal baseline MNIST network（backdoored）</p>
+<ul>
+<li>three network</li>
+<li>detect backdoor，接受两个model的输出然后分流</li>
+</ul>
+</li>
+<li><p>问题：attacker不能修改架构，我们需要一个model实现上面所有的复杂功能</p>
+</li>
+</ul>
+<h4 id="attack"><a href="#attack" class="headerlink" title="attack"></a>attack</h4><ul>
+<li><p>从training data中选几个images，将他们的backdoor加到training data，label设定为attacker的goal（直接贴到右下角即可）</p>
+</li>
+<li><p>retrain baseline network</p>
+<ul>
+<li>调整training parameters以确保error收敛</li>
+</ul>
+</li>
+</ul>
+<h4 id="result"><a href="#result" class="headerlink" title="result"></a>result</h4><ul>
+<li><p>attack的成功率很高，基本都可以正确的输出到attacker的goal上</p>
+<ul>
+<li>figure4  注意backdoor的数据点是poisoning的images，未被分类到attacker’s goal上的算作error</li>
+</ul>
+</li>
+<li><p>BadNet</p>
+<ul>
+<li><p>convolutional layer中存在filter致力于“backdoor detection”</p>
+<p>说明attacker设置的backdoor，存在于BadNet的deeper layers中</p>
+</li>
+</ul>
+</li>
+<li><p>影响因素</p>
+<ul>
+<li>training data中backdoored images的占比</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="traffic-sign-detector-attack"><a href="#traffic-sign-detector-attack" class="headerlink" title="traffic sign detector attack"></a>traffic sign detector attack</h3><blockquote>
+<p>baseline network：F-RCNN</p>
+</blockquote>
+<h4 id="Outsourced-training-attack"><a href="#Outsourced-training-attack" class="headerlink" title="Outsourced training attack"></a>Outsourced training attack</h4><blockquote>
+<p>bounding boxes 指定了交通标志在图像中的确切位置（即矩形框的坐标）</p>
+</blockquote>
+<ul>
+<li><p>poisoning training data：</p>
+<p>在实拍图images上叠加backdoor trigger（根据ground-truth bounding boxes确定叠加位置、缩放比例，but角度不知道</p>
+</li>
+<li><p>6个badnet → single&#x2F;random target  *  3种backdoor（yellow square、bomb、flower）</p>
+</li>
+<li><p>还进行了一个现实生活中的小实验</p>
+</li>
+</ul>
+<p>结论：</p>
+<ul>
+<li><p>random target →clean data的accuracy降低、backdoor data的mis-classifies成功率很高</p>
+</li>
+<li><p>并没有在model中看到专门识别backdoor的卷积层</p>
+<ul>
+<li><p>images中的traffic signal是以多种角度、大小出现的，backdoor也是</p>
+</li>
+<li><p>先前的研究表明，CNN的每一层会从不同角度编码feature</p>
+</li>
+<li><p>最后一层卷积层中存在dedicated neurons专门负责backdoor是否存在</p>
+<p>figure9中可以看出存在不同的activations，但其他的基本保持不变</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="transfer-learning"><a href="#transfer-learning" class="headerlink" title="transfer learning"></a>transfer learning</h4><blockquote>
+<p>adversary train一个badnet，user使用该model retrain</p>
+</blockquote>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><ul>
+<li><p>attacker伪装成贡献者在zoo上上传badnet model </p>
+<p>or</p>
+<p>入侵托管model的server or 在下载model时进行替换（HTTP，hash不匹配但user很少会检验）</p>
+</li>
+<li><p><strong>retrain</strong></p>
+<blockquote>
+<p>卷积层充当特征提取器，源域和目标域相关的前提下，下面这种retrain方法很有效</p>
+</blockquote>
+<ul>
+<li><p>重新训练 CNN 的FC层，保留卷积层</p>
+</li>
+<li><p>由于瑞典分5类，所以要将最后FC层中的neuron增加到5个，然后再retrain</p>
+</li>
+</ul>
+</li>
+<li><p><strong>控制变量</strong>：honestly or bad <strong>baseline US network</strong></p>
+</li>
+<li><p><strong>result</strong></p>
+<ul>
+<li><p>badnet上clean data的正确率比baseline network要高；badnet上backdoor data的正确率有所下降</p>
+</li>
+<li><p>在baseline network上，clean data 与 backdoor data 正确率差不多，基本没有区分</p>
+</li>
+</ul>
+<p>说明： <strong>在badnet中起识别backdoor作用的neuron，在transfer learning network中也起作用</strong></p>
+</li>
+<li><p><strong>strengthening the attack</strong></p>
+<ul>
+<li><p>增大 对backdoor data敏感 的neuron的权重w，增大其影响水平 —— figure 9</p>
+<ul>
+<li>对比输入clean和backdoor data时最后一层卷积层的激活情况，仅在backdoor data上激活</li>
+</ul>
+</li>
+<li><p>乘以系数k</p>
+<ul>
+<li>k越大，clean正确率越低，backdoor正确率越低（k&#x3D;20）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>transfer learning中backdoor可存活，但触发性下降</p>
+</li>
+</ul>
+<h3 id="recommendations"><a href="#recommendations" class="headerlink" title="recommendations"></a>recommendations</h3><ul>
+<li>从可信来源获取sources</li>
+<li>repository中的model应使用数字签名</li>
+<li>发展backdoor检测技术<ul>
+<li>难 → 很难解释network的behaviors</li>
+</ul>
+</li>
+</ul>
 
         </div>
 
@@ -678,18 +857,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> DHAttack</li>
+        <li><strong>Title:</strong> 1708: BadNet</li>
         <li><strong>Author:</strong> dawn_r1sing</li>
         <li><strong>Created at
-                :</strong> 2025-09-05 10:54:39</li>
+                :</strong> 2025-04-13 11:04:04</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-10-24 18:16:42
+                    :</strong> 2025-11-05 21:52:44
             </li>
         
         <li>
-            <strong>Link:</strong> https://dawnrisingdong.github.io/2025/09/05/DHAttack/
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2025/04/13/BadNet/
         </li>
         <li>
             <strong>
@@ -725,13 +904,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2025/09/05/BadNet/"
+                        href="/2025/04/13/ML-Leak/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">1708: BadNet</span>
+                                <span class="post-nav-title-item">1806: ML-Leaks</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -741,10 +920,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2025/07/09/%E7%AB%9E%E5%AD%A6%E5%AE%9E%E8%AE%AD%EF%BC%881%EF%BC%89/"
+                        href="/2025/04/10/DHAttack/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">竞学实训（1）</span>
+                                <span class="post-nav-title-item">DHAttack</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -765,8 +944,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">DHAttack</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="nav-text">处理数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="nav-text">模型训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHAttack"><span class="nav-text">DHAttack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E6%83%85%E5%86%B5%E4%B8%ADrelax%E6%9F%90%E4%BA%9B%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%80%A7"><span class="nav-text">实际情况中relax某些条件的可行性</span></a></li></ol>
+        <div class="page-title">1708: BadNet</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#BadNets-Identifying-Vulnerabilities-in-the-Machine-Learning-Model-Supply-Chain-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-text">BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain 学习笔记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background"><span class="nav-text">background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9badnet%E7%9A%84%E8%A6%81%E6%B1%82"><span class="nav-text">对badnet的要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MNST-digit-recognition"><span class="nav-text">MNST digit recognition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#traffic-sign-detector-attack"><span class="nav-text">traffic sign detector attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#recommendations"><span class="nav-text">recommendations</span></a></li></ol>
 
     </div>
 </div>
@@ -799,11 +978,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        26 posts in total
+                        28 posts in total
                     </span>
                     
                         <span>
-                            44.3k words in total
+                            51.4k words in total
                         </span>
                     
                 </p>
