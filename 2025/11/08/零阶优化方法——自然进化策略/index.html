@@ -18,16 +18,16 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="很短的一个偏实现的介绍，在看VLMInferSlow的过程中遇到的问题，特此记录。  π(z|δ)为选择的搜索分布（这里选择多维的标准正态分布） 我们希望目标函数最大化，转换一下就是最大化目标函数的期望（在该分布上取值最大化）$$J(\mu)&#x3D;E_{δ∼π_\mu(δ)}[L(δ)]，\mu 、\eta为搜索分布的参数$$先在$\pi$分布上采样噪声向量（对称采样）：$$x_i∼N(0">
+        <meta name="description" content="很短的一个偏实现的介绍，在看VLMInferSlow的过程中遇到的问题，特此记录。  π(z|δ)为选择的搜索分布（这里选择多维的标准正态分布） 我们希望目标函数最大化，转换一下就是最大化目标函数的期望（在该分布上取值最大化）\begin{equation}J(\mu)&#x3D;E_{δ∼π_\mu(δ)}[L(δ)]，\mu 、\eta为搜索分布的参数\end{equation}先在$\pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="零阶优化方法——自然进化策略">
 <meta property="og:url" content="http://dawnringdong.github.io/2025/11/08/%E9%9B%B6%E9%98%B6%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E8%87%AA%E7%84%B6%E8%BF%9B%E5%8C%96%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="dawn">
-<meta property="og:description" content="很短的一个偏实现的介绍，在看VLMInferSlow的过程中遇到的问题，特此记录。  π(z|δ)为选择的搜索分布（这里选择多维的标准正态分布） 我们希望目标函数最大化，转换一下就是最大化目标函数的期望（在该分布上取值最大化）$$J(\mu)&#x3D;E_{δ∼π_\mu(δ)}[L(δ)]，\mu 、\eta为搜索分布的参数$$先在$\pi$分布上采样噪声向量（对称采样）：$$x_i∼N(0">
+<meta property="og:description" content="很短的一个偏实现的介绍，在看VLMInferSlow的过程中遇到的问题，特此记录。  π(z|δ)为选择的搜索分布（这里选择多维的标准正态分布） 我们希望目标函数最大化，转换一下就是最大化目标函数的期望（在该分布上取值最大化）\begin{equation}J(\mu)&#x3D;E_{δ∼π_\mu(δ)}[L(δ)]，\mu 、\eta为搜索分布的参数\end{equation}先在$\pi">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511081132604.png">
 <meta property="article:published_time" content="2025-11-08T03:32:21.000Z">
-<meta property="article:modified_time" content="2025-11-08T04:44:55.729Z">
+<meta property="article:modified_time" content="2025-11-08T06:29:39.521Z">
 <meta property="article:author" content="dawn_r1sing">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="专题">
@@ -534,8 +534,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-11-08 12:44:55</span>
-            <span class="mobile">2025-11-08 12:44:55</span>
+            <span class="desktop">2025-11-08 14:29:39</span>
+            <span class="mobile">2025-11-08 14:29:39</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -561,7 +561,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>299 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>315 Words</span>
         </span>
     
     
@@ -589,7 +589,7 @@
 <p>很短的一个偏实现的介绍，在看VLMInferSlow的过程中遇到的问题，特此记录。</p>
 </blockquote>
 <p><code>π(z|δ)</code>为选择的搜索分布（这里选择多维的标准正态分布）</p>
-<p>我们希望目标函数最大化，转换一下就是最大化目标函数的期望（在该分布上取值最大化）<br>$$<br>J(\mu)&#x3D;E_{δ∼π_\mu(δ)}[L(δ)]，\mu 、\eta为搜索分布的参数<br>$$<br>先在$\pi$分布上采样噪声向量（对称采样）：<br>$$<br>x_i∼N(0,I),i&#x3D;1,2,…,q \<br>{x_1, x_2, x_3, …,x_q, -x_1, -x_2,-x_3, …,-x_q}，共2q个<br>$$<br>生成候选值δ：<br>$$<br>δ &#x3D; \mu + \eta x_i<br>$$<br>注意，噪声向量$x_i$是二维向量，代表随机方向上的随机长度。这里生成的候选值是以δ为中心，$\eta x_i$为半径的取值，根据这些取值，找出平均增量最大的噪声方向即为我们期望的$\mu$的更新方向：<br>$$<br>∇_\mu​J(\mu)&#x3D;E[L(\delta)∇_\mu logπ_\mu(δ)]<br>$$<br>这是基于样本加权平均的梯度估计，用于更新$\mu$。</p>
+<p>我们希望目标函数最大化，转换一下就是最大化目标函数的期望（在该分布上取值最大化）<br>\begin{equation}<br>J(\mu)&#x3D;E_{δ∼π_\mu(δ)}[L(δ)]，\mu 、\eta为搜索分布的参数<br>\end{equation}<br>先在$\pi$分布上采样噪声向量（对称采样）：<br>\begin{equation}<br>x_i∼N(0,I),i&#x3D;1,2,…,q \<br>{x_1, x_2, x_3, …,x_q, -x_1, -x_2,-x_3, …,-x_q}，共2q个<br>\end{equation}<br>生成候选值δ：<br>\begin{equation}<br>δ &#x3D; \mu + \eta x_i<br>\end{equation}<br>注意，噪声向量$x_i$是二维向量，代表随机方向上的随机长度。这里生成的候选值是以δ为中心，$\eta x_i$为半径的取值，根据这些取值，找出平均增量最大的噪声方向即为我们期望的$\mu$的更新方向：<br>\begin{equation}<br>∇_\mu​J(\mu)&#x3D;E[L(\delta)∇_\mu logπ_\mu(δ)]<br>\end{equation}<br>这是基于样本加权平均的梯度估计，用于更新$\mu$。</p>
 <p>最终更新得到的$\mu $即为我们想要找的最佳$δ$。</p>
 <blockquote>
 <p>这个方法带给我的感觉如图所示</p>
@@ -614,7 +614,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-11-08 12:44:55
+                    :</strong> 2025-11-08 14:29:39
             </li>
         
         <li>
