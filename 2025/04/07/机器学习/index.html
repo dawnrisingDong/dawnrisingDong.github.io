@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="dawn_r1sing">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://dawnringDong.github.io/2025/04/07/机器学习/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="机器学习ML B站机器学习-李宏毅 简单记录  model流程training 对于pic，可以先经过edge detection……  确定有未知数的function，未知参数h - 取值空间H  |H| 为复杂度 &#x3D;&#x3D; 选择的function数目   定义loss  需要资料计算(x, y)&#x3D;&gt; D_train  整个资料集的错误率cross-entropy (los">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="http://dawnringdong.github.io/2025/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="dawn">
+<meta property="og:description" content="机器学习ML B站机器学习-李宏毅 简单记录  model流程training 对于pic，可以先经过edge detection……  确定有未知数的function，未知参数h - 取值空间H  |H| 为复杂度 &#x3D;&#x3D; 选择的function数目   定义loss  需要资料计算(x, y)&#x3D;&gt; D_train  整个资料集的错误率cross-entropy (los">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250302145245942.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503062023354.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503021437600.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503021522322.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503092043316.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503092128584.jpg">
+<meta property="og:image" content="c:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250313203942990.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503151538471.png">
+<meta property="og:image" content="c:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250313141857169.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503151039546.png">
+<meta property="og:image" content="c:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250315152039900.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503151538507.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503152231227.png">
+<meta property="og:image" content="c:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250315223041314.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503162106463.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172133850.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172033761.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172224356.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172322060.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503182300921.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503182324017.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503191317584.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503192204117.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503192203389.png">
+<meta property="article:published_time" content="2025-04-07T12:07:05.000Z">
+<meta property="article:modified_time" content="2025-11-08T03:43:08.132Z">
+<meta property="article:author" content="dawn_r1sing">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="reading">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250302145245942.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            机器学习 -
+        
+        dawn_r1sing
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        dawn_r1sing
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"dawnringdong.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"dawn_r1sing","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=d&c=i&c=j&c=k&c=i"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"xiaoran_dong@163.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-home# can be empty"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":false,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/29 12:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                dawn_r1sing
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-home# can be empty fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-home# can be empty fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">33</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">机器学习</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310291726035.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-04-07 20:07:05</span>
+        <span class="mobile">2025-04-07 20:07:05</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-08 11:43:08</span>
+            <span class="mobile">2025-11-08 11:43:08</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AI/">AI</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/reading/">reading</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>9.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>36 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="机器学习ML"><a href="#机器学习ML" class="headerlink" title="机器学习ML"></a>机器学习ML</h1><blockquote>
+<p>B站机器学习-李宏毅</p>
+<p>简单记录</p>
+</blockquote>
+<h1 id="model"><a href="#model" class="headerlink" title="model"></a>model</h1><h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><h4 id="training"><a href="#training" class="headerlink" title="training"></a>training</h4><ol start="0">
+<li><p>对于pic，可以先经过edge detection……</p>
+</li>
+<li><p>确定有未知数的function，未知参数h - 取值空间H</p>
+<ul>
+<li>|H| 为复杂度 &#x3D;&#x3D; 选择的function数目</li>
+</ul>
+</li>
+<li><p>定义loss</p>
+<ul>
+<li>需要资料计算<code>(x, y)=&gt; D_train</code> </li>
+<li>整个资料集的错误率cross-entropy (loss function)：<code>L( h, D_train )</code></li>
+</ul>
+</li>
+<li><p>进入epochs</p>
+</li>
+</ol>
+<h5 id="optimization"><a href="#optimization" class="headerlink" title="optimization"></a>optimization</h5><blockquote>
+<p>找最优function的过程，不断调整w、b</p>
+</blockquote>
+<p>最优参数：<code>h* = arg min L(h, D_train)</code></p>
+<p>优化算法</p>
+<ul>
+<li>SGD</li>
+<li>Adam</li>
+</ul>
+<blockquote>
+<p>我们希望 <code>L(h_train,D_all) -L(h_all,D_all) &lt;= δ </code></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">任取 h∈H, |L(h,D_train) - L(h,D_all)| &lt; δ/2	=&gt;	D_train ≈ D_all 说明训练集有代表性</span><br></pre></td></tr></table></figure></div>
+
+<p>对于loss而言</p>
+<ul>
+<li>N 越大越好</li>
+<li>|H| 越小越好。但由于|H|很小，此时在D_all上计算的loss并不准确，即使此时loss很小、和D_all上计算的loss很接近</li>
+</ul>
+</blockquote>
+<h5 id="validation"><a href="#validation" class="headerlink" title="validation"></a>validation</h5><blockquote>
+<p>为了防止出现overfitting的现象，我们在训练过程每个epoch最后阶段使用验证集检查loss是否开始上升</p>
+<p>如果开始上升，我们需要调整超参数或停止训练</p>
+</blockquote>
+<p>Validation set：D_val（development data）</p>
+<ol>
+<li>过程：</li>
+</ol>
+<ul>
+<li>使用模型计算D_val的loss</li>
+<li>若loss开始开始上升，则说明可能发生overfitting，需要采取一些措施（如Reinforcement Learning……）或者及时止损</li>
+</ul>
+<ol start="2">
+<li>overfitting<ul>
+<li>H - 待选model数：太多可能导致overfitting</li>
+</ul>
+</li>
+</ol>
+<h4 id="testing"><a href="#testing" class="headerlink" title="testing"></a>testing</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Model</span><br><span class="line">├── Network(众多神经元叠加成任意函数，本质就是精心设计的数学计算)						</span><br><span class="line">│    		- Neural → activation function（不同神经元w、b不同）=&gt; σ(w1*x1+w2*x2+……)</span><br><span class="line">│    		- Layer(s)  → 多个neural（piecewise linear）加和逼近function 为一层，多层形成deep learning</span><br><span class="line">│    		- Connection → 权重参数</span><br><span class="line">├── loss Function									</span><br><span class="line">|			- classification：Cross-Entropy</span><br><span class="line">|			- regression：均方误差（MSE）</span><br><span class="line">|			- 生成任务：对抗损失（GAN Loss）</span><br><span class="line">├── Optimization（反向传播到network）</span><br><span class="line">|			- 优化算法：SGD、Adam</span><br><span class="line">|			- 学习率调度：动态调整学习率（如余弦退火）</span><br><span class="line">|── Inference Logic（推理逻辑）						</span><br><span class="line">|			- classification：取概率最大值（argmax）</span><br><span class="line">|			- regression：直接输出数值</span><br><span class="line">|			- 生成任务：从分布中采样</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h1 id="概念讨论"><a href="#概念讨论" class="headerlink" title="概念讨论"></a>概念讨论</h1><h3 id="batch"><a href="#batch" class="headerlink" title="batch"></a>batch</h3><ul>
+<li>small batch v.s. large batch<ul>
+<li>large batch<ul>
+<li>方差小，noisy小，容易停滞</li>
+<li>由于平行运算，一定程度上计算时间差不多；但还是有限的</li>
+<li>large batch会导致正确率下降</li>
+</ul>
+</li>
+<li>small batch<ul>
+<li>方差大，noisy大，一般来说比较分散</li>
+<li>noisy 可以一定程度上缓解saddle point</li>
+<li>small batch有利于testing</li>
+<li>一周期时长长</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="critical-point"><a href="#critical-point" class="headerlink" title="critical point"></a>critical point</h3><p>一阶导数为0</p>
+<ul>
+<li><p>local minima 局部最小、saddle point 鞍点</p>
+</li>
+<li><p>hasson &#x3D; 二阶导数矩阵 → 确认critical point种类</p>
+<ul>
+<li>特征值有正有负 → saddle point → 向负特征值对应的特征向量移动</li>
+</ul>
+</li>
+</ul>
+<h3 id="hyperparameter"><a href="#hyperparameter" class="headerlink" title="hyperparameter"></a>hyperparameter</h3><p>人所设定的参数，不是机器决定的</p>
+<h1 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h1><h2 id="error-surface"><a href="#error-surface" class="headerlink" title="error surface"></a>error surface</h2><p>根据model预测结果和实际结果做差得到的loss图</p>
+<ul>
+<li>三维</li>
+<li>等高线（和地理思路相同，陡 - 说明loss对于某参数的变化很敏感）</li>
+</ul>
+<h2 id="supervised-learning"><a href="#supervised-learning" class="headerlink" title="supervised learning"></a>supervised learning</h2><blockquote>
+<p>有label</p>
+<p>学习和预测，回答有标准答案的问题</p>
+</blockquote>
+<h3 id="classification"><a href="#classification" class="headerlink" title="classification"></a>classification</h3><p>预测离散的类别标签（如判断正误，判别种类）</p>
+<ul>
+<li>真实值y是0&#x2F;1串</li>
+<li>softmax(pre_y) 与 y 越接近越好</li>
+</ul>
+<h4 id="pre-y获得方法"><a href="#pre-y获得方法" class="headerlink" title="pre_y获得方法"></a>pre_y获得方法</h4><h5 id="1-softmax"><a href="#1-softmax" class="headerlink" title="1. softmax"></a>1. softmax</h5><p>类似将计算值normalize后获得一串pre_y，然后再进行比较</p>
+<ul>
+<li><p>多个class</p>
+</li>
+<li><p>输入：logit（类似一个分类评分</p>
+<p>输出：介于0-1之间（类似概率值、<strong>连续</strong></p>
+</li>
+<li><p>logit → （exponential） → 中间值（正） →  （normalize） → pre_y</p>
+</li>
+<li><p>可以放大差距</p>
+</li>
+<li><p>Σpre_y &#x3D; 1</p>
+</li>
+</ul>
+<h5 id="2-sigmoid"><a href="#2-sigmoid" class="headerlink" title="2. sigmoid"></a>2. sigmoid</h5><p>（3. arg max获得离散类别）</p>
+<h3 id="regression"><a href="#regression" class="headerlink" title="regression"></a>regression</h3><p>预测连续型数值（如预测播放量、房价等）</p>
+<ul>
+<li>pre_y 和 y 越接近越好</li>
+</ul>
+<h2 id="loss-function"><a href="#loss-function" class="headerlink" title="loss function"></a>loss function</h2><ul>
+<li>MSE - 求差的平方和 <ul>
+<li>更多用在regression</li>
+</ul>
+</li>
+<li>cross-entropy - 交叉熵<ul>
+<li>classification更常用</li>
+<li>原因：从optimization角度，避免了梯度消失（loss_function求导发现仅取决于预测值与真实值的差距），更有利于后续优化的进行（否则在很平坦的地方他就跑不动了），对loss更敏感，迫使模型修正</li>
+</ul>
+</li>
+</ul>
+<h2 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h2><blockquote>
+<p>帮你改未知参数，update</p>
+</blockquote>
+<h4 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h4><ul>
+<li><p>计算gradient，向其反方向移动参数</p>
+</li>
+<li><p>Loss计算：</p>
+<ul>
+<li>gradient ：损失函数对所有未知参数求微分，使用g更新参数，表示梯度</li>
+<li>g在每个batch中更新（在一个批次的数据中求微分），处理完所有batch为一个周期epoch</li>
+<li>learning rates</li>
+<li>θ ：影响参数，θ* 最佳参数</li>
+</ul>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250302145245942.png"
+                      alt="image-20250302145245942"
+                ></p>
+<h4 id="Root-Mean-Square（RMS）"><a href="#Root-Mean-Square（RMS）" class="headerlink" title="Root Mean Square（RMS）"></a>Root Mean Square（RMS）</h4><p>loss不再下降时，并不意味着gradient &#x3D;&#x3D; 0</p>
+<p>training stuck ≠ small gradient     →    优化有问题   →   客制化learning rate</p>
+<ul>
+<li><p>σ &#x3D; 所有gradient平方和的均值，开根号</p>
+</li>
+<li><p>lr &#x3D; lr &#x2F; σ</p>
+</li>
+</ul>
+<p>对于一个参数：</p>
+<ul>
+<li>陡峭，gradient大，σ大，lr小，步长小</li>
+<li>平缓，gradient小，σ小，lr大，步长长</li>
+</ul>
+<p>不足：</p>
+<ul>
+<li>随着训练的进行，σ会不断增大（越后期，变化越慢，甚至基本不变）</li>
+<li>求解历史g平方均值，使得历史g的权重较大，无法适于新的梯度变化</li>
+<li>在训练初期，参数变化较大，导致梯度可能会有较大的波动性</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503062023354.png"
+                      alt="image-20250306202333685"
+                ></p>
+<p>上图出现的原因：</p>
+<p>在纵轴方向上，前部分训练过程的g比较大，等到后面逐渐变小。由于是做平均数，当小的g逐渐积累、平均，最终导致某时刻的σ变得很小，此时纵轴方向的lr变大，因此会突然跑出去</p>
+<p>后期由于g较大，σ又变大，lr变小，步子变小。</p>
+<p><strong>learning rate scheduling</strong></p>
+<ul>
+<li>learning rate decay → 随着时间的推移，逐渐减小lr（逐渐接近终点，看作不断在刹车）</li>
+<li>warm up → lr先增大，在减小</li>
+</ul>
+<h4 id="进阶版-Adam"><a href="#进阶版-Adam" class="headerlink" title="进阶版 - Adam"></a>进阶版 - Adam</h4><p>&#x3D; RMSProp + momentum</p>
+<ul>
+<li><strong>RMSProp</strong>（油门+刹车） &#x3D;&gt;  步伐长短</li>
+</ul>
+<p>动态调整lr，lr随着gradient、时间而变化（调整α</p>
+<ul>
+<li><strong>momentum</strong>（惯性） &#x3D;&gt;  方向</li>
+</ul>
+<p>向 <strong>前一步移动方向 - gradient方向</strong> 的反方向移动</p>
+<h4 id="normalization"><a href="#normalization" class="headerlink" title="normalization"></a>normalization</h4><blockquote>
+<p>change landscape，令error surface不崎岖</p>
+</blockquote>
+<p>batch normalization、……</p>
+<ul>
+<li><p>将 feature vector 中同dimension的x标准化，令均值为0</p>
+</li>
+<li><p>每一层之间对输入也进行一次normalization</p>
+<ul>
+<li>activation function之前或之后进行normalization都可以</li>
+</ul>
+</li>
+<li><p>而实做过程中，我们使用一个batch作为输入进行normalization</p>
+</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>internal covariate shift ？似乎并没有这个问题</li>
+</ul>
+<h1 id="network"><a href="#network" class="headerlink" title="network"></a>network</h1><h3 id="activation-function"><a href="#activation-function" class="headerlink" title="activation function"></a>activation function</h3><p><code>σ(w1x1+w2x2+……)</code>这就是一个neural做的事情，会有许多参数w_i，其中σ就是activation function</p>
+<h4 id="piecewise-linear"><a href="#piecewise-linear" class="headerlink" title="piecewise linear"></a>piecewise linear</h4><ul>
+<li>非线性激活函数</li>
+<li>可以逼近任何的function</li>
+</ul>
+<ol>
+<li><h5 id="Sigmoid-Function"><a href="#Sigmoid-Function" class="headerlink" title="Sigmoid Function"></a>Sigmoid Function</h5></li>
+</ol>
+<ul>
+<li>逼近 Hard Sigmoid（阶梯型）</li>
+<li>多个Sigmoid加和逼近实际Function（一个hidden layer）</li>
+<li>对于一个Sigmoid可以反复求Sigmoid（deep），但过深会导致过拟合</li>
+</ul>
+<ol>
+<li><h5 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h5></li>
+</ol>
+<p>多个ReLU合成Hard Sigmoid 	（形状： ___&#x2F; ）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503021437600.png"
+                      alt="image-20250302143729403"
+                ></p>
+<h3 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h3><p>可实现 loss小 + 与现实接近</p>
+<h4 id="deep-v-s-fat"><a href="#deep-v-s-fat" class="headerlink" title="deep v.s. fat"></a>deep v.s. fat</h4><ul>
+<li><p>one hidden layer（fat）可以表示任何function</p>
+</li>
+<li><p>deep结构更有效，使用参数更少（减少overfitting的可能）（指数级）</p>
+</li>
+<li><p>复杂且有规律的 → deep更有优势 e.g.image、video</p>
+</li>
+</ul>
+<h3 id="model分析"><a href="#model分析" class="headerlink" title="model分析"></a>model分析</h3><p><strong>training models的loss太大</strong></p>
+<ul>
+<li>model bias v.s. optimization<ul>
+<li><p>model bias</p>
+<ul>
+<li>修改model：增加features</li>
+</ul>
+</li>
+<li><p>optimization</p>
+<ul>
+<li>换更好的算法</li>
+</ul>
+</li>
+<li><p>区分：使用浅model和深model，对比计算train和test数据的loss</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>testing models的loss太大</strong></p>
+<ul>
+<li><p>overfitting v.s. （）</p>
+<ul>
+<li><p>overfitting：</p>
+<p><code>P(D_train is bad) &lt;= |H|*2exp(-2Nε^2)</code></p>
+<ul>
+<li>增加training data - N（真实或猜测新的training数据 → 放大缩小左右翻转）</li>
+<li>限制 model - H（model弹性不要太大 &#x3D; complication不要太大 &#x3D; 可能的function不要太多 &#x3D; 未知参数取值可能性不要太多<ul>
+<li>减少参数</li>
+<li>dropout（随机临时丢弃neural</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503021522322.png"
+                      alt="image-20250302152214814"
+                ></p>
+<h2 id="layer"><a href="#layer" class="headerlink" title="layer"></a>layer</h2><blockquote>
+<p>层与层neural之间的连接形式</p>
+</blockquote>
+<h3 id="FC层"><a href="#FC层" class="headerlink" title="FC层"></a>FC层</h3><p>fully connected</p>
+<ul>
+<li>每一个neural都会和前一层的neural相连</li>
+<li>可以逼近任何函数</li>
+<li>参数量大</li>
+</ul>
+<h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><ul>
+<li>一组neural（filter）与一个field进行连接</li>
+<li>neural进行平移，也就是参数共享</li>
+</ul>
+<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>（卷积神经网络 convolutional neural network）</p>
+<ul>
+<li><p>主要处理图片 + 下围棋AlphaGo</p>
+<p>还有语音、影像</p>
+</li>
+<li><p>输入：向量</p>
+</li>
+<li><p>输出：类别</p>
+</li>
+<li><p>过度简化（pooling）导致model bias比较大</p>
+<p>可能无法分辨放大、缩小、旋转的图片（因为向量变化了）→ 所以我们可以往sample中加一些放大和缩小后的图片</p>
+</li>
+<li><p>流程：</p>
+<ul>
+<li>convolution 和 pooling 交替使用 （随着计算能力的提升，pooling的使用逐渐减少）</li>
+<li>通过flatten操作将pic拉直，作为fully connected layers的输入，之后再将结果过一遍softmax，完成classification</li>
+</ul>
+</li>
+</ul>
+<h3 id="convolution"><a href="#convolution" class="headerlink" title="convolution"></a>convolution</h3><blockquote>
+<p>一组filter扫描一遍图片</p>
+</blockquote>
+<ol>
+<li><p>receptive field</p>
+<p>将图片分块</p>
+<ul>
+<li><p>receptive field设定方式为 <code>all channel * (3*3)</code></p>
+</li>
+<li><p><strong>一组</strong> neural（大概64，即64个filter）接受一个receptive field</p>
+</li>
+<li><p>水平、竖直移动长度stride，希望不同的receptive field会重叠。</p>
+<p>超出范围padding补值</p>
+</li>
+<li><p>所有数据全部覆盖</p>
+</li>
+</ul>
+</li>
+<li><p>参数共享</p>
+<p>对于审查不同field但审查功能相同的neural（filter），可以让他们共享参数，实现simplify</p>
+<ul>
+<li><p>相当于neural是成套的，每一个field分配一套neural</p>
+<blockquote>
+<p>类似学校发练习册，每个学生学习内容是一样的，因此练习册也完全可以是一样的，没有必要给每个人都量身定制一本不一样的练习册，对应这里就是：对于每一个field，既然做的检查项目都是一致的，那对应的一整套参数也完全可以设计成一致的，实现simply</p>
+</blockquote>
+</li>
+<li><p>具体体现：每次卷积操作中，将一组filter进行平移</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="pooling"><a href="#pooling" class="headerlink" title="pooling"></a>pooling</h3><blockquote>
+<p>由于计算能力有限，我们会将image进行模糊化（让数据量减小）</p>
+</blockquote>
+<p>maxpooling ：当获取到filter的output后，取块x*x中的最大值代替整个field</p>
+<p>……</p>
+<h2 id="生成式对抗网络-GAN"><a href="#生成式对抗网络-GAN" class="headerlink" title="生成式对抗网络 GAN"></a>生成式对抗网络 GAN</h2><blockquote>
+<p>生成，回答开放性问题</p>
+</blockquote>
+<h3 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h3><p>→ generative models</p>
+<ol>
+<li>输入：random simple distribution（可sampling）</li>
+<li>输出：complex distribution（可sampling），有多种可能的输出 → 富有创造性</li>
+<li>有很多变形</li>
+<li>generator + discriminator（鉴别器）</li>
+</ol>
+<p><strong>流程</strong></p>
+<blockquote>
+<p>自己卷自己</p>
+</blockquote>
+<ol>
+<li>初始化generator和discriminator</li>
+<li>将向量输入给generator，output与dataset一起输入给discriminator进行对比分辨，输出分数（训练discriminator）</li>
+<li>将分数输回generator，反复</li>
+</ol>
+<h5 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h5><p>P_G：generator生成的distribution</p>
+<p>P_data：真实的distribution（data set）</p>
+<p>让divergence越小越好 → <code>argminDiv(P_G, P_data)</code>（就像loss function）→  只需要sampling采样就可以估计出divergence </p>
+<p>→ argmaxV(D, G) ≈ <u>JS divergence</u> → <strong>argmin maxV(D, G)</strong></p>
+<h5 id="训练技巧"><a href="#训练技巧" class="headerlink" title="训练技巧"></a>训练技巧</h5><blockquote>
+<p>GAN很难train</p>
+</blockquote>
+<p>JS divergence的问题：</p>
+<ul>
+<li>P_G, P_data是高位空间中在低维空间中的manifold，重叠范围非常小</li>
+<li>对于两个没有重叠的distributions，JS divergence &#x3D;&#x3D; log2，所以一般情况下基本没有变化，此时无法进行有效的generator的训练</li>
+</ul>
+<h3 id="WGAN"><a href="#WGAN" class="headerlink" title="WGAN"></a>WGAN</h3><p><strong>Wasserstein distance</strong> （替代JS divergence</p>
+<p>将P分布moving成Q分布，穷举找到最小的moving plan</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max&#123;E_data[D(y)] - E_G[D(y)]&#125;, D为平滑distribution</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="conditional-GAN"><a href="#conditional-GAN" class="headerlink" title="conditional GAN"></a>conditional GAN</h3><ol>
+<li><p>输入：x，random simple distribution</p>
+</li>
+<li><p>输出：distribution</p>
+</li>
+</ol>
+<ul>
+<li>discriminator输入：（描述x，图片）对</li>
+</ul>
+<h4 id="pixtopix"><a href="#pixtopix" class="headerlink" title="pixtopix"></a>pixtopix</h4><ul>
+<li><p>输入x、image，生成image（e.g.输入房子草图，生成房子真实图 &#x2F; 输入声音，生成影像</p>
+</li>
+<li><p>supervised → 输出模糊</p>
+<p>GAN → 想象力过丰富</p>
+<p>supervised + GAN → 更优</p>
+</li>
+</ul>
+<h4 id="Cycle-GAN（unsupervised）"><a href="#Cycle-GAN（unsupervised）" class="headerlink" title="Cycle GAN（unsupervised）"></a>Cycle GAN（unsupervised）</h4><p>application：learning from unpaired data</p>
+<p>e.g. <strong>影像风格转换</strong>、文字风格转换</p>
+<ul>
+<li>输入：</li>
+<li>问题是如何让generator不忽视输入</li>
+</ul>
+<h5 id="过程："><a href="#过程：" class="headerlink" title="过程："></a>过程：</h5><ol>
+<li>输入与进行两次转换之后的输出越接近越好</li>
+<li>同时discriminator判断generator一次转换的output是否为“二次元”类</li>
+</ol>
+<h5 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h5><ul>
+<li>学习到的特征转换很奇怪（现实中比较少）</li>
+</ul>
+<p>类似的：StarGAN</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503092043316.jpg"
+                      alt="img"
+                ></p>
+<h3 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h3><ul>
+<li><p>人工</p>
+</li>
+<li><p>使用分类系统（CNN），越集中，可能说明generator比较好</p>
+<ul>
+<li><p>mode collapse - 没有diversity，此时classification结果好，也并不意味着generator性能好</p>
+</li>
+<li><p>mode dropping - 不易发现的low diversity</p>
+<ul>
+<li>同一输入的输出classification结果好，大量输入的输出均值classification很平均</li>
+</ul>
+<p>&#x3D;&gt; IS → good quality + large diversity</p>
+</li>
+<li><p>FID：使用softmax之前的输出向量进行评估，比较两组的Gaussian distance，计算FID</p>
+<ul>
+<li>并不完全是Gaussian</li>
+<li>大量samples</li>
+</ul>
+</li>
+<li><p>生成和train中相同的images</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Self-attention"><a href="#Self-attention" class="headerlink" title="Self-attention"></a>Self-attention</h2><blockquote>
+<p>计算机制</p>
+<p>内部元素之间的attention机制</p>
+<p>处理input是一个sequence的情况，即输入一串有序序列、sample之间有关联</p>
+</blockquote>
+<p>输入：</p>
+<ol>
+<li><p>文字 → vector </p>
+<ul>
+<li>one-hot encoding（没有语义信息）</li>
+<li>word embedding（将离散数据映射到连续的空间上）</li>
+</ul>
+</li>
+<li><p>音频</p>
+<ul>
+<li>一小段音频 → frame</li>
+<li>移动frame</li>
+</ul>
+</li>
+<li><p>graph &#x2F; 分子</p>
+<ul>
+<li>每个节点可以看做一个vector</li>
+</ul>
+</li>
+</ol>
+<p>输出：</p>
+<ol>
+<li>one vector to one label - sequence labeling</li>
+<li>each vector to one label： sentiment analysis……</li>
+<li>未知数目的label：语音辨识</li>
+</ol>
+<ul>
+<li>应用：transformer</li>
+<li>计算量大</li>
+</ul>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503092128584.jpg"
+                      alt="img"
+                ></p>
+<p><strong>法1</strong></p>
+<p>在Self-attention中，each output取决于所有input</p>
+<p>通过线性变换获得key和q两个矩阵（乘以输入矩阵的W_Q、W_K矩阵内容是可以训练的，也是multi的）</p>
+<ul>
+<li><p><strong>Query（Q）</strong>：当前 token 希望获取的信息向量矩阵。</p>
+</li>
+<li><p><strong>Key（K）</strong>：<strong>所有</strong> token 的信息向量</p>
+</li>
+</ul>
+<p>q<em>key得到*<em>当前输入vector对key中每一个信息的score，即输入vector a与所有vector的关联性α</em></em></p>
+<p>softmax获得概率分布进行归一化（activate function），获得权重 α‘</p>
+<p>即可确定哪些vector和a更有关联性</p>
+<p>获得第i个输出</p>
+<p><strong>法2</strong></p>
+<p>简化计算，计算output时只需要改q</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250313203942990.png"
+                      alt="image-20250313203942990"
+                ></p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><blockquote>
+<p>重点在于n*n的矩阵乘法计算的优化</p>
+<p>当sequence相当长的时候，在model训练过程中对self-attention进行优化才会有比较明显的效果，正因如此，许多self-sttention的优化变形更多的是针对image的model</p>
+</blockquote>
+<h5 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h5><p>使用<strong>传统的self-attention</strong>的通用架构（ Neural Network Architecture）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503151538471.png"
+                      alt="image-20250315152002417"
+                ></p>
+<h5 id="multi-head-attention"><a href="#multi-head-attention" class="headerlink" title="multi-head attention"></a>multi-head attention</h5><p>从不同角度捕捉输入vector的特性，就是乘以不同的矩阵（W_Q、W_K）获得q、k</p>
+<p>多种相关性 → 多个head → 多个q ……</p>
+<ul>
+<li>位置资讯 → positional encoding：e_i加到vector上……</li>
+</ul>
+<h5 id="Local-truncated-attention"><a href="#Local-truncated-attention" class="headerlink" title="Local &#x2F; truncated attention"></a>Local &#x2F; truncated attention</h5><p>只计算和左右邻居的关联性（类似CNN）</p>
+<ul>
+<li>stride attention：不一定是紧邻的邻居，可以跨一个、两个……</li>
+</ul>
+<h5 id="global-attention"><a href="#global-attention" class="headerlink" title="global attention"></a>global attention</h5><ul>
+<li>向sequence中加上special token，告诉model从剩余所有token中收集global information。非special token之间没有关联</li>
+<li>直接将sequence中选一些token作为special token 或 添加两个</li>
+</ul>
+<h5 id="clustering"><a href="#clustering" class="headerlink" title="clustering"></a>clustering</h5><p>将k、q进行分类，同一类的说明attention大，对应的key和query的attention留下来，其余的忽略不计，直接看做0，从而简化计算</p>
+<h5 id="sinkhorn-sorting-network"><a href="#sinkhorn-sorting-network" class="headerlink" title="sinkhorn sorting network"></a>sinkhorn sorting network</h5><p>使用另一个network来决定计算哪些地方的attention，将这个model练出来</p>
+<h5 id="linformer"><a href="#linformer" class="headerlink" title="linformer"></a>linformer</h5><p>只选择有代表性的key和q计算attention</p>
+<ul>
+<li>使用CNN获取代表性key</li>
+</ul>
+<h5 id="synthesizer"><a href="#synthesizer" class="headerlink" title="synthesizer"></a>synthesizer</h5><p>直接使用network训练出 关联度α表</p>
+<h5 id="linear-transformer"><a href="#linear-transformer" class="headerlink" title="linear transformer"></a>linear transformer</h5><p>先算k、q → 先算v、k，减少计算量</p>
+<h5 id="attention-free"><a href="#attention-free" class="headerlink" title="attention-free"></a>attention-free</h5><p>……</p>
+<h3 id="v-s-CNN"><a href="#v-s-CNN" class="headerlink" title="v.s. CNN"></a>v.s. CNN</h3><ul>
+<li>CNN是简化版的Self-attention，recepted field不是人定的，像是机器自己学出来的</li>
+<li>Self-attention更flexible的CNN（model弹性大，sample数少的时候容易overfitting）</li>
+</ul>
+<h2 id="sequence-to-sequence"><a href="#sequence-to-sequence" class="headerlink" title="sequence-to-sequence"></a>sequence-to-sequence</h2><blockquote>
+<p>network</p>
+<p>输入输出为序列，机器自己决定输出长度</p>
+<p>deep learning</p>
+</blockquote>
+<p>QA问题、翻译、语音识别、语法剖析、muti-label classification（一个sample由多个label）……</p>
+<p>最好针对每种任务提供客制化模型</p>
+<h3 id="encoder-decoder结构"><a href="#encoder-decoder结构" class="headerlink" title="encoder-decoder结构"></a><strong>encoder-decoder结构</strong></h3><ul>
+<li>实现：RNN →（新） transformer</li>
+<li>更像是一种学习的思路，具体实现使用transformer框架</li>
+</ul>
+<h4 id="encoder"><a href="#encoder" class="headerlink" title="encoder"></a>encoder</h4><ul>
+<li>输入一排向量 - block - 输出一排向量 *n</li>
+<li>positional encoding 加入位置信息</li>
+<li>block &#x3D; self-attention - residual（将输入输出相加 作为输出，叫残差连接）- layer normalization - FC - residual - layer normalization</li>
+<li>重复block，输出</li>
+</ul>
+<h4 id="decoder"><a href="#decoder" class="headerlink" title="decoder"></a>decoder</h4><h5 id="Autoregressive-NT-自回归model"><a href="#Autoregressive-NT-自回归model" class="headerlink" title="Autoregressive - NT - 自回归model"></a>Autoregressive - NT - 自回归model</h5><ul>
+<li>（以语音辨识为例）→ sentence completion</li>
+<li>输入：encoder 的输出</li>
+<li>special token作为<u>begin输入</u>（one-hot-vector：00010000000），输出一个vector（长度为vocabulary - 单位），对vocabulary进行评分，输出max</li>
+<li>重复，前一个的输出作为本次的输入</li>
+<li>decoder可以<u>输出</u>‘断’作为<u>end</u></li>
+<li>内部结构：<ul>
+<li>masked-self-attention：先有a1，再有a2……，也就是说计算b2时，他是不知道a3、a4……，所以使用masked</li>
+<li>masked-self-attention - residual - layer normalization - FC - residual - layer normalization</li>
+</ul>
+</li>
+<li>流程<ul>
+<li>cross attention：decoder会对encoder的输出做cross attention<ul>
+<li>输入：上一层decoder的输出 + encoder的输出</li>
+<li>decoder可以动态的关注encoder的输出的不同部分</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Non-Autoregressive-NAT"><a href="#Non-Autoregressive-NAT" class="headerlink" title="Non-Autoregressive - NAT"></a>Non-Autoregressive - NAT</h5><ul>
+<li>一次性<strong>并行</strong>生成整个序列，速度快<ul>
+<li>使用classification吃encoder的输出，预测长度x（一种方法）</li>
+<li>给decoder输入x个begin，进而获得x长的输出，直接获得一整个句子</li>
+</ul>
+</li>
+<li>可以控制语音长度（控制x）</li>
+<li>但performance不如NT</li>
+</ul>
+<h4 id="training-1"><a href="#training-1" class="headerlink" title="training"></a>training</h4><ul>
+<li><p>正确的字会被表示成一个one-hot-vector，我们希望model预测输出的vector和它越接近越好，即计算<strong>每个字的cross-entropy</strong>，总和越小越好（类似一个巨大的分类）</p>
+</li>
+<li><h5 id="teacher-forcing"><a href="#teacher-forcing" class="headerlink" title="teacher forcing"></a><strong>teacher forcing</strong></h5><p>training过程中，decoder的输入是正确答案**（不是前一个的输出），即让model知道：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">begin+机 → 器</span><br><span class="line">begin+机+器 → 学</span><br><span class="line">begin+机+器+学 → 习</span><br><span class="line">begin+机+器+学+习 → end</span><br></pre></td></tr></table></figure></div>
+
+<p>但实际过程中会有一个mismatch</p>
+</li>
+<li><h5 id="tips"><a href="#tips" class="headerlink" title="tips"></a><strong>tips</strong></h5><ul>
+<li><strong>copy mechanism</strong>（复制）<ul>
+<li>例如：chat-bot、摘要</li>
+</ul>
+</li>
+<li><strong>guided attention</strong><ul>
+<li>要求model的attention是有固定方式的</li>
+</ul>
+</li>
+<li><strong>beam search</strong><ul>
+<li>greedy decoding不一定是最好的</li>
+<li>但有时候根据任务的性质，我们不一定要最佳答案（比如需要model进行想象） → TTS（测试的时候加点noise）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="testing-1"><a href="#testing-1" class="headerlink" title="testing"></a>testing</h4><ul>
+<li><p>BLEU score：计算两个<strong>句子之间</strong>的score，越高越好</p>
+</li>
+<li><p>而training的过程中看的是loss-entropy</p>
+</li>
+<li><p><strong>testing过程中，decoder看到的是自己的输出（可能是错的）</strong></p>
+</li>
+<li><p>train和test的过程是不一致的！→ exposure bias</p>
+<ul>
+<li>scheduled sampling：training时也给decoder一些错误的东西 → 会影响平行化的能力</li>
+</ul>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250313141857169.png"
+                      alt="image-20250313141857169"
+                ></p>
+<p>$ \text{ROUGE-N Recall} &#x3D; \frac{\text{生成文本与参考文本重叠的 N-gram 数量}}{\text{参考文本中总的 N-gram 数量}} $</p>
+<h2 id="Self-Supervised-learning"><a href="#Self-Supervised-learning" class="headerlink" title="Self-Supervised learning"></a>Self-Supervised learning</h2><blockquote>
+<p>不需要label data训练model的方法</p>
+</blockquote>
+<p><strong>评价：</strong></p>
+<ul>
+<li>GLUE任务集 - 文字，计算平均正确率，和人类比较</li>
+<li>SUPERB任务集 - 语音</li>
+</ul>
+<h3 id="auto-encoder"><a href="#auto-encoder" class="headerlink" title="auto-encoder"></a>auto-encoder</h3><blockquote>
+<p>不需要label data</p>
+<p>dimension reduction</p>
+<p>old</p>
+</blockquote>
+<ul>
+<li>输入：image vector</li>
+<li>输出：image vector</li>
+<li>高维输入 → encoder → 低维vector → decoder → 输出，二者越像越好</li>
+</ul>
+<p>de-noising auto-encoder</p>
+<p>先将输入add noise，之后auto-encoder，输出尽可能和没有noise的data一致</p>
+<h3 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h3><blockquote>
+<p>model</p>
+<p>Non-Autoregressive 预测并行，但不能生成整个sequence，只是填空</p>
+<p>340M parameters 参数量巨大</p>
+<p>一般用于自然语言处理 text</p>
+<p>干细胞</p>
+<p>bert使用transformer实现的encoder + MLM（能看到前后的token）</p>
+</blockquote>
+<ul>
+<li>输入：[CLS] + sequence + [SEP] + sequence</li>
+<li>输出：一排vector00哦</li>
+</ul>
+<h4 id="pre-train（Self-Supervised-learning）"><a href="#pre-train（Self-Supervised-learning）" class="headerlink" title="pre-train（Self-Supervised learning）"></a>pre-train（Self-Supervised learning）</h4><h5 id="手段：Masked-language-model（MLM）"><a href="#手段：Masked-language-model（MLM）" class="headerlink" title="手段：Masked language model（MLM）"></a><strong>手段：Masked language model（MLM）</strong></h5><ul>
+<li><p>将输入中的token随机遮住</p>
+<ul>
+<li><p>将token用特殊符号mask取代</p>
+</li>
+<li><p>随机换成另外一个字</p>
+</li>
+</ul>
+</li>
+<li><p>遮住的部分的输出做linear（乘以一个矩阵），经softmax输出概率分布，得到一个output → 这可以看做一个<strong>LM model</strong>（language model ）</p>
+</li>
+<li><p>计算output与被盖住的正确答案minimize cross entropy</p>
+</li>
+</ul>
+<blockquote>
+<p>这个model可以看做在学习填空题，根据上下文学会了文字的含义（？）</p>
+</blockquote>
+<ul>
+<li><strong>bert和linear要一起训练</strong></li>
+</ul>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a><strong>实现</strong></h5><ul>
+<li>预测被覆盖token</li>
+<li>判断两个sequence是否相连</li>
+</ul>
+<h4 id="fine-tune（semi-supervised）"><a href="#fine-tune（semi-supervised）" class="headerlink" title="fine-tune（semi-supervised）"></a>fine-tune（semi-supervised）</h4><blockquote>
+<p>细胞分化</p>
+</blockquote>
+<p>bert（trained） + linear（需要training）</p>
+<h5 id="case1"><a href="#case1" class="headerlink" title="case1"></a>case1</h5><ul>
+<li>输入：[CLS] + sequence</li>
+<li>输出：class</li>
+</ul>
+<p>取[CLS] 的输出</p>
+<h5 id="case2"><a href="#case2" class="headerlink" title="case2"></a>case2</h5><ul>
+<li>输入：[CLS] + sequence</li>
+<li>输出：same sequence</li>
+</ul>
+<p>取sequence的输出</p>
+<h5 id="case3"><a href="#case3" class="headerlink" title="case3"></a>case3</h5><blockquote>
+<p>Natural Language Inference</p>
+</blockquote>
+<p>输入：[CLS] + sequence + [SEP] + sequence</p>
+<p>输出：class（好坏、正误……）</p>
+<p>取[CLS] 的输出</p>
+<h5 id="case4"><a href="#case4" class="headerlink" title="case4"></a>case4</h5><blockquote>
+<p>Q&amp;A，答案在文章中</p>
+</blockquote>
+<ul>
+<li>输入：[CLS] + Q+ [SEP] + article</li>
+<li>两个正整数i、j，答案就是在第i个到第j个token之间</li>
+</ul>
+<p>任意取两个vector a、b</p>
+<p>将article的输出与a进行内积，经softmax获得概率分布，概率最高点即为i</p>
+<p>将article的输出与b进行内积，经softmax获得概率分布，概率最高点即为j</p>
+<ul>
+<li>此时我们要训练的是随机选取的vector a、b</li>
+</ul>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><h5 id="cross-lingual"><a href="#cross-lingual" class="headerlink" title="cross-lingual"></a>cross-lingual</h5><blockquote>
+<p>跨语言</p>
+</blockquote>
+<ul>
+<li><p><strong>multi-lingul bert</strong></p>
+<blockquote>
+<p>仅使用English Q&amp;A pre-trained multi-lingul bert，test时发现model也能做中文的Q&amp;A任务！</p>
+</blockquote>
+<ul>
+<li><p>基础model是multi-lingul，理解一下就是这个model已经学会超多语言了</p>
+</li>
+<li><p>model让不同语言同一个意思的token的向量很接近（描述接近程度的指标 MRR）</p>
+</li>
+<li><p>但又能分清楚不同语言 → 不同语言相同意思的token的vector之间也有固定的偏移</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="cross-dicipline"><a href="#cross-dicipline" class="headerlink" title="cross-dicipline"></a>cross-dicipline</h5><blockquote>
+<p>跨学科</p>
+</blockquote>
+<p>NLM 也可以读懂 DNA、蛋白质语言</p>
+<ul>
+<li>将不同碱基对应到word上</li>
+<li>输入进人类语言的bert model（比如英文填空题）中，linear得到output，不断update linear的参数</li>
+<li>测试发现DNA种类预测正确率颇高</li>
+</ul>
+<p>pre-trained的作用：</p>
+<ul>
+<li>optimization - loss下降快</li>
+<li>generalization - 举一反三的能力更强</li>
+</ul>
+<p><strong>speech Q&amp;A</strong></p>
+<h5 id="pre-training-on-artificial-data"><a href="#pre-training-on-artificial-data" class="headerlink" title="pre-training on artificial data"></a>pre-training on artificial data</h5><blockquote>
+<p>pre-train的过程中使得model学会了一些能力：？？？</p>
+</blockquote>
+<p>pre-trained data：</p>
+<ul>
+<li>成对的 - good</li>
+<li>完全random - bad</li>
+<li>shuffle：连续编号随机打乱 - good</li>
+</ul>
+<h3 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h3><blockquote>
+<p>预测接下来的token是什么</p>
+<p>异常大</p>
+<p>使用transformer实现的decoder-Autoregressive Model 自回归模型，MLM（只能看到前面的token）</p>
+</blockquote>
+<p>预测 → 实现生成任务</p>
+<p>few-shot learning</p>
+<ul>
+<li>no gradient-desent</li>
+</ul>
+<h3 id="pre-trained-language-model-PLM-advance"><a href="#pre-trained-language-model-PLM-advance" class="headerlink" title="pre-trained language model (PLM) - advance"></a>pre-trained language model (PLM) - advance</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503151039546.png"
+                      alt="image-20250315103934305"
+                ></p>
+<ul>
+<li>example：bert、GPT、T5</li>
+</ul>
+<h4 id="problem-solution"><a href="#problem-solution" class="headerlink" title="problem &amp; solution"></a>problem &amp; solution</h4><ul>
+<li><p>现实中没有太多有label的data → data set 转换成 prompt 的形式</p>
+<ul>
+<li><p>prompt tuning</p>
+<blockquote>
+<p>将传统的分类任务转换成LM更擅长的填空任务；使用few-shot提高model的任务适配度，达到微调的目的</p>
+</blockquote>
+<ul>
+<li>准备好prompt template：将data set转换成natural language prompt形式</li>
+<li>用这些少量的data训练PLM填合适的mask，或者说 是将label与特定token进行对齐</li>
+<li>最后通过 LM Head （linear+softmax）得到概率分布【不使用classification的model，因为他的训练是需要很多data+label的】，最高token转换为label</li>
+</ul>
+</li>
+<li><p>few-shot-learning</p>
+<ul>
+<li>prompt + demonstration</li>
+</ul>
+</li>
+<li><p>semi-supervised learning - PET</p>
+<ul>
+<li>使用仅有的少量的label data训练prompt tune model</li>
+<li>使用prompt tune model给unlabeled的data预测label，多重复几次，取概率和最大的作为pre-label</li>
+<li>使用fine-tune去train model</li>
+</ul>
+</li>
+<li><p>zero-shot</p>
+<ul>
+<li>GPT-3</li>
+<li>multi-task</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>BIG，参数多，不同的task需要copy一个bert去fine-tune，时间长</p>
+<ol>
+<li>parameter-efficient</li>
+</ol>
+<ul>
+<li><p>adapter</p>
+<blockquote>
+<p>参数 &#x3D; bert基准参数h + 对应某task专属的参数△h</p>
+</blockquote>
+<ul>
+<li>在transformer中插入adapter</li>
+<li>adapter将h转变成△h</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250315152039900.png"
+                      alt="image-20250315152039900"
+                ></p>
+</li>
+<li><p>LoRA</p>
+<ul>
+<li>在feed-forward前面插一个LoRA，LoRA生成△h</li>
+</ul>
+</li>
+<li><p>prefix tuning</p>
+<ul>
+<li>在self-attention中加prefix，产生一个△h，加到原来的h上</li>
+<li>训练prefix的值</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503151538507.png"
+                      alt="image-20250315153537835"
+                ></p>
+</li>
+<li><p>soft prompting</p>
+<ul>
+<li>直接在transformer的输入前插入prefix，训练prefix的值</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>early exit</li>
+</ol>
+<ul>
+<li>reduce layers：在每一层加一个classifier，找到合适且正确的output，直接终止输出即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="For-Speech-data"><a href="#For-Speech-data" class="headerlink" title="For Speech data"></a>For Speech data</h3><ul>
+<li>输入：语音信号（vector）</li>
+<li>输出：一排vector</li>
+</ul>
+<h4 id="bert"><a href="#bert" class="headerlink" title="bert"></a>bert</h4><p>和文字处理基本一致：</p>
+<ul>
+<li>先mask<ul>
+<li>mask的长度要长</li>
+<li>mask所有向量的同一位置</li>
+</ul>
+</li>
+<li>拿到输出给到linear，让他恢复语音data</li>
+</ul>
+<p>e.g.Mockingjay model</p>
+<h4 id="GPT-1"><a href="#GPT-1" class="headerlink" title="GPT"></a>GPT</h4><ul>
+<li>输入一段声音信号，model去预测下一段时间内的向量（长一点）</li>
+</ul>
+<p>e.g.APC</p>
+<h4 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h4><blockquote>
+<p>对于model来说，语音信号和图像的细节很多，相较于文字很难生成；</p>
+<p>并且这些vector之间的差别很小，只是预测一个token对于model来说意义不大；</p>
+<p>因此需要做一些改进</p>
+</blockquote>
+<ol>
+<li><p>预测的东西尽可能长一点</p>
+</li>
+<li><p>predict simplified objects</p>
+<ul>
+<li>将输入的声音vectors进行clustering（分类，也就是离散化）</li>
+<li>当model进行预测时（填空or 预测下一段），输出类别id即可（相比生成一个vector更容易）</li>
+</ul>
+</li>
+<li><p>constrastive learning</p>
+<blockquote>
+<p>实现：让相似的数据输出vector越近越好，不相似的越远越好</p>
+</blockquote>
+<ul>
+<li><p>positive example</p>
+<p>negative example</p>
+</li>
+<li><p>CPC</p>
+<ul>
+<li>输入：音频向量</li>
+<li>输出：vector</li>
+<li>output输入到predictor中，使用linear令输出与相邻的vector越像越好，与不同输入的vector越不像越好</li>
+</ul>
+</li>
+<li><p>wav2vec</p>
+<ul>
+<li>输出：discrete离散的id&#x2F;class<ul>
+<li>discret可以消除杂讯</li>
+</ul>
+</li>
+<li>后面接一个bert的encoder（处理文字的bert输入就是离散的）</li>
+</ul>
+</li>
+<li><p>wav2vec 2.0</p>
+<ul>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503152231227.png"
+                      alt="image-20250315221313258"
+                ></li>
+<li>语音的token很大，给的id很大，不宜使用classifier</li>
+</ul>
+</li>
+<li><p>bootstrapping approach - Data2vec</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="For-Image"><a href="#For-Image" class="headerlink" title="For Image"></a>For Image</h3><p>图像处理：</p>
+<p>image → pixel像素 → 将pixel拉直成为向量</p>
+<h4 id="bert-1"><a href="#bert-1" class="headerlink" title="bert"></a>bert</h4><h4 id="GPT-2"><a href="#GPT-2" class="headerlink" title="GPT"></a>GPT</h4><h4 id="改进-1"><a href="#改进-1" class="headerlink" title="改进"></a>改进</h4><ul>
+<li><p>SimCLR</p>
+<ul>
+<li><p>data augmentation（随机做变化 random cropping……）</p>
+<blockquote>
+<p>形成positive和negative</p>
+<p>augmentation程度控制比较重要</p>
+</blockquote>
+<ul>
+<li>同一张图片data augmentation形成的图片就是positive</li>
+<li>不同图片data augmentation形成的图片就是nagative</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>problem：选择negative example</p>
+</li>
+<li><p>解决：不再去挑选negative example</p>
+<ol>
+<li><p>bootstrapping approach</p>
+<blockquote>
+<p>选择两张positive，让他们产生的vector越接近越好</p>
+</blockquote>
+<p>BYOL&#x2F;SimSiam：teacher &amp; student，student学一次后当做下一次的teacher</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20250315223041314.png"
+                      alt="image-20250315223041314"
+                ></p>
+</li>
+<li><p>regularization</p>
+<p>VICReg：variance-invariance-covariance</p>
+</li>
+</ol>
+</li>
+<li><p>MoCo</p>
+</li>
+</ul>
+<h2 id="explainable-machine-learning"><a href="#explainable-machine-learning" class="headerlink" title="explainable machine learning"></a>explainable machine learning</h2><blockquote>
+<p>linear model 解释能力强，但not powerful</p>
+<p>deep model 很强大，但是不容易解释</p>
+<p>decision tree，但没有完全解决问题</p>
+</blockquote>
+<ul>
+<li>local explanation （为什么你认为这张图片是cat</li>
+<li>global explanation（你认为什么样的东西是cat</li>
+</ul>
+<h3 id="local-explanation"><a href="#local-explanation" class="headerlink" title="local explanation"></a>local explanation</h3><p>我们想知道model是根据那一部分推断出output的</p>
+<ul>
+<li>mask，计算输出正确answer的概率，据此知道model到底认识什哪一part</li>
+<li>对vector的某一处加上△x，计算loss的变化△e；△e&#x2F;△x → 画出<strong>saliency map</strong>，也可以看出model是根据哪一part做出的判断</li>
+</ul>
+<blockquote>
+<p>通过这些方法我们知道有时model的learning会被杂讯干扰，比如model并不是通过cat的特征辨认而是通过其他内容（如背景、文字……），因此我们需要将杂讯去除掉</p>
+</blockquote>
+<h4 id="smoothGrad"><a href="#smoothGrad" class="headerlink" title="smoothGrad"></a>smoothGrad</h4><ul>
+<li>对data添加random noisy，获得大量noisy data，计算平均saliency map</li>
+</ul>
+<h4 id="visualization"><a href="#visualization" class="headerlink" title="visualization"></a>visualization</h4><h4 id="probing"><a href="#probing" class="headerlink" title="probing"></a>probing</h4><p>探针</p>
+<h3 id="global-explanation"><a href="#global-explanation" class="headerlink" title="global explanation"></a>global explanation</h3><p>我们想知道model在进行learning时到底在看哪些位置</p>
+<h4 id="create-data"><a href="#create-data" class="headerlink" title="create data"></a><strong>create data</strong></h4><p>例如：</p>
+<p>法1：我们想知道convolutional中filter1到底在做些什么，可以创造一个image X，令X的filter1评分和最大，此时观察这张X，就可以知道filter1重点观察识别什么东西</p>
+<p>法2：也可以直接创造一张X，使得输出类别y的概率最大，但此时得到的X中有很多杂讯</p>
+<p>法3：使用image generator输入z产生X，将X丢到image classifier（convolutional）中。依旧是找到合适的z，让输出类别y的概率越大越好，此时观察X。</p>
+<ul>
+<li><p>outlook</p>
+<p>让explanable model模仿复杂model的行为</p>
+</li>
+</ul>
+<h2 id="Domain-adaptation"><a href="#Domain-adaptation" class="headerlink" title="Domain adaptation"></a>Domain adaptation</h2><blockquote>
+<p>training set 与 testing set 有一定的差异，我们希望model的performance依旧很好，我们希望model可以用在不一样的domain上</p>
+</blockquote>
+<ul>
+<li>source domain、target domain</li>
+</ul>
+<h3 id="basic-idea"><a href="#basic-idea" class="headerlink" title="basic idea"></a>basic idea</h3><blockquote>
+<p>target domain large but non-labeled</p>
+</blockquote>
+<ul>
+<li><p>feature extractor：不管输入来自哪个domain，输出是二者相似的部分，即过滤掉二者不同的部分</p>
+<p>image → feature extractor → vector → label predictor → output</p>
+<p>要求在vector处无法判断输入是来自哪个domain</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503162106463.png"
+                      alt="image-20250316210638244"
+                ></p>
+<h3 id="domain-generalization"><a href="#domain-generalization" class="headerlink" title="domain generalization"></a>domain generalization</h3><blockquote>
+<p>不知道新的domain</p>
+</blockquote>
+<h2 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h2><blockquote>
+<p>下面举例：game</p>
+</blockquote>
+<ul>
+<li><p>actor（Actor-Critic）</p>
+<ul>
+<li>采取action</li>
+<li>接受observation、reward</li>
+</ul>
+</li>
+<li><p>environment</p>
+<ul>
+<li>接收action，调整，输出reward并提供observation</li>
+</ul>
+</li>
+<li><p>reward最大化</p>
+</li>
+</ul>
+<h4 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h4><ul>
+<li><p>actor（network &#x3D; 复杂的function）</p>
+<ul>
+<li><p>输入：image的pixel - transformer（实际上是游戏的参数）</p>
+</li>
+<li><p>输出：基于action的score进行<strong>随机</strong>sample</p>
+</li>
+<li><p>score计算：loss的大小（classifier）</p>
+<ul>
+<li>想left，令 L_left 越小越好</li>
+<li>不想left，令 -L_left 越小越好</li>
+</ul>
+<p>但我们的“控制期望”一般不是binary的，所以我们给期望进行评分A_n</p>
+</li>
+<li><p>A为reward的总和（某种计算形式，不一定是简单的加和）</p>
+</li>
+</ul>
+</li>
+<li><p>A 对应于 loss，取负号最小化即可</p>
+</li>
+<li><p>optimization</p>
+<ul>
+<li>和 ML 有所不同（随机性很强）</li>
+<li>policy gradient</li>
+</ul>
+</li>
+</ul>
+<h3 id="actor"><a href="#actor" class="headerlink" title="actor"></a>actor</h3><blockquote>
+<p>针对A的计算方式</p>
+</blockquote>
+<h5 id="version1"><a href="#version1" class="headerlink" title="version1"></a>version1</h5><ul>
+<li>cumulated reward：将输入a后所有的reward加和</li>
+<li>但如果整个过程很长，后面的reward可能并不归功于a的取值</li>
+</ul>
+<h5 id="version2"><a href="#version2" class="headerlink" title="version2"></a>version2</h5><blockquote>
+<p>降低后期reward对当前A的影响</p>
+</blockquote>
+<ul>
+<li>将输入a后计算所有的reward * r^(n-1)并加和</li>
+</ul>
+<h5 id="version3"><a href="#version3" class="headerlink" title="version3"></a>version3</h5><blockquote>
+<p>好与坏是相对的，最终的A最好还是有正有负</p>
+</blockquote>
+<ul>
+<li>所有的 A - b，减去baseline （normalization）</li>
+</ul>
+<h5 id="version3-5"><a href="#version3-5" class="headerlink" title="version3.5"></a>version3.5</h5><ul>
+<li><p>version3中b的取值使用critic确定，<code>b=V_θ(s_t)</code>，即</p>
+</li>
+<li><p>A &#x3D; G’ - V_θ，</p>
+<p>V_θ 指 actor 在 s_t 环境中，采取 输出的选择策略（一串评分或概率） 的G的均值</p>
+<p>G’ 指 actor 在 s_t 中采取预测action的 reward总和</p>
+</li>
+<li><p>当A &gt; 0：采取预测action的reward高于均值（随便sample出来的一个action），是一个好action</p>
+<p>当A &lt; 0：采取预测action的reward低于均值，是一个坏action</p>
+</li>
+</ul>
+<h5 id="version4-Advantage-Actor-Critic"><a href="#version4-Advantage-Actor-Critic" class="headerlink" title="version4 - Advantage Actor-Critic"></a>version4 - Advantage Actor-Critic</h5><blockquote>
+<p>在version3.5中，G’是取了预测action后的一个sample的结果，而V取了整个选择策略的reward期望</p>
+<p>可是采取了预测action后，也会有大量sample，也应该计算期望</p>
+<p>（就是往前迈了一步</p>
+</blockquote>
+<ul>
+<li><p>在s_t中采取预测action进入s_t+1，计算此时采取所有action的A的均值，也就是 critic 输入s_t+1的输出<code>V_θ(s_t+1)</code>（if critic is good），此时在critic中计算得到的 <code>G&#39; = r_t + V_θ(s_t+1)</code></p>
+</li>
+<li><p>计算<code>A = r_t + V_θ(s_t+1) - V_θ(s_t)</code></p>
+</li>
+<li><p>当A &gt; 0：预测action的reward高于平均值，是一个好action</p>
+<p>当A &lt; 0：预测action的reward低于平均值，是一个坏action</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172133850.png"
+                      alt="image-20250317213347594"
+                ></p>
+<h4 id="Policy-Gradient"><a href="#Policy-Gradient" class="headerlink" title="Policy Gradient"></a>Policy Gradient</h4><blockquote>
+<p>采用 on-policy </p>
+<p>off-policy 可以实现收集一次data，update多次参数</p>
+</blockquote>
+<ul>
+<li><p>初始化actor参数（此时是一个随机的network）</p>
+</li>
+<li><p>training loop</p>
+<blockquote>
+<p>资料收集在training阶段</p>
+</blockquote>
+<ul>
+<li><p>令actor与环境交互，获取datas</p>
+</li>
+<li><p>计算 A_i</p>
+</li>
+<li><p>计算 Loss</p>
+</li>
+<li><p><code>θ_i = θ_i-1 - η▽L</code></p>
+</li>
+<li><p>update actor  &amp;&amp;  exploration</p>
+<ul>
+<li><p>actor要试图做些<strong>随机</strong>的事情，让training data多一点、不要太贪心，即令<strong>actor的输出根据分数随机化选择</strong></p>
+<ul>
+<li><p>在actor的参数上加noisy</p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="critic"><a href="#critic" class="headerlink" title="critic"></a>critic</h3><blockquote>
+<p>评估在某个environment中，actor采取它输出的<strong>选择策略</strong>后会得到多少cumulated reward（A）</p>
+<p>critic评估的是actor的<strong>整体</strong>选择策略，带有期望意味</p>
+</blockquote>
+<ul>
+<li><p>V_θ(s)</p>
+</li>
+<li><p>training method</p>
+<p>MC</p>
+<ul>
+<li>actor与环境多互动几次</li>
+<li>critic的output 和 真实A大小越近越好</li>
+</ul>
+<p>TD</p>
+<ul>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172033761.png"
+                      alt="image-20250317203324547"
+                ></li>
+</ul>
+</li>
+</ul>
+<h3 id="training-2"><a href="#training-2" class="headerlink" title="training"></a>training</h3><h5 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h5><blockquote>
+<p>由于actor和critic的输入是一样的，这两个network的前部分会有一定的重叠，因此可以共用一部分network</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172224356.png"
+                      alt="image-20250317222446228"
+                ></p>
+<h3 id="reward-shaping"><a href="#reward-shaping" class="headerlink" title="reward shaping"></a>reward shaping</h3><blockquote>
+<p>想办法提供额外的reward，help network train （有种望梅止渴的感觉）</p>
+</blockquote>
+<ul>
+<li><p>sparse reward</p>
+<p>reward 几乎都是 0（可能action太多了，纯靠随机很难碰上有reward</p>
+<p>（这就很难train了</p>
+</li>
+<li><p>额外增加reward，其实就是增加奖励机制，从而引导model往reward增加的方向走</p>
+<p>比如game中： 捡到物资、活着 &#x3D; reward++、空闲 &#x3D; reward–</p>
+<p>虽然这些并不会直接影响分数，但人通过这些<strong>domain knowledge</strong>可以引导model往对的方向走</p>
+</li>
+<li><p>curiosity</p>
+<p>model看到新的有意义的东西，reward++</p>
+<p>e.g.Mario game</p>
+</li>
+</ul>
+<h3 id="no-reward"><a href="#no-reward" class="headerlink" title="no-reward"></a>no-reward</h3><blockquote>
+<p>真实环境中的reward？自动驾驶……</p>
+<p>人定reward，有时候会产生一些意想不到的questions</p>
+</blockquote>
+<h4 id="behavior-cloning"><a href="#behavior-cloning" class="headerlink" title="behavior cloning"></a>behavior cloning</h4><p>比如：将人类的驾驶信息作为example给model</p>
+<ul>
+<li>problemS……</li>
+</ul>
+<h4 id="inverse-reinforcement-learning"><a href="#inverse-reinforcement-learning" class="headerlink" title="inverse reinforcement learning"></a>inverse reinforcement learning</h4><blockquote>
+<p>reward function 是通过 expert 学出来的</p>
+</blockquote>
+<ul>
+<li><p>输入：expert</p>
+</li>
+<li><p>输出：reward function</p>
+</li>
+<li><p>流程</p>
+<ul>
+<li>actor与environment互动，获得trajectories（轨迹）</li>
+<li>reward function，要求teacher的分数比actor高（一开始随机初始化function）</li>
+<li>根据上面的reward function去train actor【Reinforcemnet learning】</li>
+<li>更新actor，循环</li>
+</ul>
+</li>
+<li><p>很像GAN！</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503172322060.png"
+                      alt="image-20250317231747338"
+                ></p>
+<h2 id="network-compression"><a href="#network-compression" class="headerlink" title="network compression"></a>network compression</h2><blockquote>
+<p>在一些资源有限的应用场景中，例如智能手表、无人机，本地资源无法承担 big model 的计算，而在云上计算又面临latency、privacy的问题，因此我们需要smaller model</p>
+<p>软件层面</p>
+<p>不互斥，可以同时采用</p>
+</blockquote>
+<h3 id="network-pruning"><a href="#network-pruning" class="headerlink" title="network pruning"></a>network pruning</h3><blockquote>
+<p>将一些参数、neural剪掉</p>
+</blockquote>
+<ol>
+<li><p>流程</p>
+<ul>
+<li><p>train一个大的network</p>
+</li>
+<li><p>evaluate 参数重要性</p>
+</li>
+<li><p>remove 少量参数</p>
+</li>
+<li><p>fine-tune smaller network</p>
+</li>
+<li><p>循环</p>
+</li>
+</ul>
+</li>
+<li><p>问题</p>
+<p>以参数为单位：此时network变得不规则，反而无法加速，实做上比较难；but……</p>
+<p>以neural为单位：比较好</p>
+<ul>
+<li>如果直接train small network，正确率没有对大network剪枝得来的高，很难train起来</li>
+<li>但将prune后的参数 随机初始化给small network，或者只给参数正负，值随机，就可以train起来</li>
+</ul>
+</li>
+</ol>
+<h3 id="knowledge-distillation"><a href="#knowledge-distillation" class="headerlink" title="knowledge distillation"></a>knowledge distillation</h3><blockquote>
+<p>teacher network （large or much network）</p>
+<p>student network （small）根据teacher学习</p>
+</blockquote>
+<ul>
+<li><p>给teacher和student相同的输入，student根据teacher的输出进行training</p>
+</li>
+<li><p>student可以跟teacher学习到不同类别之间的关系，所以不直接让student学习正确答案</p>
+<ul>
+<li><p>temperature for softmax（y&#x2F;T）</p>
+<p>将teacher的output变得平滑一些，给student提供更多信息</p>
+</li>
+<li><p>将teacher与student的每一层network分别对应train</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>应用：</p>
+<blockquote>
+<p>ensemble：train model时会多train几个，最终的model取这些model的均值</p>
+<p>实现：network参数做平均、直接output做平均</p>
+</blockquote>
+<p>可以实现将多个ensemble model整合成一个</p>
+<h3 id="parameter-quantization"><a href="#parameter-quantization" class="headerlink" title="parameter quantization"></a>parameter quantization</h3><ul>
+<li><p>less bit</p>
+</li>
+<li><p>weight clustering</p>
+<ul>
+<li>相近的值看做一个群</li>
+</ul>
+</li>
+<li><p>huffman encoding</p>
+</li>
+<li><p>binary weight（防止overfitting）</p>
+</li>
+</ul>
+<h3 id="Architecture-design"><a href="#Architecture-design" class="headerlink" title="Architecture design"></a>Architecture design</h3><blockquote>
+<p>I ：通道数</p>
+<p>O：输出通道数（filter数）</p>
+<p>k*k：filter size</p>
+</blockquote>
+<p><strong>原始convolution</strong></p>
+<p>参数量：<code>k*k*I*O</code></p>
+<h5 id="depthwise-convolution"><a href="#depthwise-convolution" class="headerlink" title="depthwise convolution"></a>depthwise convolution</h5><blockquote>
+<p>考虑同一个channel内部的关系，filter的数量就等于channel的数量</p>
+</blockquote>
+<p>参数量：<code>k*k*I</code></p>
+<h5 id="pointwise-convolution"><a href="#pointwise-convolution" class="headerlink" title="pointwise convolution"></a>pointwise convolution</h5><blockquote>
+<p>考虑不同channel的关系，1*1 filter</p>
+</blockquote>
+<p>参数量：<code>I*O</code></p>
+<ul>
+<li><p>作比：depthwise + pointwise &#x2F; 原始 &lt; 1</p>
+</li>
+<li><p>类似 low rank approximation</p>
+<p>在两层大小相差悬殊的network之间插一层，可以减小参数量</p>
+</li>
+</ul>
+<h3 id="dynamic-computation"><a href="#dynamic-computation" class="headerlink" title="dynamic computation"></a>dynamic computation</h3><blockquote>
+<p>希望一个network可以自由选择参数计算量</p>
+<p>比如应对各种运算资源的情况</p>
+</blockquote>
+<ul>
+<li><p>自由调整depth</p>
+<ul>
+<li>在layer之间加一个extra layer，低电量时层数少些：training时evaluate一下中间层的输出loss</li>
+</ul>
+</li>
+<li><p>自由调整宽度</p>
+<ul>
+<li>train一个large network，训练过程中选择不使用的neural，evaluate loss，不断尝试</li>
+</ul>
+</li>
+</ul>
+<h2 id="life-long-learning（LLL）"><a href="#life-long-learning（LLL）" class="headerlink" title="life long learning（LLL）"></a>life long learning（LLL）</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503182300921.png"
+                      alt="image-20250318230054618"
+                ></p>
+<ul>
+<li>不同的任务：更像是不同domain相同的任务</li>
+</ul>
+<h3 id="catastrophic-forgetting"><a href="#catastrophic-forgetting" class="headerlink" title="catastrophic forgetting"></a>catastrophic forgetting</h3><blockquote>
+<p>问题</p>
+<p>model 先学task1，再学task2，此时model会忘记task1的做法</p>
+<p>但同时学习multi-task，model的两个task的正确率都很高</p>
+<p>说明model是有能力同时学会两个task的</p>
+</blockquote>
+<ul>
+<li><p>upper bound：multi-task training（太费劲了）</p>
+</li>
+<li><p>a model for each task：储存不了太多model</p>
+</li>
+<li><p>LLL v.s. transfer learning</p>
+<ul>
+<li>LLL关注旧的task做得如何</li>
+<li>transfer learning（fine-tune）关注新的任务做得如何</li>
+</ul>
+</li>
+</ul>
+<h3 id="evaluation"><a href="#evaluation" class="headerlink" title="evaluation"></a>evaluation</h3><blockquote>
+<p>准备 a sequence of tasks</p>
+</blockquote>
+<ul>
+<li>Accuracy</li>
+<li>backward transfer：一般是负的，描述学习完所有任务后，model对于任务T记住的程度</li>
+<li>forward transfer：在学习到对应任务T之前，对于任务T model已经学会了多少</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503182324017.png"
+                      alt="image-20250318232439809"
+                ></p>
+<h3 id="method"><a href="#method" class="headerlink" title="method"></a>method</h3><h4 id="selective-synaptic-plasticity"><a href="#selective-synaptic-plasticity" class="headerlink" title="selective synaptic plasticity"></a>selective synaptic plasticity</h4><blockquote>
+<p>学习task2时只改变对于task1来说不重要的参数b_i</p>
+</blockquote>
+<ul>
+<li><p>新loss计算时，除了包括正常的loss计算，还包括新参数与旧参数之间的loss</p>
+</li>
+<li><p>b_i指这个参数对于旧task是否重要：越大越重要，此时loss占比也变大</p>
+</li>
+<li><p>b_i 全为0：catastrophic forgetting</p>
+<p>b_i 全为1：（固执）</p>
+<p>b_i 可人为设定、直接算出来</p>
+<ul>
+<li>GEM：<ul>
+<li>在新task中更新参数的方向是旧task和新task更新方向的矢量和</li>
+<li>需要一点点过去的资料</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503191317584.png"
+                      alt="image-20250319131731504"
+                ></p>
+<h4 id="additional-neural-resource-allocation"><a href="#additional-neural-resource-allocation" class="headerlink" title="additional neural resource allocation"></a>additional neural resource allocation</h4><p>progress network</p>
+<p>packnet</p>
+<p>CPG</p>
+<h4 id="memory-reply"><a href="#memory-reply" class="headerlink" title="memory reply"></a>memory reply</h4><ul>
+<li>generator 生成所有旧task的data</li>
+</ul>
+<h4 id="curriculum-learning"><a href="#curriculum-learning" class="headerlink" title="curriculum learning"></a>curriculum learning</h4><ul>
+<li>研究更好的task学习顺序</li>
+</ul>
+<h2 id="Meta-learning"><a href="#Meta-learning" class="headerlink" title="Meta learning"></a>Meta learning</h2><h3 id="学习更新model参数"><a href="#学习更新model参数" class="headerlink" title="学习更新model参数"></a>学习更新model参数</h3><h4 id="training-3"><a href="#training-3" class="headerlink" title="training"></a>training</h4><blockquote>
+<p>learn to learn</p>
+<p>训练出一个F，它可以通过学会几个task从而学会这一类的task</p>
+<p>e.g.我们用猫狗辨识、苹橘辨识任务训练F，之后F就能够生成能够完成各种各样辨识类任务的model</p>
+<p>帮我们：调超参数Φ，在原来ML中都是人工调</p>
+<p>cross-task training</p>
+</blockquote>
+<h3 id="trainingcross-task-training"><a href="#trainingcross-task-training" class="headerlink" title="trainingcross-task training"></a>trainingcross-task training</h3><ul>
+<li><p>function：learning algorithm</p>
+<blockquote>
+<p>元学习器</p>
+</blockquote>
+<ul>
+<li>F_Φ，自动调整model参数</li>
+<li>输入：<strong>train task</strong>中train data</li>
+<li>输入：train task中的train data</li>
+<li>输出：model的参数 -  动态调整model参数</li>
+</ul>
+</li>
+<li><p>loss function：</p>
+<ul>
+<li><p>L(Φ)</p>
+</li>
+<li><p><strong>所有train task</strong>中<strong>test data</strong>的loss均值</p>
+</li>
+<li><p>直接评估classifier，从而间接评估F</p>
+</li>
+</ul>
+</li>
+<li><p>optimization：</p>
+<ul>
+<li>gradient descent</li>
+<li>如果微分不了，用reinforcement learning</li>
+<li>反馈、循环</li>
+</ul>
+</li>
+<li><p>训练出一个F：learning algorithm</p>
+</li>
+<li><p>training过程中还需要development task评估F，防止其过拟合</p>
+<ul>
+<li>使用development task计算loss，若开始上升，说明可能发生过拟合，应停止training</li>
+</ul>
+</li>
+</ul>
+<h4 id="testing-2"><a href="#testing-2" class="headerlink" title="testing"></a>testing</h4><blockquote>
+<p>cross-task testing</p>
+<p>下面的整个过程称为episode</p>
+</blockquote>
+<ul>
+<li>使用<strong>train task</strong>喂给F（learning algorithm），train出一个F</li>
+<li>使用<strong>test task</strong>中的<strong>train set</strong>喂给F，F输出一个model</li>
+<li>使用<strong>test task</strong>中的<strong>test set</strong>喂给model，得到output，evaluate output与真实结果</li>
+</ul>
+<h3 id="学习initialize"><a href="#学习initialize" class="headerlink" title="学习initialize"></a>学习initialize</h3><ul>
+<li><p>AML</p>
+</li>
+<li><p>reptile</p>
+</li>
+</ul>
+<h3 id="学习optimize"><a href="#学习optimize" class="headerlink" title="学习optimize"></a>学习optimize</h3><h3 id="学习训练network-architecture"><a href="#学习训练network-architecture" class="headerlink" title="学习训练network architecture"></a>学习训练network architecture</h3><ul>
+<li>没办法微分 → reinforcement learning<ul>
+<li>输入：生成的network的accuracy</li>
+<li>输出：network architecture的超参数</li>
+<li>environment：根据生成的参数建立network，进行within-task training</li>
+<li>maximize reward（-L）</li>
+</ul>
+</li>
+</ul>
+<p>还有data augmentation、sample reweighting、</p>
+<h3 id="v-s-self-supervised"><a href="#v-s-self-supervised" class="headerlink" title="v.s. self-supervised"></a>v.s. self-supervised</h3><ul>
+<li>meta learning：学习如何更好的初始化</li>
+<li>self-supervised：也是在做初始化，有learning gap，但实做上效果好</li>
+</ul>
+<p>将二者结合，使用bert给meta learning提供初始化参数</p>
+<h3 id="v-s-knowledge-distillation"><a href="#v-s-knowledge-distillation" class="headerlink" title="v.s.knowledge distillation"></a>v.s.knowledge distillation</h3><ul>
+<li>knowledge distillation：teacher model的教学能力未知，最厉害的teacher不一定能教出最好的学生</li>
+<li>在knowledge distillation过程中，让teacher model跟着student model的loss一起update，teacher model更新的目标是让student的正确率更高（teacher的正确率无所谓） → 例如用meta learning学习调temperature</li>
+</ul>
+<h3 id="v-s-domain-generalization"><a href="#v-s-domain-generalization" class="headerlink" title="v.s.domain generalization"></a>v.s.domain generalization</h3><ul>
+<li>输入：有很多training domain</li>
+<li>输出：target domain（未知）</li>
+</ul>
+<p>结合meta learning：</p>
+<ul>
+<li>从training domain中挑一个domain假装是target，当做一个train task，收集many train task</li>
+<li>训练learning algorithm</li>
+</ul>
+<h3 id="v-s-life-long-learning"><a href="#v-s-life-long-learning" class="headerlink" title="v.s.life long learning"></a>v.s.life long learning</h3><ul>
+<li>LLL：catastrophic forgetting</li>
+<li>使用meta learning解决这个问题</li>
+</ul>
+<h1 id="Attacks"><a href="#Attacks" class="headerlink" title="Attacks"></a>Attacks</h1><blockquote>
+<p>model功能受损、误导</p>
+</blockquote>
+<h3 id="white-box"><a href="#white-box" class="headerlink" title="white box"></a>white box</h3><p>adversarial example敌对样本</p>
+<ul>
+<li><p>benign良性输入 → transformation → 得到possible perturbations → constrains → search </p>
+</li>
+<li><p>goal</p>
+<ul>
+<li>non-targeted </li>
+<li>targeted</li>
+</ul>
+</li>
+<li><p>transformation</p>
+<ul>
+<li><p>word level</p>
+<ul>
+<li><p>同义词替换</p>
+</li>
+<li><p>vector距离近的word替换（counter-fitting GloVe embedding space）</p>
+</li>
+<li><p>bert，将要替换的word进行mask，bert进行预测，但这样也会输出语义相反的word</p>
+<p>此时no-mask，会输出与之相近的word</p>
+</li>
+<li><p>语法方面</p>
+</li>
+<li><p>insertion</p>
+</li>
+<li><p>deletion</p>
+</li>
+</ul>
+</li>
+<li><p>char level</p>
+</li>
+<li><p>image：</p>
+<p>targeted：</p>
+<ul>
+<li>x与x0间的差距越大越好，与targeted x1间的差距越小越好</li>
+<li>x与x0的 L-infinity 小于阈值（肉眼看起来越像越好）</li>
+<li>FGSM：只需要update一次参数 → g中只有1与-1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="black-box"><a href="#black-box" class="headerlink" title="black box"></a>black box</h3><ul>
+<li><p>有training data</p>
+<ul>
+<li>训练一个proxy model</li>
+</ul>
+</li>
+<li><p>无training data</p>
+<ul>
+<li>使用teacher model的输入输出对训练proxy model</li>
+</ul>
+</li>
+<li><p>targeted attack难度比较大</p>
+</li>
+</ul>
+<p><strong>one pixel attack</strong></p>
+<p><strong>universal adversary attack</strong></p>
+<p><strong>speech processing</strong> - 语音辨识</p>
+<p><strong>adversarial reprogramming</strong></p>
+<p>将一些任务寄生在model上</p>
+<p><strong>backdoor</strong></p>
+<p>训练资料上</p>
+<h1 id="defense"><a href="#defense" class="headerlink" title="defense"></a>defense</h1><h4 id="被动防御"><a href="#被动防御" class="headerlink" title="被动防御"></a>被动防御</h4><p>输入data时，先加一个“盾牌”filter挡住attack signal</p>
+<ul>
+<li><p>模糊化</p>
+</li>
+<li><p>压缩</p>
+</li>
+<li><p>过一遍generator</p>
+</li>
+<li><p>加各种随机的defence手段</p>
+</li>
+</ul>
+<h4 id="主动防御"><a href="#主动防御" class="headerlink" title="主动防御"></a>主动防御</h4><p><strong>proactive defense</strong></p>
+<ul>
+<li>adversarial training</li>
+</ul>
+<p>先正常训练model，然后将training data变得具有攻击性，把这些data与正确label扔给model再进行训练，重复多次</p>
+<p>会导致额外计算（solved）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503192204117.png"
+                      alt="image-20250319220450807"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202503192203389.png"
+                      alt="image-20250319220312955"
+                ></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 机器学习</li>
+        <li><strong>Author:</strong> dawn_r1sing</li>
+        <li><strong>Created at
+                :</strong> 2025-04-07 20:07:05</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-11-08 11:43:08
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2025/04/07/机器学习/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/AI/">#AI</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/reading/">#reading</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/04/10/DHAttack/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">DHAttack</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/07/22/DASCTF-2024%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B-Sanic-s-revenge%E5%A4%8D%E7%8E%B0/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">DASCTF 2024暑期挑战赛-Sanic&#39;s revenge复现</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">机器学习</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0ML"><span class="nav-text">机器学习ML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#model"><span class="nav-text">model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-text">流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%AE%A8%E8%AE%BA"><span class="nav-text">概念讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#batch"><span class="nav-text">batch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#critical-point"><span class="nav-text">critical point</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperparameter"><span class="nav-text">hyperparameter</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loss-function"><span class="nav-text">Loss function</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#error-surface"><span class="nav-text">error surface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#supervised-learning"><span class="nav-text">supervised learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#classification"><span class="nav-text">classification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regression"><span class="nav-text">regression</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loss-function"><span class="nav-text">loss function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization"><span class="nav-text">Optimization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#network"><span class="nav-text">network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#activation-function"><span class="nav-text">activation function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="nav-text">深度学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#model%E5%88%86%E6%9E%90"><span class="nav-text">model分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layer"><span class="nav-text">layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FC%E5%B1%82"><span class="nav-text">FC层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="nav-text">卷积层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN"><span class="nav-text">CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convolution"><span class="nav-text">convolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pooling"><span class="nav-text">pooling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%BC%8F%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C-GAN"><span class="nav-text">生成式对抗网络 GAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GAN"><span class="nav-text">GAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WGAN"><span class="nav-text">WGAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conditional-GAN"><span class="nav-text">conditional GAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0"><span class="nav-text">评估</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-attention"><span class="nav-text">Self-attention</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-text">过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-text">优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-s-CNN"><span class="nav-text">v.s. CNN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sequence-to-sequence"><span class="nav-text">sequence-to-sequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#encoder-decoder%E7%BB%93%E6%9E%84"><span class="nav-text">encoder-decoder结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Supervised-learning"><span class="nav-text">Self-Supervised learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#auto-encoder"><span class="nav-text">auto-encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BERT"><span class="nav-text">BERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPT"><span class="nav-text">GPT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pre-trained-language-model-PLM-advance"><span class="nav-text">pre-trained language model (PLM) - advance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#For-Speech-data"><span class="nav-text">For Speech data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#For-Image"><span class="nav-text">For Image</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#explainable-machine-learning"><span class="nav-text">explainable machine learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#local-explanation"><span class="nav-text">local explanation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#global-explanation"><span class="nav-text">global explanation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Domain-adaptation"><span class="nav-text">Domain adaptation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-idea"><span class="nav-text">basic idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domain-generalization"><span class="nav-text">domain generalization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reinforcement-Learning"><span class="nav-text">Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#actor"><span class="nav-text">actor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#critic"><span class="nav-text">critic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#training-2"><span class="nav-text">training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reward-shaping"><span class="nav-text">reward shaping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-reward"><span class="nav-text">no-reward</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#network-compression"><span class="nav-text">network compression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#network-pruning"><span class="nav-text">network pruning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#knowledge-distillation"><span class="nav-text">knowledge distillation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parameter-quantization"><span class="nav-text">parameter quantization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture-design"><span class="nav-text">Architecture design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamic-computation"><span class="nav-text">dynamic computation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#life-long-learning%EF%BC%88LLL%EF%BC%89"><span class="nav-text">life long learning（LLL）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#catastrophic-forgetting"><span class="nav-text">catastrophic forgetting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#evaluation"><span class="nav-text">evaluation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#method"><span class="nav-text">method</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meta-learning"><span class="nav-text">Meta learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%9B%B4%E6%96%B0model%E5%8F%82%E6%95%B0"><span class="nav-text">学习更新model参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trainingcross-task-training"><span class="nav-text">trainingcross-task training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0initialize"><span class="nav-text">学习initialize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0optimize"><span class="nav-text">学习optimize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%AE%AD%E7%BB%83network-architecture"><span class="nav-text">学习训练network architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-s-self-supervised"><span class="nav-text">v.s. self-supervised</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-s-knowledge-distillation"><span class="nav-text">v.s.knowledge distillation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-s-domain-generalization"><span class="nav-text">v.s.domain generalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-s-life-long-learning"><span class="nav-text">v.s.life long learning</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attacks"><span class="nav-text">Attacks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#white-box"><span class="nav-text">white box</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#black-box"><span class="nav-text">black box</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#defense"><span class="nav-text">defense</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">dawn_r1sing</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        33 posts in total
+                    </span>
+                    
+                        <span>
+                            65k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

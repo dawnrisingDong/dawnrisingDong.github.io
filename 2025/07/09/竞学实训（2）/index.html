@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="dawn_r1sing">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://dawnringDong.github.io/2025/07/09/竞学实训（2）/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="实验Malware Analysis  繁琐的环境配置，但经受过CTF-web环境配置的苦之后，这些都不！算！什！么！！ 文中的代码可能会有奇奇怪怪的符号或格式，因为实验报告需要word格式，这些是我复制过来的，实在懒得一一检查了。。。  一．实验目的掌握Malware Analysis的方法。 二．实验内容（一）静态分析1. 样本准备：样本1 请用C++或C语言编写一个可执行程序static.e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="竞学实训（2）">
+<meta property="og:url" content="http://dawnringdong.github.io/2025/07/09/%E7%AB%9E%E5%AD%A6%E5%AE%9E%E8%AE%AD%EF%BC%882%EF%BC%89/index.html">
+<meta property="og:site_name" content="dawn">
+<meta property="og:description" content="实验Malware Analysis  繁琐的环境配置，但经受过CTF-web环境配置的苦之后，这些都不！算！什！么！！ 文中的代码可能会有奇奇怪怪的符号或格式，因为实验报告需要word格式，这些是我复制过来的，实在懒得一一检查了。。。  一．实验目的掌握Malware Analysis的方法。 二．实验内容（一）静态分析1. 样本准备：样本1 请用C++或C语言编写一个可执行程序static.e">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052158415.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153688.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153698.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052201554.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052201267.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052201525.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153539.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153588.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052205262.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153141.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052205434.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153311.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052212944.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052206909.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052206358.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052209390.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153621.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052209193.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153849.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052212735.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052212467.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052211845.jpg">
+<meta property="article:published_time" content="2025-07-09T13:53:14.000Z">
+<meta property="article:modified_time" content="2025-11-08T03:43:43.434Z">
+<meta property="article:author" content="dawn_r1sing">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="课内学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052158415.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            竞学实训（2） -
+        
+        dawn_r1sing
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        dawn_r1sing
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"dawnringdong.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"dawn_r1sing","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=d&c=i&c=j&c=k&c=i"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"xiaoran_dong@163.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-home# can be empty"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":false,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/29 12:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                dawn_r1sing
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-home# can be empty fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-home# can be empty fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">33</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">竞学实训（2）</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310291726035.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-07-09 21:53:14</span>
+        <span class="mobile">2025-07-09 21:53:14</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-08 11:43:43</span>
+            <span class="mobile">2025-11-08 11:43:43</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E8%AF%BE%E5%86%85%E5%AD%A6%E4%B9%A0/">课内学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.7k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>16 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="实验Malware-Analysis"><a href="#实验Malware-Analysis" class="headerlink" title="实验Malware Analysis"></a>实验Malware Analysis</h1><blockquote>
+<p> 繁琐的环境配置，但经受过CTF-web环境配置的苦之后，这些都不！算！什！么！！</p>
+<p>文中的代码可能会有奇奇怪怪的符号或格式，因为实验报告需要word格式，这些是我复制过来的，实在懒得一一检查了。。。</p>
+</blockquote>
+<h2 id="一．实验目的"><a href="#一．实验目的" class="headerlink" title="一．实验目的"></a>一．实验目的</h2><p>掌握Malware Analysis的方法。</p>
+<h2 id="二．实验内容"><a href="#二．实验内容" class="headerlink" title="二．实验内容"></a>二．<strong>实验内容</strong></h2><h4 id="（一）静态分析"><a href="#（一）静态分析" class="headerlink" title="（一）静态分析"></a><strong>（一）静态分析</strong></h4><h5 id="1-样本准备：样本1"><a href="#1-样本准备：样本1" class="headerlink" title="1. 样本准备：样本1"></a>1. <strong>样本准备：样本1</strong></h5><blockquote>
+<p>请用C++或C语言编写一个可执行程序static.exe，该程序使用Windows API “WinExec”启动本地Windows操作系统的计算器程序”calc.exe”    </p>
+</blockquote>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// WinExec 函数用于执行指定的可执行文件</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">WinExec</span>(<span class="string">&quot;calc.exe&quot;</span>, SW_SHOWNORMAL);  <span class="comment">// 第一个参数是命令字符串，第二个参数指定窗口显示方式</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052158415.jpg"
+                      alt="img"
+                > </p>
+<h5 id="2-人工分析"><a href="#2-人工分析" class="headerlink" title="2. 人工分析"></a>2. <strong>人工分析</strong></h5><blockquote>
+<p>请使用反汇编工具IDA人工分析样本1，定位到“WinExec”。</p>
+</blockquote>
+<p>汇编代码：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153688.jpg"
+                      alt="img"
+                ></p>
+<h5 id="3-自动化分析"><a href="#3-自动化分析" class="headerlink" title="3. 自动化分析"></a>3. <strong>自动化分析</strong></h5><blockquote>
+<p>参考资料或者自己查找资料，使用python库 pefile自动化分析样本1的导入函数。  </p>
+</blockquote>
+<p>安装pefile库，代码及运行结果如下：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">import</span> pefile</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">import</span> sys</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function">def <span class="title">analyze</span><span class="params">(file_path)</span>:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  # 加载PE文件</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  pe =</span> pefile.<span class="built_in">PE</span>(file_path)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">  # 遍历导入表中的每个DLL及其导入函数</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> entry in pe.DIRECTORY_ENTRY_IMPORT:</span><br><span class="line"></span><br><span class="line">     dll_name = entry.dll.<span class="built_in">decode</span>(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">     <span class="built_in">print</span>(f<span class="string">&quot;DLL: &#123;dll_name&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span> imp in entry.imports:</span><br><span class="line"></span><br><span class="line">       func_name = imp.name.<span class="built_in">decode</span>(<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">if</span> imp.name <span class="keyword">else</span> f<span class="string">&quot;Ordinal_&#123;imp.ordinal&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">       <span class="built_in">print</span>(f<span class="string">&quot;  -&gt; &#123;func_name&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pe_file_path = <span class="string">&quot;static.exe&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">analyze</span>(pe_file_path)</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153698.jpg"
+                      alt="img"
+                > </p>
+<h4 id="（二）动态分析"><a href="#（二）动态分析" class="headerlink" title="（二）动态分析"></a><strong>（二）动态分析</strong></h4><h5 id="1-样本准备：样本2"><a href="#1-样本准备：样本2" class="headerlink" title="1. 样本准备：样本2"></a>1. <strong>样本准备：样本2</strong></h5><blockquote>
+<p>请用C++或C语言编写一个可执行程序dynamic.exe，该程序先使用Windows API“LoadlibraryA”, “GetProcessAddress”动态加载“WinExec”，然后启动程序“calc.exe”</p>
+</blockquote>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">UINT</span> <span class="params">(WINAPI *WinExec_t)</span><span class="params">(LPCSTR lpCmdLine, UINT uCmdShow)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 动态加载kernel32.dll</span></span><br><span class="line"></span><br><span class="line">  HMODULE hKernel32 = <span class="built_in">LoadLibraryA</span>(<span class="string">&quot;kernel32.dll&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取WinExec函数地址</span></span><br><span class="line"></span><br><span class="line">  WinExec_t pWinExec = (WinExec_t)<span class="built_in">GetProcAddress</span>(hKernel32, <span class="string">&quot;WinExec&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用WinExec启动calc.exe</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">pWinExec</span>(<span class="string">&quot;calc.exe&quot;</span>, SW_SHOWNORMAL);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">FreeLibrary</span>(hKernel32);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052201554.jpg"
+                      alt="img"
+                > </p>
+<h5 id="2-人工分析-1"><a href="#2-人工分析-1" class="headerlink" title="2. 人工分析"></a>2. <strong>人工分析</strong></h5><blockquote>
+<p>使用x64dbg定位到样本2执行“WinExec”代码</p>
+</blockquote>
+<p>查看符号表，在kernel32.dll中寻找WinExec函数，下断点并运行。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052201267.jpg"
+                      alt="img"
+                > </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052201525.jpg"
+                      alt="img"
+                > </p>
+<h5 id="3-自动化分析-1"><a href="#3-自动化分析-1" class="headerlink" title="3. 自动化分析"></a>3. <strong>自动化分析</strong></h5><h6 id="3-1-Cuckoo-Sandbox安装"><a href="#3-1-Cuckoo-Sandbox安装" class="headerlink" title="3.1 Cuckoo Sandbox安装"></a><em><strong>3.1 Cuckoo Sandbox安装</strong></em></h6><blockquote>
+<p>参考官网或者自己百度帖子，安装cuckoo sandbox。（请描述安装过程遇到哪些问题？如何解决的？）</p>
+</blockquote>
+<p>参考：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Innocence_0/article/details/139017095" >https://blog.csdn.net/Innocence_0/article/details/139017095 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<ol>
+<li>一开始安装依赖时python版本混乱，官网要求使用python2.7。</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153539.jpg"
+                      alt="img"
+                ></p>
+<ol start="2">
+<li>在实现VMware Workstation嵌套虚拟化时费了一些功夫，需要关闭一些windows功能选项，同时Win11还需要<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u013669912/article/details/144911375" >关闭VBS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153588.jpg"
+                      alt="img"
+                ></p>
+<ol start="3">
+<li>Ping通网络，后面设置ip地址时host与client搞混了，停滞了一会儿。</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052205262.jpg"
+                      alt="img"
+                > </p>
+<ol start="4">
+<li><p>由于python版本的限制，要求PIL对应python2.7，同时我的win虚拟机使用的是XP 32位，寻找<a class="link"   target="_blank" rel="noopener" href="https://pypi.org/project/pillow/2.7.0/#files" >对应资源 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>花费了一些时间。</p>
+</li>
+<li><p>配置文件中的虚拟机名称没有及时更改，所以上传文件分析时并没有返回内容，一直为空，在这里停滞了一会儿。</p>
+</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153141.jpg"
+                      alt="img"
+                > </p>
+<ol start="6">
+<li>由于编译使用的是64位gcc，得到的exe文件无法在WindowsXP上运行，具体会如下报错：</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052205434.jpg"
+                      alt="img"
+                ></p>
+<p>​	参照<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/tomwillow/article/details/109741916" >经验贴 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>使用Visual Stdio编译（需更改一些设置项）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153311.jpg"
+                      alt="img"
+                > </p>
+<p>即可成功运行程序。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052212944.jpg"
+                      alt="img"
+                > </p>
+<p>(针对这个问题，我尝试下载mingw32-gcc、更换主机全局gcc、调整代码、在XP中编译文件、在ubuntu中尝试交叉编译工具链，最后想要放弃XP改换为Win7，临镜像下载完成前发现这个方法 :p)</p>
+<h6 id="3-2-Cuckoo-Sandbox使用"><a href="#3-2-Cuckoo-Sandbox使用" class="headerlink" title="3.2 Cuckoo Sandbox使用"></a><em><strong>3.2 Cuckoo Sandbox使用</strong></em></h6><blockquote>
+<p>将样本1和2上传到安装好的cuckoo sandbox, 能否监控到“WinExec”的行为？</p>
+</blockquote>
+<p>可以。Cuckoo Sandbox的核心机制是通过在客户机中注入监控模块对样本进行监控。当样本调用WinExec时，无论是通过静态导入方式调用WinExec（样本1），还是通过动态加载（样本2），只要cuckoo sandbox能正常对WinExec进行hook，Cuckoo都能成功捕捉并记录。</p>
+<ul>
+<li>样本1：查看分析结果中的“imports”，发现WinExec。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052206909.jpg"
+                      alt="img"
+                > </p>
+<ul>
+<li>样本2：查看Behavioral Analysis，可以看到WinExec函数被调用，之后“calc.exe”也成功运行。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052206358.jpg"
+                      alt="img"
+                > </p>
+<h6 id="3-3-Cuckoo-Sandbox原理"><a href="#3-3-Cuckoo-Sandbox原理" class="headerlink" title="3.3 Cuckoo Sandbox原理"></a><em><strong>3.3 Cuckoo Sandbox原理</strong></em></h6><blockquote>
+<p>阅读cuckoo sandbox源码，以及网上搜索资料，解释cuckoo sandbox监控Windows API（如“WinExec”）的原理。</p>
+</blockquote>
+<p>Cuckoo Sandbox能够监控Windows API调用的核心原理是：当程序调用WinExec时，会跳转到kernel32.dll中WinExec的真实地址执行。而Cuckoo使用hook技术修改函数开头的几个指令（插入跳转指令等操作），从而使程序先跳转到自定义的监控函数，然后跳转回原先函数继续执行。</p>
+<p>主要分析的源代码：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/cuckoosandbox/monitor/blob/master/src/hooking.c%E3%80%81" >https://github.com/cuckoosandbox/monitor/blob/master/src/hooking.c、 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>	</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/cuckoosandbox/monitor/blob/master/bin/monitor.c" >https://github.com/cuckoosandbox/monitor/blob/master/bin/monitor.c <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<ol>
+<li>monitor.c文件（monitor_hook函数、monitor_unhook函数）</li>
+</ol>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 监控 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 给API安装hook</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">monitor_hook</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *library, <span class="type">void</span> *module_handle)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Initialize data about each hook.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 循环遍历hook结构体（=&gt;需要hook的API函数）</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">hook_t</span> *h = <span class="built_in">sig_hooks</span>(); h-&gt;funcname != <span class="literal">NULL</span>; h++) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If a specific library has been specified then we skip all other</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// libraries. This feature is used in the special hook for LdrLoadDll.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(library != <span class="literal">NULL</span> &amp;&amp; <span class="built_in">stricmp</span>(h-&gt;library, library) != <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// We only hook this function if the monitor mode is &quot;hook everything&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// or if the monitor mode matches the mode of this hook.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(g_monitor_mode != HOOK_MODE_ALL &amp;&amp;</span><br><span class="line"></span><br><span class="line">        (g_monitor_mode &amp; h-&gt;mode) == <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Return value 1 indicates to retry the hook. This is important for</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// delay-loaded function forwarders as the delay-loaded DLL may</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// already have been loaded. In that case we want to hook the function</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// forwarder right away. (Note that the library member of the hook</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// object is updated in the case of retrying).</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">hook</span>(h, module_handle) == <span class="number">1</span>);   <span class="comment">// 调用hook函数安装hook</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卸载hook</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">monitor_unhook</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *library, <span class="type">void</span> *module_handle)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  (<span class="type">void</span>) library;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">hook_t</span> *h = <span class="built_in">sig_hooks</span>(); h-&gt;funcname != <span class="literal">NULL</span>; h++) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This module was unloaded.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(h-&gt;module_handle == module_handle) &#123;   <span class="comment">// 如果对应DLL被卸载，则重置hook结构体的状态</span></span><br><span class="line"></span><br><span class="line">      h-&gt;is_hooked = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      h-&gt;addr = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This is a hooked function which doesn&#x27;t belong to a particular DLL.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Therefore the module handle is a nullptr and we simply check</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// whether the address of the original function is still in-memory.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(h-&gt;module_handle == <span class="literal">NULL</span> &amp;&amp; <span class="built_in">range_is_readable</span>(h-&gt;addr, <span class="number">16</span>) == <span class="number">0</span>) &#123;  <span class="comment">//如果hook结构体不属于某个DLL，则通过地址有效性判断是否需要unhook（range_is_readable函数）</span></span><br><span class="line"></span><br><span class="line">      h-&gt;is_hooked = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      h-&gt;addr = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<ol start="2">
+<li>Hooking.c文件（hook函数、hook_create_jump函数）</li>
+</ol>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* hook安装 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">hook</span><span class="params">(<span class="type">hook_t</span> *h, <span class="type">void</span> *module_handle)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* ... ... */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(h-&gt;addr == <span class="literal">NULL</span>) &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="comment">// 通过GetProcAddress获取对应函数地址，本情景下为WinExec在kernel32.dll中的地址</span></span><br><span class="line"></span><br><span class="line">​    h-&gt;addr = (<span class="type">uint8_t</span> *) <span class="built_in">GetProcAddress</span>(h-&gt;module_handle, h-&gt;funcname);   </span><br><span class="line"></span><br><span class="line">​    <span class="keyword">if</span>(h-&gt;addr == <span class="literal">NULL</span>) &#123;</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">if</span>((h-&gt;report &amp; HOOK_PRUNE_RESOLVERR) != HOOK_PRUNE_RESOLVERR) &#123;</span><br><span class="line"></span><br><span class="line">​        <span class="built_in">pipe</span>(<span class="string">&quot;DEBUG:Error resolving function %z!%z.&quot;</span>,</span><br><span class="line"></span><br><span class="line">​          h-&gt;library, h-&gt;funcname);</span><br><span class="line"></span><br><span class="line">​      &#125;</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* ... ... */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 构造跳板，使得执行该函数前先跳转到hook函数（hook_create_jump），然后还能跳转回来（hook_create_stub）</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 关键函数：hook_create_stub()构建跳板，分析目标函数开头的指令并备份过去，最后追加一句跳转回原函数</span></span><br><span class="line"></span><br><span class="line">  h-&gt;func_stub = <span class="built_in">slab_getmem</span>(&amp;g_function_stubs); <span class="comment">// 分配内存</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memset</span>(h-&gt;func_stub, <span class="number">0xcc</span>, <span class="built_in">slab_size</span>(&amp;g_function_stubs));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(h-&gt;orig != <span class="literal">NULL</span>) &#123;</span><br><span class="line"></span><br><span class="line">​    *h-&gt;orig = (FARPROC) h-&gt;func_stub;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 根据类型选择stub的创建方式</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(h-&gt;type == HOOK_TYPE_NORMAL) &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="comment">// Create the original function stub.</span></span><br><span class="line"></span><br><span class="line">​    h-&gt;stub_used = <span class="built_in">hook_create_stub</span>(h-&gt;func_stub,</span><br><span class="line"></span><br><span class="line">​      h-&gt;addr, ASM_JUMP_32BIT_SIZE + h-&gt;skip);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(h-&gt;type == HOOK_TYPE_INSN) &#123;</span><br><span class="line"></span><br><span class="line">​    h-&gt;stub_used = <span class="built_in">hook_insn</span>(h, h-&gt;insn_signature);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(h-&gt;type == HOOK_TYPE_GUARD) &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">if</span>(<span class="built_in">hook_hotpatch_guardpage</span>(h) &lt; <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">uint8_t</span> region_original[FUNCTIONSTUBSIZE];</span><br><span class="line"></span><br><span class="line">  <span class="built_in">memcpy</span>(region_original, h-&gt;addr, h-&gt;stub_used);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">hook_create_jump</span>(h) &lt; <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* ... ... */</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 在目标函数开头处插入跳转指令，跳转到自定义的hook 处理函数 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">hook_create_jump</span><span class="params">(<span class="type">hook_t</span> *h)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="type">uint8_t</span> *addr = h-&gt;addr + h-&gt;skip;</span><br><span class="line"></span><br><span class="line">  <span class="type">const</span> <span class="type">uint8_t</span> *target = (<span class="type">const</span> <span class="type">uint8_t</span> *) h-&gt;handler;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> stub_used = h-&gt;stub_used - h-&gt;skip;</span><br><span class="line"></span><br><span class="line">  NTSTATUS status =</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">virtual_protect</span>(addr, stub_used, PAGE_EXECUTE_READWRITE);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">NT_SUCCESS</span>(status) == FALSE) &#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">pipe</span>(<span class="string">&quot;CRITICAL:Unable to change memory protection of %z!%z at &quot;</span></span><br><span class="line"></span><br><span class="line">​      <span class="string">&quot;0x%X %d to RWX (error code 0x%x)!&quot;</span>,</span><br><span class="line"></span><br><span class="line">​      h-&gt;library, h-&gt;funcname, addr, stub_used, status);</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Pad all used bytes out with int3&#x27;s.</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memset</span>(addr, <span class="number">0xcc</span>, stub_used);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Jump from the hooked address to the target address.</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">asm_jump_32bit</span>(addr, target);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">virtual_protect</span>(addr, stub_used, PAGE_EXECUTE_READ);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h6 id="3-4-修改样本2，使其仍然能使用“WinExec”启动程序calc-exe-并绕过cuckoo-sandbox的监控。"><a href="#3-4-修改样本2，使其仍然能使用“WinExec”启动程序calc-exe-并绕过cuckoo-sandbox的监控。" class="headerlink" title="3.4 修改样本2，使其仍然能使用“WinExec”启动程序calc.exe, 并绕过cuckoo sandbox的监控。"></a><em>3.4 修改样本2，使其仍然能使用“WinExec”启动程序calc.exe, 并绕过cuckoo sandbox的监控。</em></h6><p>法1：如果说只是绕过cuckoo sandbox的监控，其实只需要绕过虚拟环境即可，因为cuckoo sandbox的监控过程建立在“被分析程序在虚拟环境中运行”的前提。</p>
+<p>从下图可以看到，沙箱中的程序并没有调用calc.exe，说明成功检测到是虚拟环境停止运行，而在Windows主机中可以正常运行。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052209390.jpg"
+                      alt="img"
+                > </p>
+<p>Win11主机：<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153621.jpg"
+                      alt="img"
+                ></p>
+<p> XP虚拟机：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052209193.jpg"
+                      alt="img"
+                ></p>
+<p>完整代码如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line">\#include &lt;windows.h&gt;</span><br><span class="line"></span><br><span class="line">\#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">\#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">\#include &lt;psapi.h&gt;</span><br><span class="line"></span><br><span class="line">\#pragma comment(lib, &quot;Psapi.lib&quot;)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">BOOL IsVirtualMachine() &#123;</span><br><span class="line"></span><br><span class="line">  // CPUID供应商检测</span><br><span class="line"></span><br><span class="line">  int cpuInfo[4] = &#123; 0 &#125;;</span><br><span class="line"></span><br><span class="line">  char vendor[13] = &#123; 0 &#125;;</span><br><span class="line"></span><br><span class="line">  *((int*)vendor) = cpuInfo[1];      // EBX</span><br><span class="line"></span><br><span class="line">  *((int*)(vendor + 4)) = cpuInfo[3];   // EDX</span><br><span class="line"></span><br><span class="line">  *((int*)(vendor + 8)) = cpuInfo[2];   // ECX</span><br><span class="line"></span><br><span class="line">  vendor[12] = &#x27;\0&#x27;; // 确保字符串结尾</span><br><span class="line"></span><br><span class="line">  if (strstr(vendor, &quot;VMware&quot;) || strstr(vendor, &quot;VBox&quot;)) &#123;	// 检测虚拟平台</span><br><span class="line"></span><br><span class="line">​    return TRUE;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  // 检测虚拟机进程</span><br><span class="line"></span><br><span class="line">  const char* sandboxProcesses[] = &#123;</span><br><span class="line"></span><br><span class="line">​    &quot;vboxservice.exe&quot;, &quot;vboxtray.exe&quot;,</span><br><span class="line"></span><br><span class="line">​    &quot;vmtoolsd.exe&quot;, &quot;vmwaretray.exe&quot;,</span><br><span class="line"></span><br><span class="line">​    &quot;VBoxService.exe&quot;, &quot;VBoxTray.exe&quot;,</span><br><span class="line"></span><br><span class="line">​    &quot;xenservice.exe&quot;, &quot;qemu-ga.exe&quot;</span><br><span class="line"></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  DWORD aProcesses[1024], cbNeeded, cProcesses;  // 进程列表</span><br><span class="line"></span><br><span class="line">  if (EnumProcesses(aProcesses, sizeof(aProcesses), &amp;cbNeeded)) &#123;</span><br><span class="line"></span><br><span class="line">​    cProcesses = cbNeeded / sizeof(DWORD); // 进程数</span><br><span class="line"></span><br><span class="line">​    // 遍历所有进程</span><br><span class="line"></span><br><span class="line">​    for (DWORD i = 0; i &lt; cProcesses; i++) &#123;</span><br><span class="line"></span><br><span class="line">​      if (aProcesses[i] != 0) &#123;  </span><br><span class="line"></span><br><span class="line">​        TCHAR szProcessName[MAX_PATH] = TEXT(&quot;&lt;unknown&gt;&quot;); // 进程名</span><br><span class="line"></span><br><span class="line">​        HANDLE hProcess = OpenProcess(</span><br><span class="line"></span><br><span class="line">​          PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,</span><br><span class="line"></span><br><span class="line">​          FALSE,</span><br><span class="line"></span><br><span class="line">​          aProcesses[i]</span><br><span class="line"></span><br><span class="line">​        ); // 打开进程</span><br><span class="line"></span><br><span class="line">​        if (hProcess != NULL) &#123;</span><br><span class="line"></span><br><span class="line">​          HMODULE hMod;</span><br><span class="line"></span><br><span class="line">​          DWORD cbNeededMod;</span><br><span class="line"></span><br><span class="line">​          if (EnumProcessModules(hProcess, &amp;hMod, sizeof(hMod), &amp;cbNeededMod)) &#123;</span><br><span class="line"></span><br><span class="line">​            GetModuleBaseName(hProcess, hMod, szProcessName,</span><br><span class="line"></span><br><span class="line">​              sizeof(szProcessName) / sizeof(TCHAR));</span><br><span class="line"></span><br><span class="line">​            // 将进程名转换为小写然后进行比较</span><br><span class="line"></span><br><span class="line">​            char lowerName[MAX_PATH];</span><br><span class="line"></span><br><span class="line">​            for (int j = 0; szProcessName[j] &amp;&amp; j &lt; MAX_PATH; j++) &#123;</span><br><span class="line"></span><br><span class="line">​              lowerName[j] = tolower(szProcessName[j]);</span><br><span class="line"></span><br><span class="line">​            &#125;</span><br><span class="line"></span><br><span class="line">​            lowerName[MAX_PATH - 1] = &#x27;\0&#x27;;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">​            // 检查是否有与虚拟化相关的进程</span><br><span class="line"></span><br><span class="line">​            for (int j = 0; j &lt; sizeof(sandboxProcesses) / sizeof(sandboxProcesses[0]); j++) &#123;</span><br><span class="line"></span><br><span class="line">​              if (strstr(lowerName, sandboxProcesses[j]) != NULL) &#123;</span><br><span class="line"></span><br><span class="line">​                CloseHandle(hProcess);</span><br><span class="line"></span><br><span class="line">​                return TRUE;</span><br><span class="line"></span><br><span class="line">​              &#125;</span><br><span class="line"></span><br><span class="line">​            &#125;</span><br><span class="line"></span><br><span class="line">​          &#125;</span><br><span class="line"></span><br><span class="line">​          CloseHandle(hProcess);</span><br><span class="line"></span><br><span class="line">​        &#125;</span><br><span class="line"></span><br><span class="line">​      &#125;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return FALSE;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">  if (IsVirtualMachine()) &#123;</span><br><span class="line"></span><br><span class="line">​    printf(&quot;检测到虚拟机环境！\n&quot;);</span><br><span class="line"></span><br><span class="line">​    return 0;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  printf(&quot;真实环境中运行，执行正常操作...\n&quot;);</span><br><span class="line"></span><br><span class="line">  WinExec(&quot;calc.exe&quot;, SW_SHOWNORMAL);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>法2：通过查找资料，了解到WinExec函数在WinXP中的地址是固定的，所以我们可以绕过GetProcAddress直接通过函数地址来调用WinExec，而不需要使用API。结果如下图，在进程树中没有找到WinExec函数。（但这个方法很有限，不具有普适性）</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;windows.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">typedef UINT(WINAPI* WinExec_t)(LPCSTR lpCmdLine, UINT uCmdShow);</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">  // 通过固定地址获取WinExec函数地址</span><br><span class="line"></span><br><span class="line">  WinExec_t pWinExec = (WinExec_t)(0x7c8623ad);</span><br><span class="line"></span><br><span class="line">  pWinExec(&quot;calc.exe&quot;, SW_SHOWNORMAL);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052153849.jpg"
+                      alt="img"
+                > </p>
+<h6 id="3-5-如何监控“WinExec”，比cuckoo-sandbox的监控方式更难绕过？"><a href="#3-5-如何监控“WinExec”，比cuckoo-sandbox的监控方式更难绕过？" class="headerlink" title="3.5 如何监控“WinExec”，比cuckoo sandbox的监控方式更难绕过？"></a><em><strong>3.5 如何监控“WinExec”，比cuckoo sandbox的监控方式更难绕过？</strong></em></h6><p>要比cuckoo sandbox的监控方式更难绕过，就不能只依赖API Hook。</p>
+<ol>
+<li><p>通过调用内核API注册回调函数，当系统创建或结束进程时，该函数会自动被调用，这样就能捕获到所有进程的行为，因此比cuckoo sandbox更难绕过。</p>
+</li>
+<li><p>系统调用钩子在调用链更底层，也能监控所有进程创建途径。</p>
+</li>
+<li><p>ETW是官方提供的系统级事件追踪，允许程序在不修改的情况下知晓系统事件。</p>
+</li>
+<li><p>使用虚拟化监控（如基于Hypervisor的VMI）能从硬件层面监视系统调用，几乎无法被绕过，但复杂度和资源消耗较高。</p>
+</li>
+</ol>
+<h4 id="（三）恶意代码分析"><a href="#（三）恶意代码分析" class="headerlink" title="（三）恶意代码分析"></a>（三）<strong>恶意代码分析</strong></h4><h5 id="1-人工分析"><a href="#1-人工分析" class="headerlink" title="1. 人工分析"></a>1. <strong>人工分析</strong></h5><blockquote>
+<p>将样本1和样本2上传到VirusTotal。对于样本1和样本2，VirusTotal分别有几个安全软件报警？请思考，并解释为什么样本1和样本2的检测结果不同？</p>
+</blockquote>
+<p>样本1：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052212735.jpg"
+                      alt="img"
+                ></p>
+<p> 样本2：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052212467.jpg"
+                      alt="img"
+                ></p>
+<p>原因：</p>
+<p>样本1有16个软件报毒，样本2有10个软件报毒。样本1是静态导入，导入表中出现WinExec函数，更明显、更容易检测出来，所以个数更多；样本2是动态载入导入表中不直接出现WinExec函数，会在程序运行时才获取函数地址，因此只有动态分析这类方法才能检测到，个数更少。</p>
+<h5 id="2-自动化分析"><a href="#2-自动化分析" class="headerlink" title="2. 自动化分析"></a>2. <strong>自动化分析</strong></h5><blockquote>
+<p>参考7\8, 以及自己查找的资料，使用Python程序调用VirusTotal的API, 自动化上传样本1和样本2到VirusTotal检测，并自动换接收检测结果（每个样本有几个安全软件报警？）</p>
+</blockquote>
+<p>主要过程包括上传文件和获取报告。首先上传待分析文件获取对应的id和分析报告url，访问该url获取分析报告，然后进行结果分析。结果分析的代码主要是对response进行处理，其中的res[“data”][“attributes”][“stats”][‘malicious’]字段记录了报毒软件数目，之后通过每个软件字段中的category字段判断当前安全软件是否对该文件报毒。</p>
+<p>完整代码如下：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">\# 上传文件</span><br><span class="line"></span><br><span class="line"><span class="function">def <span class="title">upload_file</span><span class="params">(filepath, url, headers)</span>:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  files =</span> &#123; <span class="string">&quot;file&quot;</span>: (<span class="string">&quot;static.exe&quot;</span>, <span class="built_in">open</span>(filepath, <span class="string">&quot;rb&quot;</span>), <span class="string">&quot;application/x-msdownload&quot;</span>) &#125;</span><br><span class="line"></span><br><span class="line">  response = requests.<span class="built_in">post</span>(url, files=files, headers=headers)</span><br><span class="line"></span><br><span class="line">  \<span class="meta"># print(response.text)</span></span><br><span class="line"></span><br><span class="line">  id = None</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line"></span><br><span class="line">​    id = response.<span class="built_in">json</span>()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;id&quot;</span>]  # 文件id</span><br><span class="line"></span><br><span class="line">​    url_analysis = response.<span class="built_in">json</span>()[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;links&quot;</span>][<span class="string">&quot;self&quot;</span>] # 获取报告的url</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> id, url_analysis</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">\# 获取分析报告</span><br><span class="line"></span><br><span class="line">def <span class="built_in">get_report</span>(url, headers):</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(True):</span><br><span class="line"></span><br><span class="line">​    response = requests.<span class="built_in">get</span>(url, headers=headers)</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">if</span> response.status_code != <span class="number">200</span>:</span><br><span class="line"></span><br><span class="line">​      <span class="built_in">print</span>(response.text)</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">return</span> None</span><br><span class="line"></span><br><span class="line">​    \<span class="meta"># print(response.text)</span></span><br><span class="line"></span><br><span class="line">​    res = response.<span class="built_in">json</span>()</span><br><span class="line"></span><br><span class="line">​    status = res[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;attributes&quot;</span>][<span class="string">&quot;status&quot;</span>]</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">if</span> status == <span class="string">&quot;completed&quot;</span>:</span><br><span class="line"></span><br><span class="line">​      <span class="built_in">print</span>(f<span class="string">&quot;共&#123;res[&quot;</span>data<span class="string">&quot;][&quot;</span>attributes<span class="string">&quot;][&quot;</span>stats<span class="string">&quot;][&#x27;malicious&#x27;]&#125;个软件报毒，包括：&quot;</span>)</span><br><span class="line"></span><br><span class="line">​      results = res[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;attributes&quot;</span>][<span class="string">&quot;results&quot;</span>]</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">for</span> software, result in results.<span class="built_in">items</span>():</span><br><span class="line"></span><br><span class="line">​        <span class="keyword">if</span> result[<span class="string">&quot;category&quot;</span>] == <span class="string">&quot;malicious&quot;</span>:  # 筛选</span><br><span class="line"></span><br><span class="line">​          <span class="built_in">print</span>(f<span class="string">&quot;&#123;software&#125;&quot;</span>, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">​    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">​      time.<span class="built_in">sleep</span>(<span class="number">20</span>)  # 等待分析</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://www.virustotal.com/api/v3/files&quot;</span></span><br><span class="line"></span><br><span class="line">api = <span class="string">&quot;92222ce68fd4054dfa1d941aa8133126c079f9841a3b76c4e2be04007e27a849&quot;</span>   # 注册账号获取api</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line"></span><br><span class="line">  <span class="string">&quot;accept&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line"></span><br><span class="line">  <span class="string">&quot;x-apikey&quot;</span>: api</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">files = [<span class="string">&quot;static.exe&quot;</span>, <span class="string">&quot;dynamic.exe&quot;</span>]  # 要分析的文件</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file in files:</span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(f<span class="string">&quot;== &#123;file&#125; ==&quot;</span>)</span><br><span class="line"></span><br><span class="line">  id, url_analysis = <span class="built_in">upload_file</span>(file, url, headers)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> id:</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">get_report</span>(url_analysis, headers)</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">print</span>(f<span class="string">&quot;\n== &#123;file&#125;分析完成 ==\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">print</span>(<span class="string">&quot;id获取错误\n&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052211845.jpg"
+                      alt="img"
+                ></p>
+<h2 id="三．实验总结"><a href="#三．实验总结" class="headerlink" title="三．实验总结"></a>三．<strong>实验总结</strong></h2><p>通过本次实验，我深入理解了恶意代码分析的基本方法。</p>
+<ul>
+<li><p>通过构造两个样本，分别使用静态导入与动态调用的方式执行WinExec，我学会了借助IDA和pefile工具进行静态结构分析。</p>
+</li>
+<li><p>利用x64dbg和Cuckoo Sandbox对样本行为进行动态监控，理解了Cuckoo Sandbox的检测原理，还分析了源码。</p>
+</li>
+<li><p>使用VirusTotal接口实现样本自动化上传与检测，探究了安全软件对静态与动态两种方式检测的不同程度的可能原因。</p>
+</li>
+<li><p>除此之外，我在环境搭建过程中学会了很多环境配置方法，对于linux的操作更加熟悉。</p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 竞学实训（2）</li>
+        <li><strong>Author:</strong> dawn_r1sing</li>
+        <li><strong>Created at
+                :</strong> 2025-07-09 21:53:14</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-11-08 11:43:43
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2025/07/09/竞学实训（2）/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E5%AE%9E%E9%AA%8C/">#实验</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E8%AF%BE%E5%86%85%E5%AD%A6%E4%B9%A0/">#课内学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/07/11/%E7%AB%9E%E5%AD%A6%E5%AE%9E%E8%AE%AD%EF%BC%883%EF%BC%89/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">竞学实训（3）</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/07/09/%E7%AB%9E%E5%AD%A6%E5%AE%9E%E8%AE%AD%EF%BC%881%EF%BC%89/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">竞学实训（1）</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">竞学实训（2）</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8CMalware-Analysis"><span class="nav-text">实验Malware Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%EF%BC%8E%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="nav-text">一．实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%EF%BC%8E%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="nav-text">二．实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%EF%BC%8E%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-text">三．实验总结</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">dawn_r1sing</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        33 posts in total
+                    </span>
+                    
+                        <span>
+                            65k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

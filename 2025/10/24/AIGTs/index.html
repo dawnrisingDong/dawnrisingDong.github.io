@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="dawn_r1sing">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://dawnringDong.github.io/2025/10/24/aigts/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Are We in the AI-Generated Text World Already? Quantifying and Monitoring AIGT on Social Media 2412.18148v3  目的量化并监控在线社交媒体平台上的AIGT，覆盖一系列LLM  虚假信息传播 舆论控制  从时间维度出发，纵向分析AIGT在 内容驱动型社交媒体 上的占比 数据集 评估数据：SM-D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2412: AIGTs">
+<meta property="og:url" content="http://dawnringdong.github.io/2025/10/24/AIGTs/index.html">
+<meta property="og:site_name" content="dawn">
+<meta property="og:description" content="Are We in the AI-Generated Text World Already? Quantifying and Monitoring AIGT on Social Media 2412.18148v3  目的量化并监控在线社交媒体平台上的AIGT，覆盖一系列LLM  虚假信息传播 舆论控制  从时间维度出发，纵向分析AIGT在 内容驱动型社交媒体 上的占比 数据集 评估数据：SM-D">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202510152112700.png">
+<meta property="article:published_time" content="2025-10-24T11:36:05.000Z">
+<meta property="article:modified_time" content="2025-11-08T03:45:10.390Z">
+<meta property="article:author" content="dawn_r1sing">
+<meta property="article:tag" content="AI Security">
+<meta property="article:tag" content="paper">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202510152112700.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310311001858.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            2412: AIGTs -
+        
+        dawn_r1sing
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        dawn_r1sing
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"dawnringdong.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"dawn_r1sing","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=d&c=i&c=j&c=k&c=i"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"xiaoran_dong@163.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-home# can be empty"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":false,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/29 12:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                dawn_r1sing
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-home# can be empty fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-home# can be empty fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">33</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">2412: AIGTs</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310291726035.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-10-24 19:36:05</span>
+        <span class="mobile">2025-10-24 19:36:05</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-08 11:45:10</span>
+            <span class="mobile">2025-11-08 11:45:10</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AI-Security/">AI Security</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/paper/">paper</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h3 id="Are-We-in-the-AI-Generated-Text-World-Already-Quantifying-and-Monitoring-AIGT-on-Social-Media"><a href="#Are-We-in-the-AI-Generated-Text-World-Already-Quantifying-and-Monitoring-AIGT-on-Social-Media" class="headerlink" title="Are We in the AI-Generated Text World Already? Quantifying and Monitoring AIGT on Social Media"></a>Are We in the AI-Generated Text World Already? Quantifying and Monitoring AIGT on Social Media</h3><blockquote>
+<p>2412.18148v3</p>
+</blockquote>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>量化并监控在线<u>社交媒体</u>平台上的AIGT，覆盖一系列LLM</p>
+<ul>
+<li>虚假信息传播</li>
+<li>舆论控制</li>
+</ul>
+<p>从时间维度出发，纵向分析AIGT在 内容驱动型社交媒体 上的占比</p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><ol>
+<li><h4 id="评估数据：SM-D"><a href="#评估数据：SM-D" class="headerlink" title="评估数据：SM-D"></a>评估数据：<strong>SM-D</strong></h4><p>3个社交平台上收集的2022.1-2024.10的文字数据（文章、Q&amp;A中的answer，response）</p>
+<ul>
+<li>过滤：太短的、英文占比少的、带有明显 AI生成异常 特征的（重复、不相关词句等），保证后续的文本特征分析更加准确</li>
+</ul>
+</li>
+<li><h4 id="detector：OSM-Det"><a href="#detector：OSM-Det" class="headerlink" title="detector：OSM-Det"></a>detector：<strong>OSM-Det</strong></h4><p><strong>AIGTBench</strong>：AIGT+HWT</p>
+<ul>
+<li><p>AIGT：公开的AIGT、SFT数据集，使用不同LLM生成具有平台特征的内容</p>
+<ul>
+<li>Medium：writing task   <ul>
+<li>1.润色文章   </li>
+<li>2.基于xxx生成文章</li>
+</ul>
+</li>
+<li>Quora and Reddit：Q&amp;A、user interaction tasks   <ul>
+<li>1.润色文章   </li>
+<li>2.直接问问题Q</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HWT：3个媒体平台在2018.1-2021.12期间的内容，提高detector在媒体内容上的泛化能力，从而捕捉到社交媒体内容的语言风格（消融研究）</p>
+</li>
+</ul>
+</li>
+<li><p>分割数据集：训练集7：验证集1：测试集2</p>
+</li>
+</ol>
+<h2 id="detector"><a href="#detector" class="headerlink" title="detector"></a>detector</h2><h4 id="基于metric"><a href="#基于metric" class="headerlink" title="基于metric"></a>基于metric</h4><p>base model：GPT-2 medium</p>
+<h5 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h5><ol>
+<li>使用base model提取统计特征</li>
+<li>基于统计特征，训练逻辑回归模型</li>
+</ol>
+<h4 id="基于model"><a href="#基于model" class="headerlink" title="基于model"></a>基于model</h4><p>使用AIGTBench测试了pre-trained detector与微调后的detector</p>
+<ul>
+<li><p>OpenAI Detector、ChatGPT Detector：选择RoBERTa-base版本直接使用</p>
+</li>
+<li><p>ConDA、LM-D：fine-tune</p>
+</li>
+<li><p>GPTZero：直接使用</p>
+</li>
+<li><p>CheckGPT：使用AIGTBench复现</p>
+</li>
+</ul>
+<h4 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h4><ul>
+<li><p>accuracy</p>
+</li>
+<li><p>F1-score</p>
+</li>
+<li><p>ARR：detector预测为AIGT的文本占比</p>
+</li>
+<li><p>FPR：HWT错误预测为AIGT的占比</p>
+</li>
+<li><p>NTF：<strong>反映用词偏好</strong>&#x3D;当前文章t的出现次数&#x2F;(当前文章总词数*所有文章t的出现次数) → 惩罚常用词</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202510152112700.png"
+                      alt="tmp83BB"
+                ></p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><ul>
+<li><p>基于metric：poor</p>
+<p>难以有效捕捉细微的文本特征</p>
+</li>
+<li><p>基于model</p>
+<ul>
+<li>openAI、ChatGPT：very poor，可能是因为它们是在早期模型GPT-2的输出上进行fine-tune，无法检测更先进的AIGT</li>
+<li>最终选取<strong>LM-D</strong>（在AIGTBench上fine-tune） → OSM-Det<ul>
+<li>按平台分AIGTBench，比较结果</li>
+<li>对于短文本的预测准确率低于长文本，因此将SM-D中的较短文本排除（&lt;150）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h4><p>普遍性</p>
+<ul>
+<li><p>不同生成参数：temperature, top-p, and top-k</p>
+<p>使用GPT4o and GPT4o-mini，改变生成参数，refine 5000 HWT，进行测试 → 不同生成参数refine得到的text的预测都很准</p>
+</li>
+<li><p>新model的生成文本：detector没见过这些model的生成文本，不在AIGTBench中</p>
+<p>使用这些model 润色 5000 HWT</p>
+</li>
+<li><p>test in the wild：从huggingface随机选取数据集，没见过的model、没见过的领域，都不在AIGTBench中</p>
+<p>分数依旧很高</p>
+</li>
+</ul>
+<h2 id="SM-D评估"><a href="#SM-D评估" class="headerlink" title="SM-D评估"></a>SM-D评估</h2><blockquote>
+<p>看图</p>
+</blockquote>
+<ul>
+<li><p>Medium、Quora：ARR整体呈现增加（release</p>
+</li>
+<li><p>Reddit：rely less on AI</p>
+</li>
+</ul>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="语言特征分析（detector的可解释性）"><a href="#语言特征分析（detector的可解释性）" class="headerlink" title="语言特征分析（detector的可解释性）"></a>语言特征分析（<font color='red'>detector的可解释性</font>）</h3><ul>
+<li>积分梯度：依赖于model，计算梯度为每个输入值赋予重要性分数（仅word</li>
+<li>沙普利值：独立于model，扰动输入值，观察预测中的贡献度（≈控制变量法）</li>
+</ul>
+<h4 id="word-level"><a href="#word-level" class="headerlink" title="word level"></a>word level</h4><ul>
+<li><p>无法简单地根据某个词判断class，因为会有重叠</p>
+<p>这种重叠说明了 word importance 与上下文高度相关</p>
+</li>
+<li><p>转向静态统计高频率 形容词、连词、副词</p>
+<p>使用SpaCy库标记词性，从adj、conj、adv中找出AIGT、HWT的top词，即为AI-preferred vocabulary、Human-preferred vocabulary</p>
+<ul>
+<li><p>统计SM-D中AI-preferred vocabulary、Human-preferred vocabulary的NTF，反映这些词的使用状况</p>
+<ul>
+<li><p>Medium、Quora：AI↑ Human↓（release时间点</p>
+<p>说明这两个平台AI的使用在增加</p>
+</li>
+<li><p>Reddit：AI一直很低，Human一直很高</p>
+</li>
+<li><p>波动趋势和ARR基本一致</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="sentence-level"><a href="#sentence-level" class="headerlink" title="sentence level"></a>sentence level</h4><p>很有区分度：</p>
+<ul>
+<li>AIGT：句子风格客观，结构标准。名词代词开头，主谓宾</li>
+<li>human：灵活的句子结构，非正式表达</li>
+</ul>
+<h3 id="其他维度分析"><a href="#其他维度分析" class="headerlink" title="其他维度分析"></a>其他维度分析</h3><h5 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h5><ul>
+<li><p>Medium</p>
+</li>
+<li><p>9个topic</p>
+</li>
+<li><p>按照时间维度，所有topic的ARR都在增长，其中“科技、软件发展”最高</p>
+</li>
+</ul>
+<h5 id="engagement"><a href="#engagement" class="headerlink" title="engagement"></a>engagement</h5><blockquote>
+<p>likes，comments</p>
+</blockquote>
+<ul>
+<li>AI：Human &#x3D; 1：1 选取16600 blogs</li>
+<li>Mann-Whitney U 检验 发现两种blogs的engagement相差很大<ul>
+<li>AI的engagement更低，低engagement的blogs 频率更大</li>
+<li>不同粉丝体量的作者，都呈现 AI作品的engagement更低 的现象</li>
+</ul>
+</li>
+</ul>
+<h5 id="author"><a href="#author" class="headerlink" title="author"></a>author</h5><ul>
+<li><p>探究 粉丝数与AI使用的关系</p>
+</li>
+<li><p>随机寻找1000名作者</p>
+<p>followers少AAR高，followers多ARR低</p>
+</li>
+<li><p>在model 发布后，第一次使用AI生成内容的作者数 显著增长，后逐渐稳定</p>
+</li>
+</ul>
+<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><ul>
+<li>覆盖LLM有限</li>
+<li>数据集存在分布偏差</li>
+<li><font color='red'>语言</font>：detector的公平性</li>
+<li>仅对Medium分析了其他维度，数据难收集</li>
+</ul>
+<p><font color='red'>人机协作检测</font></p>
+<h2 id="被引用"><a href="#被引用" class="headerlink" title="被引用"></a>被引用</h2><ul>
+<li><p><em>TH-Bench:</em> Evaluating Evading Attacks via Humanizing AI Text on Machine-Generated Text Detectors</p>
+<ul>
+<li>评估evading attacks against MGT detectors（攻击者对AIGT进行轻微改动，从而<strong>绕过detector</strong>） </li>
+<li><font color='red'>攻击or防御</font></li>
+</ul>
+</li>
+<li><p>On the Generalization and Adaptation Ability of Machine-Generated Text Detectors in Academic Writing</p>
+<ul>
+<li>评估针对<strong>学术写作的detector</strong></li>
+</ul>
+</li>
+<li><p>Echoes of Automation: The Increasing Use of LLMs in Newsmaking</p>
+<ul>
+<li>统计<strong>news的AIGT现状</strong></li>
+</ul>
+</li>
+<li><p>When Detection Fails: The Power of Fine-Tuned Models to Generate Human-Like Social Media Text</p>
+<ul>
+<li>从攻击者出发，测试detector的检测效果 → <strong>detector在现实场景下</strong>性能显著下降，对于fine-tune后的model效果欠佳（OOD）</li>
+</ul>
+</li>
+<li><p>RepreGuard: Detecting LLM-Generated Text by Revealing Hidden Representation Patterns</p>
+<ul>
+<li><p><strong>检测AIGT的其他方法</strong>：通过LLM内部的神经激活模式的显著差异 来检测AIGT</p>
+</li>
+<li><p>引用目的：选择 Reddit 作为可靠的HWT</p>
+</li>
+</ul>
+</li>
+<li><p>Learning in an Echo Chamber: Online Learning with Replay Adversary</p>
+<ul>
+<li><strong>系统自身输出的数据作为训练的一部分</strong>，这样有可能让系统强化自己的错误 → 进行纠正</li>
+</ul>
+</li>
+<li><p>Machines in the Crowd? Measuring the Footprint of Machine-Generated Text on Reddit</p>
+<ul>
+<li>相比较，它专门<strong>聚焦 Reddit</strong> 的AIGT的足迹（社会信息）</li>
+</ul>
+</li>
+<li><p>引用说明 Internet上有很多AIGT</p>
+<ul>
+<li><p>使用其他generative AI的output训练新的generative AI的效果</p>
+</li>
+<li><p>信息检索：当查询、文档和排序器都可能由不同的 LLM 智能体构成时，信息检索系统会发生什么变化？</p>
+</li>
+<li><p>营销：内容同质化</p>
+</li>
+<li><p>计算机视觉：pic的虚假region定位</p>
+</li>
+<li><p>AIGT的说服力如何</p>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 2412: AIGTs</li>
+        <li><strong>Author:</strong> dawn_r1sing</li>
+        <li><strong>Created at
+                :</strong> 2025-10-24 19:36:05</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-11-08 11:45:10
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://dawnrisingdong.github.io/2025/10/24/AIGTs/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/AI-Security/">#AI Security</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/paper/">#paper</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/11/06/BLIP/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">BLIP</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/09/25/happy-llm-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">happy-llm 阅读笔记</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">2412: AIGTs</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Are-We-in-the-AI-Generated-Text-World-Already-Quantifying-and-Monitoring-AIGT-on-Social-Media"><span class="nav-text">Are We in the AI-Generated Text World Already? Quantifying and Monitoring AIGT on Social Media</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#detector"><span class="nav-text">detector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SM-D%E8%AF%84%E4%BC%B0"><span class="nav-text">SM-D评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%EF%BC%88detector%E7%9A%84%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7%EF%BC%89"><span class="nav-text">语言特征分析（detector的可解释性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%BB%B4%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-text">其他维度分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%90%E5%88%B6"><span class="nav-text">限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A2%AB%E5%BC%95%E7%94%A8"><span class="nav-text">被引用</span></a>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">dawn_r1sing</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        33 posts in total
+                    </span>
+                    
+                        <span>
+                            65k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
