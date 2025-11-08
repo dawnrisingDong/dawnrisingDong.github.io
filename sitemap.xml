@@ -340,6 +340,20 @@
   </url>
   
   <url>
+    <loc>http://dawnringdong.github.io/tags/AI/</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://dawnringdong.github.io/tags/%E4%B8%93%E9%A2%98/</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://dawnringdong.github.io/tags/CTF-web/</loc>
     <lastmod>2025-11-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -354,14 +368,7 @@
   </url>
   
   <url>
-    <loc>http://dawnringdong.github.io/tags/AI/</loc>
-    <lastmod>2025-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://dawnringdong.github.io/tags/%E4%B8%93%E9%A2%98/</loc>
+    <loc>http://dawnringdong.github.io/tags/reading/</loc>
     <lastmod>2025-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -383,13 +390,6 @@
   
   <url>
     <loc>http://dawnringdong.github.io/tags/%E9%9B%86%E8%AE%AD/</loc>
-    <lastmod>2025-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://dawnringdong.github.io/tags/reading/</loc>
     <lastmod>2025-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
