@@ -4327,9 +4327,11 @@ html.is-animating .transition-fade-down {
   }
 }
 .home-content-container .home-article-list .home-article-item .home-article-content {
-  word-wrap: break-word;
-  text-align: justify;
-  color: var(--default-text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .home-content-container .home-article-list .home-article-item .home-article-meta-info-container {
   display: flex;
