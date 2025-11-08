@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dawnringdong.github.io/categories/index.html</loc>
+    
+    <lastmod>2025-11-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://dawnringdong.github.io/2024/04/07/unzip/</loc>
     
     <lastmod>2025-11-08</lastmod>
@@ -368,14 +377,14 @@
   </url>
   
   <url>
-    <loc>http://dawnringdong.github.io/tags/reading/</loc>
+    <loc>http://dawnringdong.github.io/tags/%E9%9B%86%E8%AE%AD/</loc>
     <lastmod>2025-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://dawnringdong.github.io/tags/%E9%9B%86%E8%AE%AD/</loc>
+    <loc>http://dawnringdong.github.io/tags/reading/</loc>
     <lastmod>2025-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
